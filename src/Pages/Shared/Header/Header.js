@@ -14,6 +14,7 @@ const Header = () => {
             .catch((error) => { })
     }
 
+    
 
     const menuItems = <>
         <li className='my-2 md:mt-0'><NavLink className='font-semibold mx-2 text-md {({ isActive, isPending }) =>
@@ -27,8 +28,9 @@ const Header = () => {
     </>
 
     return (
-        <div>
-            <div className="navbar">
+        <div className='sticky top-0 customBg z-10'>
+
+            <div className="navbar ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
