@@ -32,7 +32,7 @@ const Footer = () => {
                     <Link className="link link-hover" to={'#'}>Privacy policy</Link>
                     <Link className="link link-hover" to={'#'}>Cookie policy</Link>
                 </div>
-                                   
+                        
             </footer>
             
         </div>
