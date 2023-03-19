@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import CampaignCard from '../SharedComponent/CampaignCard';
 
 const SuccessStory = () => {
@@ -19,6 +20,9 @@ const SuccessStory = () => {
                 {
                     successStories.map(campaign => <CampaignCard key={campaign.service_id} campaign={campaign}></CampaignCard>)
                 }
+            </div>
+            <div className='text-center mt-10 lg:mt-16'>
+                <Link className='text-xl bg-slate-600 px-10 font-semibold py-3 rounded-full text-white' to={'/campaigns'}>More story</Link>
             </div>
         </div>
     );

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import CampaignCard from '../SharedComponent/CampaignCard';
 
 const FeaturedCampaign = () => {
@@ -20,6 +21,9 @@ const FeaturedCampaign = () => {
                 {
                     campaigns.map(campaign => <CampaignCard key={campaign.service_id} campaign={campaign}></CampaignCard>)
                 }
+            </div>
+            <div className='text-center mt-10 lg:mt-16'>
+                <Link className='text-xl font-semibold bg-slate-600 px-10 py-3 rounded-full text-white' to={'/campaigns'}>More Campaign</Link>
             </div>
         </div>
     );

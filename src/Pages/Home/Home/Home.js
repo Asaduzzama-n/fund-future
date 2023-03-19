@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import SuccessStory from '../SuccessStory/SuccessStory';
 import FundraiseForSection from '../FundraiseForSection/FundraiseForSection';
 
+
 const Home = () => {
     return (
         <div className='min-h-screen'>
@@ -14,6 +15,7 @@ const Home = () => {
                 <FeaturedCampaign></FeaturedCampaign>
                 <FundraiseForSection></FundraiseForSection>
                 <SuccessStory></SuccessStory>
+
             </div>
         </div>
     );
