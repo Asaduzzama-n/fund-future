@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Main from '../../Layout/Main/Main';
 import About from '../../Pages/About/About/About';
 import Campaigns from '../../Pages/Campaigns/Campaigns/Campaigns';
+import CreateCampaigns from '../../Pages/CreateCampaign/CreateCampaigns/CreateCampaigns';
 import Faq from '../../Pages/Faq/Faq/Faq';
 import Home from '../../Pages/Home/Home/Home';
 import Login from '../../Pages/Login/Login/Login';
@@ -37,6 +38,10 @@ const routes = createBrowserRouter([
                 path:'/campaigns',
                 element:<Campaigns></Campaigns>
             },
+            {
+                path:'/create-campaign',
+                element:<CreateCampaigns></CreateCampaigns>
+            }
         ]
     }
 
