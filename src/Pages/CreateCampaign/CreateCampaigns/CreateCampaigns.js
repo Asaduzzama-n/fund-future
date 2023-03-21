@@ -14,6 +14,23 @@ const CreateCampaigns = () => {
     //     [placeholder]
     // );
 
+
+    const handleCampaignFormSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const title = form.title.value;
+        const category = form.category.value;
+        const tag = form.tag.value;
+        const image = form.image.value;
+        const date = form.date.value;
+        const t_amount = form.t_amount.value;
+        const city = form.city.value;
+        const address = form.address.value;
+
+        console.log(title, category, tag, image, date, t_amount, city, address, content);
+    }
+
+
     return (
         <div>
 
@@ -21,74 +38,88 @@ const CreateCampaigns = () => {
                 <div className="hero min-h-screen">
                     <div className="w-full flex-col">
                         <div className=" w-full p-10 ">
-                            <form className="w-full">
-                                <div className='text-center mb-20'>
+                            <form onSubmit={handleCampaignFormSubmit} className="w-full">
+                                {/* <div className='text-center mb-20'>
                                     <h1 className='text-6xl font-bold font-mono text-slate-600'>Provide Necessary Information</h1>
-                                </div>
+                                </div> */}
 
                                 <div className="form-control w-full my-4">
                                     <label className="label">
                                         <span className="label-text">Title</span>
                                     </label>
-                                    <input type="text" placeholder="Title" className="p-5 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                    <input type="text" placeholder="Title" name='title' className="p-5 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
                                 </div>
 
                                 <div className='md:flex justify-between'>
                                     <div className="form-control w-full md:w-5/12  my-4">
                                         <label className="label">
-                                            <span className="label-text">Category</span>
+                                            <span className="label-text">Email</span>
                                         </label>
-                                        <select className="select h-14 rounded-md input border-solid border-2  border-slate-200">
-                                            <option disabled selected>Chose campaign type</option>
-                                            <option>General</option>
-                                            <option>Featured</option>
-                                            <option>Healthcare</option>
-                                            <option>Education</option>
-                                        </select>
+                                        <input type="email" placeholder="Email" name='email' className="p-4 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
                                     </div>
+
                                     <div className="form-control w-full md:w-5/12  my-4">
                                         <label className="label">
-                                            <span className="label-text">Tag</span>
+                                            <span className="label-text">Phone Number</span>
                                         </label>
-                                        <input type="text" placeholder="Tag" className="p-4 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                        <input type="text" name='phone' className="p-4 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                    </div>
+
+                                </div>
+
+                                <div className='md:flex justify-between'>
+
+                                    <div className="form-control w-full md:w-5/12  my-4">
+                                        <label className="label">
+                                            <span className="label-text">Category</span>
+                                        </label>
+                                        <select name='category' className="select h-14 rounded-md input border-solid border-2  border-slate-200">
+                                            <option disabled selected>Chose campaign type</option>
+                                            <option value={'general'}>General</option>
+                                            <option value={'featured'}>Featured</option>
+                                            <option value={'healthcare'}>Healthcare</option>
+                                            <option value={'education'}>Education</option>
+                                        </select>
+                                    </div>
+
+                                    <div className="form-control w-full md:w-5/12  my-4">
+                                        <label className="label">
+                                            <span className="label-text">Target Amount</span>
+                                        </label>
+                                        <input type="text" name='t_amount' placeholder="Target amount" className="p-4 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
                                     </div>
                                 </div>
 
                                 <div className="form-control w-full my-4">
                                     <label className="label">
-                                        <span className="label-text">Email</span>
+                                        <span className="label-text">Image</span>
                                     </label>
-                                    <input type="file" className="file-input file-input-bordered file-input-success px-0 rounded-md input border-solid border-2  border-slate-200 w-full " />
+                                    <input type="file" name='image' className="file-input file-input-bordered file-input-success px-0 rounded-md input border-solid border-2  border-slate-200 w-full " />
                                 </div>
 
 
                                 <div className='md:flex justify-between'>
-                                    <div className="form-control w-full md:w-5/12  my-4">
+                                    {/* <div className="form-control w-full md:w-5/12  my-4">
                                         <label className="label">
                                             <span className="label-text">Start Date</span>
                                         </label>
-                                        <input type="date" className="p-4 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
-                                    </div>
-                                    <div className="form-control w-full md:w-5/12  my-4">
+                                        <input type="date" name='date' className="p-4 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                    </div> */}
+                                    {/* <div className="form-control w-full md:w-5/12  my-4">
                                         <label className="label">
                                             <span className="label-text">Target Amount</span>
                                         </label>
-                                        <input type="text" placeholder="Target amount" className="p-4 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
-                                    </div>
+                                        <input type="text" name='t_amount' placeholder="Target amount" className="p-4 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                    </div> */}
                                 </div>
 
                                 <div className='md:flex justify-between'>
-                                    <div className="form-control w-full md:w-5/12  my-4">
-                                        <label className="label">
-                                            <span className="label-text">City</span>
-                                        </label>
-                                        <input type="text" className="p-4 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
-                                    </div>
+                                    
                                     <div className="form-control w-full md:w-5/12  my-4">
                                         <label className="label">
                                             <span className="label-text">Address</span>
                                         </label>
-                                        <input type="text" placeholder="Address" className="p-4 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                        <textarea type="text"  name='address'  placeholder="City/Dist/post" className="p-4 h-32 rounded-md input border-solid border-2  border-slate-200 w-full" />
                                     </div>
                                 </div>
 
@@ -109,7 +140,7 @@ const CreateCampaigns = () => {
 
 
                                 <div className="form-control my-10">
-                                    <button className="py-4 rounded-full w-1/2 lg:w-1/5 mx-auto bg-green-500 font-semibold text-lg">Create Campaign</button>
+                                    <button type='submit' className="py-4 rounded-full w-1/2 lg:w-1/5 mx-auto bg-green-500 font-semibold text-lg">Create Campaign</button>
                                 </div>
 
                             </form>

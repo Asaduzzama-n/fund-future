@@ -7,15 +7,15 @@ const Campaigns = () => {
 
     const [onCampaign, setOnCampaign] = useState([]);
     const [type,setType] = useState('');
-    // console.log((type === ''))
+    // console.log((type))
     useEffect(() => {
-        fetch('campaign.json')
+        fetch('campaign1.json')
             .then(res => res.json())
             .then(data => {
                 if(type === ''){
                     setOnCampaign(data);
                 }else{
-                    const targetData = data.filter(d => d.type === type);
+                    const targetData = data.filter(d => d.category === type);
                     setOnCampaign(targetData)
                 }
 
@@ -36,7 +36,7 @@ const Campaigns = () => {
                         <ul className=' flex justify-center '>
                             <li className='mx-2 lg:mx-4 '><button onClick={()=>handleBtnClick('general')} className='text-lg border-b-4 border-green-500 px-2 font-semibold '>General</button></li>
                             <li className='mx-2 lg:mx-4'><button onClick={()=>handleBtnClick('featured')} className='text-lg border-b-4 border-green-500 px-2 font-semibold'>Featured</button></li>
-                            <li className='mx-2 lg:mx-4'><button onClick={()=>handleBtnClick('health')} className='text-lg border-b-4 border-green-500 px-2 font-semibold'>Healthcare</button></li>
+                            <li className='mx-2 lg:mx-4'><button onClick={()=>handleBtnClick('healthcare')} className='text-lg border-b-4 border-green-500 px-2 font-semibold'>Healthcare</button></li>
                             <li className='mx-2 lg:mx-4'><button onClick={()=>handleBtnClick('education')} className='text-lg border-b-4 border-green-500 px-2 font-semibold'>Education</button></li>
                         </ul>
                     </div>

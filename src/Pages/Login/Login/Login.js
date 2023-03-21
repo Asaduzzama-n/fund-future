@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import logo from '../../../assets/login/undraw_security_re_a2rk.svg';
 import { FcGoogle } from 'react-icons/fc';
 import { ImFacebook } from 'react-icons/im';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { toast } from 'react-hot-toast';
 
@@ -11,6 +11,8 @@ const Login = () => {
     const {userLoginWithEmail,googleLogin,setLoading,passwordReset,user} = useContext(AuthContext);
     const [email,setEmail] = useState(null);
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogin = (event) =>{
         event.preventDefault();
@@ -24,8 +26,9 @@ const Login = () => {
         .then(userCredential => {
             const user = userCredential.user;
             console.log('Login',user);
+
             if(user?.emailVerified){
-                navigate('/');
+                navigate(from, {replace: true});
             }else{
                 toast.error("YOUR EMAIL IS NOT VERIFIED! PLEASE VERIFY YOUR EMAIL...");
             }
@@ -39,7 +42,7 @@ const Login = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
-            navigate('/');
+            navigate(from, {replace: true});
         })
         .catch(error =>{
            console.log(error.message);

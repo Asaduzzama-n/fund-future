@@ -21,12 +21,10 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password);
     }
     const updateUserProfile = (profile) => {
-        setLoading(true);
         return updateProfile(auth.currentUser, profile);
     }
 
     const userLoginWithEmail = (email, password) => {
-        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
@@ -54,10 +52,10 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser === null || currentUser?.emailVerified) {
                 setUser(currentUser);
-                setLoading(false);
-
             }
-        })
+            setLoading(false);
+
+        });
 
         return () => unsubscribe();
     }, [])

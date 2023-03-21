@@ -6,9 +6,12 @@ const FeaturedCampaign = () => {
     const [campaigns, setCampaigns] = useState([]);
 
     useEffect(() => {
-        fetch('campaign.json')
+        fetch('campaign1.json')
             .then(res => res.json())
-            .then(data => setCampaigns(data))
+            .then(data => {
+                const featuredContent = data.filter(camp => camp.category === 'featured');
+                setCampaigns(featuredContent);
+            })
     }, [])
 
     return (

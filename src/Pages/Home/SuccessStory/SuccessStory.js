@@ -6,9 +6,12 @@ const SuccessStory = () => {
     const [successStories, setSuccessStories] = useState([]);
 
     useEffect(() => {
-        fetch('success.json')
+        fetch('campaign1.json')
             .then(res => res.json())
-            .then(data => setSuccessStories(data))
+            .then(data => {
+                const successCampaign = data.filter(camp => camp.category === 'success');
+                setSuccessStories(successCampaign);
+            })
     }, [])
     return (
         <div>

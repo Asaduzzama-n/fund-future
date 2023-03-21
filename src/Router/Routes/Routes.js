@@ -8,6 +8,7 @@ import Faq from '../../Pages/Faq/Faq/Faq';
 import Home from '../../Pages/Home/Home/Home';
 import Login from '../../Pages/Login/Login/Login';
 import Signup from '../../Pages/Signup/Signup/Signup';
+import PrivateRoute from './PrivateRoute';
 
 const routes = createBrowserRouter([
     {
@@ -40,7 +41,7 @@ const routes = createBrowserRouter([
             },
             {
                 path:'/create-campaign',
-                element:<CreateCampaigns></CreateCampaigns>
+                element:<PrivateRoute><CreateCampaigns></CreateCampaigns></PrivateRoute>
             }
         ]
     }
