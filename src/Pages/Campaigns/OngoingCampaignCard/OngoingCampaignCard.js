@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const OngoingCampaignCard = ({ camp }) => {
-    const { title,image, description,type,campaigner_name,t_amount } = camp;
+    const {_id, title,image, description,type,campaigner_name,t_amount } = camp;
     return (
         <div>
             <div drag
                 className="card rounded-lg w-96 bg-base-100 shadow-lg">
-                <Link to={'/login'}><figure><img className='h-60 w-full hover:opacity-60' src={image} alt="Shoes" /></figure></Link>
+                <Link to={`/campaign/${_id}`}><figure><img className='h-60 w-full hover:opacity-60' src={image} alt="Shoes" /></figure></Link>
                 <div className='mb-2 px-4 py-2 '>
                     <p className='text-green-500 text-lg font-bold'>{type}</p>
 

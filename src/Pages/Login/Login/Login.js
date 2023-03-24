@@ -27,7 +27,10 @@ const Login = () => {
             const user = userCredential.user;
             console.log('Login',user);
 
-            if(user?.emailVerified){
+            if(user.emailVerified){
+                console.log(from)
+                console.log('Login',user);
+                toast.success(`Welcome ${user?.displayName}`)
                 navigate(from, {replace: true});
             }else{
                 toast.error("YOUR EMAIL IS NOT VERIFIED! PLEASE VERIFY YOUR EMAIL...");

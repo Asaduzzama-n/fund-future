@@ -2,12 +2,9 @@ import React from 'react';
 import { motion, useScroll } from "framer-motion"
 import { Link } from 'react-router-dom';
 
-const CampaignCard = ({ campaign }) => {
-
-    const {_id, title,campaigner_phone,image, t_amount, description,campigner_email,campaigner_name } = campaign;
-
+const SuccessStoryCard = ({successStory}) => {
+    const {_id, title,campaigner_phone,image, t_amount, description,campigner_email,campaigner_name } = successStory;
     return (
-
         <motion.div  drag
         dragConstraints={{
           top: -50,
@@ -15,7 +12,7 @@ const CampaignCard = ({ campaign }) => {
           right: 50,
           bottom: 50,
         }} className="card rounded-lg w-96 bg-base-100 shadow-lg">
-            <Link to={`/campaign/${_id}`}><figure><img className='h-60 w-full hover:opacity-60' src={image} alt="Shoes" /></figure></Link>
+            <Link to={`/success-story/${_id}`}><figure><img className='h-60 w-full hover:opacity-60' src={image} alt="Shoes" /></figure></Link>
             <div className='mb-2 px-4 py-2 '>
                 <progress className="progress progress-success w-full " value="70" max="100"></progress>
                 <div className='flex justify-between '>
@@ -35,4 +32,4 @@ const CampaignCard = ({ campaign }) => {
     );
 };
 
-export default CampaignCard;
+export default SuccessStoryCard;

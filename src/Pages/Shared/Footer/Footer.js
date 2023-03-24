@@ -5,8 +5,8 @@ import logo from '../../../assets/cover.png'
 const Footer = () => {
     return (
         <div className='text-white'>
-            <footer className="footer h-auto lg:h-96  text-md font-bold text-black grid justify-between p-10">
-                <div className='w-80'>
+            <footer className="footer h-auto  lg:h-96  text-md font-bold text-black grid justify-between p-10">
+                <div className='w-80 mx-auto'>
                     <img src={logo} alt="" />
                     <div className='mx-10'>
                     <p>ONE STEP CLOSER TO MAKING <br /> SOMEONE'S DREAM FULFILLED.</p>

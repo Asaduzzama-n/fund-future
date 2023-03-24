@@ -2,8 +2,10 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../../Layout/Main/Main';
 import About from '../../Pages/About/About/About';
+import CampaignAndDonation from '../../Pages/CampaignAndDonation/CampaignAndDonation';
 import Campaigns from '../../Pages/Campaigns/Campaigns/Campaigns';
 import CreateCampaigns from '../../Pages/CreateCampaign/CreateCampaigns/CreateCampaigns';
+import Donation from '../../Pages/Donation/Donation';
 import Faq from '../../Pages/Faq/Faq/Faq';
 import Home from '../../Pages/Home/Home/Home';
 import Login from '../../Pages/Login/Login/Login';
@@ -40,8 +42,17 @@ const routes = createBrowserRouter([
                 element:<Campaigns></Campaigns>
             },
             {
+                path:'/campaign/:_id',
+                element:<CampaignAndDonation></CampaignAndDonation>,
+                loader: ({params}) => fetch(`http://localhost:5000/campaign/${params._id}`)
+            },
+            {
                 path:'/create-campaign',
                 element:<PrivateRoute><CreateCampaigns></CreateCampaigns></PrivateRoute>
+            },
+            {
+                path:'/donation/:_id',
+                element:<PrivateRoute><Donation></Donation></PrivateRoute>
             }
         ]
     }

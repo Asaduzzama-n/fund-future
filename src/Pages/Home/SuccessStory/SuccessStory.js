@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CampaignCard from '../SharedComponent/CampaignCard';
+import SuccessStoryCard from './SuccessStoryCard';
 
 const SuccessStory = () => {
     const [successStories, setSuccessStories] = useState([]);
 
     useEffect(() => {
-        fetch('campaign1.json')
+        fetch('http://localhost:5000/campaigns')
             .then(res => res.json())
             .then(data => {
                 const successCampaign = data.filter(camp => camp.category === 'success');
@@ -21,7 +22,7 @@ const SuccessStory = () => {
             </div>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 justify-center gap-20 w-4/5 mx-auto'>
                 {
-                    successStories.map(campaign => <CampaignCard key={campaign.service_id} campaign={campaign}></CampaignCard>)
+                    successStories.map(successStory => <SuccessStoryCard key={successStory._id} successStory={successStory}></SuccessStoryCard>)
                 }
             </div>
             <div className='text-center mt-10 lg:mt-16'>

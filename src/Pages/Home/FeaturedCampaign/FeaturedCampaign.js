@@ -6,7 +6,7 @@ const FeaturedCampaign = () => {
     const [campaigns, setCampaigns] = useState([]);
 
     useEffect(() => {
-        fetch('campaign1.json')
+        fetch('http://localhost:5000/campaigns')
             .then(res => res.json())
             .then(data => {
                 const featuredContent = data.filter(camp => camp.category === 'featured');
@@ -22,7 +22,7 @@ const FeaturedCampaign = () => {
             </div>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 justify-center gap-20 w-4/5 mx-auto'>
                 {
-                    campaigns.map(campaign => <CampaignCard key={campaign.service_id} campaign={campaign}></CampaignCard>)
+                    campaigns.map(campaign => <CampaignCard key={campaign._id} campaign={campaign}></CampaignCard>)
                 }
             </div>
             <div className='text-center mt-10 lg:mt-16'>

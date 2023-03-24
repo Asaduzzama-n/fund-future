@@ -9,7 +9,7 @@ const Campaigns = () => {
     const [type,setType] = useState('');
     // console.log((type))
     useEffect(() => {
-        fetch('campaign1.json')
+        fetch('http://localhost:5000/campaigns')
             .then(res => res.json())
             .then(data => {
                 if(type === ''){

@@ -3,7 +3,7 @@ import Banner from '../Banner/Banner';
 import FeaturedCampaign from '../FeaturedCampaign/FeaturedCampaign';
 import { motion } from "framer-motion"
 import SuccessStory from '../SuccessStory/SuccessStory';
-import FundraiseForSection from '../FundraiseForSection/FundraiseForSection';
+
 
 
 const Home = () => {
@@ -13,7 +13,7 @@ const Home = () => {
             <div>
                 <Banner></Banner>
                 <FeaturedCampaign></FeaturedCampaign>
-                <FundraiseForSection></FundraiseForSection>
+
                 <SuccessStory></SuccessStory>
 
             </div>
