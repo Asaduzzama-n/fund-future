@@ -33,7 +33,7 @@ const Donation = ({campObjCopy}) => {
 
 
     return (
-        <div className='w-9/12 md:w-full mx-auto border-2 rounded-lg p-10 shadow-md'>
+        <div className='w-9/12 md:w-full mx-auto border-2 rounded-lg p-10 shadow-md mt-5'>
             <div>
             <progress className="progress w-56" value={progressPercent} max="100"></progress>
                 <p className='text-slate-700 text-xl mt-2 font-lg font-semibold'>Fund Raised</p>

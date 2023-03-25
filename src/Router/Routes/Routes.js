@@ -52,7 +52,9 @@ const routes = createBrowserRouter([
             },
             {
                 path:'/donation/:_id',
-                element:<PrivateRoute><Donation></Donation></PrivateRoute>
+                element:<PrivateRoute><Donation></Donation></PrivateRoute>,
+                loader: ({params}) => fetch(`http://localhost:5000/campaign/${params._id}`)
+                
             }
         ]
     }

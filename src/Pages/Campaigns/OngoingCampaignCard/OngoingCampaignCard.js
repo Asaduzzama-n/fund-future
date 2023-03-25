@@ -30,8 +30,6 @@ const OngoingCampaignCard = ({ camp }) => {
     
 
 
-    console.log(title,progressPercent);
-
     return (
         <div>
             <div drag
