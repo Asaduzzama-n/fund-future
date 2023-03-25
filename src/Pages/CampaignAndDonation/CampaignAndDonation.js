@@ -5,9 +5,10 @@ import Donation from './Donation/Donation';
 
 const CampaignAndDonation = () => {
 
-    const { title, category, t_amount, campaigner_name, campaigner_email, campaigner_phone, image, description } = useLoaderData();
+    const { _id,title, category, t_amount, campaigner_name, campaigner_email, campaigner_phone, image, description } = useLoaderData();
 
     const campObjCopy = {
+        _id:_id,
         title: title,
         campaigner_name: campaigner_name,
         campaigner_email: campaigner_email,

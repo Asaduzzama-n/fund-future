@@ -38,8 +38,8 @@ const AuthProvider = ({ children }) => {
         return sendEmailVerification(auth.currentUser);
     }
 
-    const passwordReset = (email) =>{
-        return sendPasswordResetEmail(auth,email);
+    const passwordReset = (email) => {
+        return sendPasswordResetEmail(auth, email);
     }
 
     const logOut = () => {
@@ -60,6 +60,12 @@ const AuthProvider = ({ children }) => {
         return () => unsubscribe();
     }, [])
 
+
+
+
+
+
+
     const authInfo = {
         createUserWithEmail,
         updateUserProfile,
@@ -70,7 +76,9 @@ const AuthProvider = ({ children }) => {
         setLoading,
         logOut,
         loading,
-        user
+        user,
+
+
     }
 
     return (
