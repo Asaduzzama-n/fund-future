@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const CampaignCard = ({ campaign }) => {
 
-    const {_id, title,image, t_amount, description,campigner_email,campaigner_name } = campaign;
+    const {_id, title,image,short_desc, t_amount, description,campigner_email,campaigner_name } = campaign;
 
     const [donations,setDonations] = useState([]);
 
@@ -50,7 +50,7 @@ const CampaignCard = ({ campaign }) => {
             </div>
             <div className="card-body px-4 py-0 my-0">
                 <h2 className="card-title">{title}</h2>
-                <p>{description.slice(0, 100)}</p>
+                <p>{short_desc.slice(0, 100)}...</p>
                 {/* <div className="divider my-0"></div>  */}
                 <div className="card-actions justify-between py-4">
                     <p className='text-slate-500 font-semibold'>Organized By: {campaigner_name}</p>

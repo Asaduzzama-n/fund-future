@@ -19,16 +19,15 @@ const Login = () => {
     const handleLogin = (data) => {
 
         setEmail(data.email);
-        console.log(data.email, data.password)
 
         userLoginWithEmail(data.email, data.password)
             .then(userCredential => {
                 const user = userCredential.user;
-                console.log('Login', user);
+
 
                 if (user.emailVerified) {
                     console.log(from)
-                    console.log('Login', user);
+
                     toast.success(`Welcome ${user?.displayName}`)
                     navigate(from, { replace: true });
                 } else {

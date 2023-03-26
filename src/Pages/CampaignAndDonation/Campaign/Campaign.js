@@ -1,7 +1,10 @@
 import React from 'react';
+import dompurify from 'dompurify';
 
 const Campaign = ({campObjCopy}) => {
     const {title,image,description,campaigner_name,campaigner_email,campaigner_phone} = campObjCopy;
+    const sanitizer = dompurify.sanitize;
+
     return (
         <div className='w-9/12 mx-auto  p-5 rounded-md'>
             <div >
@@ -13,7 +16,9 @@ const Campaign = ({campObjCopy}) => {
                 <h1 className='text-3xl md:text-5xl font-semibold text-slate-700'>{title}</h1>
                 <p className='text-green-500 my-5 font-semibold text-lg'>Description</p>
                 <div className='border-2 border-slate-500 p-10 rounded-md'>
-                    <p className='text-slate-700 font-semibold text-md'>{description}</p>
+
+                 <div dangerouslySetInnerHTML={{__html: sanitizer(description)}} /> 
+
                 </div>
             </div>
             <div>

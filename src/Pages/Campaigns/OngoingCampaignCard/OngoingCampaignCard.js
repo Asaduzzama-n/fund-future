@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const OngoingCampaignCard = ({ camp }) => {
-    const {_id, title,image, description,type,campaigner_name,t_amount } = camp;
+    const {_id, title,image,short_desc, description,type,campaigner_name,t_amount } = camp;
 
     const [donations,setDonations] = useState([]);
 
@@ -46,7 +46,7 @@ const OngoingCampaignCard = ({ camp }) => {
                 </div>
                 <div className="card-body px-4 py-0 my-0">
                     <h2 className="card-title">{title}</h2>
-                    <p>{description.slice(0, 100)}</p>
+                    <p>{short_desc?.slice(0, 100)}</p>
                     {/* <div className="divider my-0"></div>  */}
                     <div className="card-actions justify-between py-4">
                         <p className='text-slate-500 font-semibold'>Organized By: {campaigner_name}</p>

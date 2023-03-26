@@ -19,7 +19,7 @@ const Campaigns = () => {
         fetch('http://localhost:5000/campaigns')
             .then(res => res.json())
             .then(data => {
-                if(type === ''){
+                if(type === '' || type === 'general'){
                     setOnCampaign(data);
                 }else{
                     const targetData = data.filter(d => d.category === type);

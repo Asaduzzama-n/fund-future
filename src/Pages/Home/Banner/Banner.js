@@ -20,7 +20,9 @@ const Banner = () => {
                         bottom: 50,
                     }} className='absolute text-center inset-14  md:inset-40 lg:inset-80'>
                     {/* <p className='text-3xl md:text-7xl font-bold'><span className='text-green-500'>Your</span> home <br /> for <span className='text-green-500'>help</span> !</p> */}
-                    <p className='text-3xl md:text-5xl text-slate-600 font-bold'><span className='text-green-500'>One step closer <br /></span>to making someone's <br /><span className='text-green-500'>dream fulfilled </span> ! </p>
+                    <motion.p initial={{ y: 60, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 2}} className='text-3xl md:text-5xl text-slate-600 font-bold'><span className='text-green-500'>One step closer <br /></span>to making someone's <br /><span className='text-green-500'>dream fulfilled </span> ! </motion.p>
                     <Link to={'/create-campaign'}><button className='mt-5 lg:mt-20 bg-green-500 px-10 py-4 rounded-full font-semibold'>START YOUR FUNDFUTURE </button></Link>
                 </motion.div>
             </div>
