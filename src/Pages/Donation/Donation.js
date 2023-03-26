@@ -11,6 +11,7 @@ const Donation = () => {
     const {user} = useContext(AuthContext);
 
     const campTitle = {title:title};
+    
 
     return (
         <div className='md:flex mt-10'>

@@ -21,7 +21,7 @@ const Header = () => {
         isActive ? "active" : ""}' to={'/'}>Home</NavLink></li>
         <li className='my-2 md:mt-0'><NavLink className='font-semibold mx-2 text-md' to={'/campaigns'}>Campaigns</NavLink></li>
         <li className='my-2 md:mt-0'><NavLink className='font-semibold mx-2 text-md' to={'/about'}>About</NavLink></li>
-        <li className='my-2 md:mt-0'><NavLink className='font-semibold mx-2 text-md' to={'/faq'}>FAQ</NavLink></li>
+        <li className='my-2 md:mt-0'><NavLink className='font-semibold mx-2 text-md' to={'/start-campaign'}>Start campaign</NavLink></li>
         {
             user?.uid ? <li className='my-2 md:mt-0'><Link className='font-semibold text-md  bg-green-500'><button onClick={handleLogOut}>Logout</button></Link></li> : <li className='my-2 md:mt-0'><Link className='font-semibold bg-green-500 text-md px-6' to={'/login'}>login</Link></li>
         }

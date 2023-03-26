@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { motion, useScroll } from "framer-motion"
+import { motion } from "framer-motion"
 import { Link } from 'react-router-dom';
 
 
 const CampaignCard = ({ campaign }) => {
 
-    const {_id, title,campaigner_phone,image, t_amount, description,campigner_email,campaigner_name } = campaign;
+    const {_id, title,image, t_amount, description,campigner_email,campaigner_name } = campaign;
 
     const [donations,setDonations] = useState([]);
+
 
     useEffect(()=>{
         fetch(`http://localhost:5000/donation/${_id}`)
         .then(res => res.json())
         .then(data => setDonations(data))
     },[_id])
-
+    
 
     let totalDonation = 0;
     donations?.map(don =>totalDonation = don.amount+totalDonation)

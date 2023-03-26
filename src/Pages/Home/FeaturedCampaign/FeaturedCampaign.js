@@ -1,18 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ApiContext } from '../../../Context/ApiProvider';
+import Loading from '../../Shared/Loading/Loading';
 import CampaignCard from '../SharedComponent/CampaignCard';
 
 const FeaturedCampaign = () => {
-    const [campaigns, setCampaigns] = useState([]);
+    // const [campaigns, setCampaigns] = useState([]);
 
-    useEffect(() => {
-        fetch('http://localhost:5000/campaigns')
-            .then(res => res.json())
-            .then(data => {
-                const featuredContent = data.filter(camp => camp.category === 'featured');
-                setCampaigns(featuredContent);
-            })
-    }, [])
+
+    const {data: campaigns = [],isLoading } = useQuery({
+        queryKey: ['campaigns'],
+        queryFn: async () =>{
+            const res = await fetch('http://localhost:5000/campaigns-featured');
+            const data = await res.json();
+            return data;
+        }
+    })
+
+    if(isLoading){
+        return <Loading></Loading>
+    }
+
 
     return (
         <div>

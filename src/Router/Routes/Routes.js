@@ -34,8 +34,8 @@ const routes = createBrowserRouter([
                 element:<About></About>
             },
             {
-                path:'/faq',
-                element:<Faq></Faq>
+                path:'/start-campaign',
+                element:<PrivateRoute><CreateCampaigns></CreateCampaigns></PrivateRoute>
             },
             {
                 path:'/campaigns',
