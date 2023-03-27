@@ -33,7 +33,7 @@ const OngoingCampaignCard = ({ camp }) => {
     return (
         <div>
             <div drag
-                className="card rounded-lg w-96 bg-base-100 shadow-lg">
+                className="card rounded-lg w-80 lg:w-96 bg-base-100 shadow-lg">
                 <Link to={`/campaign/${_id}`}><figure><img className='h-60 w-full hover:opacity-60' src={image} alt="" /></figure></Link>
                 <div className='mb-2 px-4 py-2 '>
                     <p className='text-green-500 text-lg font-bold'>{type}</p>

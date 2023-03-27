@@ -39,7 +39,7 @@ const CampaignCard = ({ campaign }) => {
           left: -50,
           right: 50,
           bottom: 50,
-        }} className="card rounded-lg w-96 bg-base-100 shadow-lg">
+        }} className="card rounded-lg w-80 lg:w-96 bg-base-100 shadow-lg">
             <Link to={`/campaign/${_id}`}><figure><img className='h-60 w-full hover:opacity-60' src={image} alt="Shoes" /></figure></Link>
             <div className='mb-2 px-4 py-2 '>
                 <progress className="progress progress-success w-full " value={progressPercent} max="100"></progress>

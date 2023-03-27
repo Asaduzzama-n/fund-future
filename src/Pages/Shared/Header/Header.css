@@ -1,6 +1,8 @@
 .active{
     /* border-bottom: 2px solid #22C55E; */
-    background-color: #22c55e9a;
+    background-color: #22c55e45;
+    border-radius: 0px!important;
+    color: black;
     
 }
 .customBg{
