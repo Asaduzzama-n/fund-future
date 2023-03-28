@@ -3,7 +3,7 @@ import { motion, useScroll } from "framer-motion"
 import { Link } from 'react-router-dom';
 
 const SuccessStoryCard = ({successStory}) => {
-    const {_id, title,campaigner_phone,image, t_amount, description,campigner_email,campaigner_name } = successStory;
+    const {_id, title,short_desc,image, t_amount, description,campigner_email,campaigner_name } = successStory;
     return (
         <motion.div  drag
         dragConstraints={{
@@ -22,7 +22,7 @@ const SuccessStoryCard = ({successStory}) => {
             </div>
             <div className="card-body px-4 py-0 my-0">
                 <h2 className="card-title">{title}</h2>
-                <p>{description.slice(0, 100)}</p>
+                <p>{short_desc.slice(0, 100)}</p>
                 {/* <div className="divider my-0"></div>  */}
                 <div className="card-actions justify-between py-4">
                     <p className='text-slate-500 font-semibold'>Organized By: {campaigner_name}</p>

@@ -10,7 +10,7 @@ const SuccessStory = () => {
         fetch('http://localhost:5000/campaigns')
             .then(res => res.json())
             .then(data => {
-                const successCampaign = data.filter(camp => camp.category === 'success');
+                const successCampaign = data.filter(camp => camp.status === 'success');
                 setSuccessStories(successCampaign);
             })
     }, [])
