@@ -7,7 +7,7 @@ import CampaignAndDonation from '../../Pages/CampaignAndDonation/CampaignAndDona
 import Campaigns from '../../Pages/Campaigns/Campaigns/Campaigns';
 import CreateCampaigns from '../../Pages/CreateCampaign/CreateCampaigns/CreateCampaigns';
 import CreateStory from '../../Pages/Dashboard/CreateStory/CreateStory';
-import Dashboard from '../../Pages/Dashboard/Dashboard/Dashboard';
+import MyCampaignView from '../../Pages/Dashboard/MyCampaign/MyCampaignView/MyCampaignView';
 import MyCampaign from '../../Pages/Dashboard/MyCampaign/MyCampaign';
 import MyDonation from '../../Pages/Dashboard/MyDonation/MyDonation';
 import MyProfile from '../../Pages/Dashboard/MyProfile/MyProfile';
@@ -17,6 +17,7 @@ import Home from '../../Pages/Home/Home/Home';
 import Login from '../../Pages/Login/Login/Login';
 import Signup from '../../Pages/Signup/Signup/Signup';
 import PrivateRoute from './PrivateRoute';
+import ReportDetails from '../../Pages/Dashboard/MyCampaign/MyCampaignView/ViewPart/ReportDetails/ReportDetails';
 
 const routes = createBrowserRouter([
     {
@@ -87,6 +88,15 @@ const routes = createBrowserRouter([
             {
                 path: '/dashboard/create-story',
                 element:<CreateStory></CreateStory>
+            },
+            {
+                path: '/dashboard/campaign-view/:_id',
+                element:<MyCampaignView></MyCampaignView>,
+                loader: ({params})=> fetch(`http://localhost:5000/campaign/${params._id}`)
+            },
+            {
+                path: '/dashboard/report',
+                element:<ReportDetails></ReportDetails>
             },
         ]
     }

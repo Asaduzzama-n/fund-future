@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MyCampaignCard = ({ campaign, i }) => {
     const { _id,title, short_desc, status, start_date } = campaign;
@@ -18,9 +19,7 @@ const MyCampaignCard = ({ campaign, i }) => {
             </td>
             <td>{start_date}</td>
             <th>
-                <button className="btn btn-ghost btn-xs">View</button>
-                <button className="btn btn-ghost btn-xs">Update</button>
-                <button className="btn btn-ghost btn-xs">END</button>
+                <Link to={`/dashboard/campaign-view/${_id}`}><button className="btn btn-ghost btn-xs">View</button></Link>
             </th>
         </tr>
     );

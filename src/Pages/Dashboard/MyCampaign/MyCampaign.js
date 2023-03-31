@@ -8,7 +8,7 @@ const MyCampaign = () => {
 
     const { user } = useContext(AuthContext);
 
-    const url = `http://localhost:5000/my-campaigns?email=${user?.email}`;
+    const url = `http://localhost:5000/campaigns?email=${user?.email}`;
 
     const { data: campaigns = [] } = useQuery({
         queryKey: ['my-campaigns', user?.email],

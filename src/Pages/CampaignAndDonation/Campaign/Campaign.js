@@ -1,9 +1,9 @@
 import React from 'react';
-import dompurify from 'dompurify';
+import DOMPurify from 'dompurify';
 
 const Campaign = ({campObjCopy}) => {
     const {title,image,description,campaigner_name,campaigner_email,campaigner_phone} = campObjCopy;
-    const sanitizer = dompurify.sanitize;
+    const sanitizer = DOMPurify.sanitize;
 
     return (
         <div className='w-9/12 mx-auto  p-5 rounded-md'>

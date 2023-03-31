@@ -13,7 +13,7 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    const [donations, setDonations] = useState([]);
 
 
     const createUserWithEmail = (email, password) => {
@@ -49,6 +49,14 @@ const AuthProvider = ({ children }) => {
 
 
     useEffect(() => {
+        fetch('http://localhost:5000/donations')
+            .then(res => res.json())
+            .then(data => setDonations(data))
+    }, [])
+
+
+
+    useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser === null || currentUser?.emailVerified) {
                 setUser(currentUser);
@@ -61,6 +69,34 @@ const AuthProvider = ({ children }) => {
     }, [])
 
 
+    
+    const getDonationProgress = (id, target) => {
+        console.log(id,target);
+
+        const selectedDonation = donations.filter(donation => donation.campaign_id === id);
+        
+        let totalDonation = 0;
+        selectedDonation?.map(donation => totalDonation = donation.amount + totalDonation)
+
+        const progressAmount = totalDonation;
+        console.log('ddd',totalDonation);
+    
+        let progressPercent = 0;
+
+        if (progressAmount > parseFloat(target)) {
+            progressPercent = 100;
+        } else {
+            progressPercent = (progressAmount / parseFloat(target)) * 100;
+        }
+        const donationInfo = {
+            donationProgress: progressPercent,
+            totalDonation: totalDonation,
+            donationCount: selectedDonation.length,
+            selectedDonation: selectedDonation
+
+        }
+        return donationInfo;
+    }
 
 
 
@@ -75,8 +111,10 @@ const AuthProvider = ({ children }) => {
         passwordReset,
         setLoading,
         logOut,
+        getDonationProgress,
         loading,
         user,
+        donations,
 
 
     }

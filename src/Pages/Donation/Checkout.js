@@ -6,7 +6,7 @@ const Checkout = ({ campaign_title, user }) => {
     const { displayName, email, phoneNumber } = user;
 
     return (
-        <div>
+        <div className='min-h-screen'>
             <div className='my-10'>
                 <h1 className='text-4xl text-slate-700'>Checkout</h1>
                 <div className='my-10'>

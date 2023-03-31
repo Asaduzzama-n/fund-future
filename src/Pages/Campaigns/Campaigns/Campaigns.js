@@ -29,6 +29,11 @@ const Campaigns = () => {
             })
     }, [type])
 
+
+
+    
+
+
     const handleBtnClick = (event) =>{
         setType(event)
         
