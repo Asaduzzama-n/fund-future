@@ -1,8 +1,8 @@
 import React from 'react';
 import DOMPurify from 'dompurify';
 
-const Campaign = ({campObjCopy}) => {
-    const {title,image,description,campaigner_name,campaigner_email,campaigner_phone} = campObjCopy;
+const Campaign = ({campaign}) => {
+    const {title,image,description,campaigner_name,campaigner_mail,campaigner_phone} = campaign;
     const sanitizer = DOMPurify.sanitize;
 
     return (
@@ -25,7 +25,7 @@ const Campaign = ({campObjCopy}) => {
                 <h2 className='md:text-3xl lg:text-4xl font-bold text-green-500'>Organizer</h2>
                 <div className='my-5'>
                     <p className='text-xl font-semibold text-slate-700 my-2'>Name: {campaigner_name}</p>
-                    <p className='text-xl font-semibold text-slate-700 my-2'>Email: {campaigner_email}</p>
+                    <p className='text-xl font-semibold text-slate-700 my-2'>Email: {campaigner_mail}</p>
                     <p className='text-xl font-semibold text-slate-700 my-2'>Phone: {campaigner_phone}</p>
                 </div>
                 <button className='bg-green-500 px-8 py-3 rounded-full font-semibold text-slate-700 hover:bg-green-400 '>Contact</button>

@@ -4,24 +4,23 @@ import { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import Checkout from './Checkout';
-import SideBar from './SideBar';
+import { useForm } from 'react-hook-form';
+
 
 const Donation = () => {
-    const { title} = useLoaderData();
+    const campaign = useLoaderData();
     const {user} = useContext(AuthContext);
+    const { register, formState: { errors }, handleSubmit } = useForm();
 
-    const campTitle = {title:title};
-    
+
+
 
     return (
         <div className='md:flex mt-10'>
-            <div className='w-5/6 md:w-4/5 mx-auto px-20'>
-                <Checkout user={user}></Checkout>
+            <div className='w-full mx-auto px-20'>
+                <Checkout campaign={campaign} user={user}></Checkout>
             </div>
             <div className="divider divider-horizontal"></div>
-            <div className='w-1/5 mx-auto'>
-                <SideBar campTitle={campTitle}></SideBar>
-            </div>
         </div>
     );
 };

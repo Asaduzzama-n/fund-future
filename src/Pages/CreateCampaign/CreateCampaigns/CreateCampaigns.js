@@ -4,6 +4,7 @@ import { useForm, Select } from 'react-hook-form';
 import { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 
 const CreateCampaigns = () => {
@@ -12,44 +13,64 @@ const CreateCampaigns = () => {
     const { user } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
 
+    const navigate = useNavigate();
+    const imageHostKey = process.env.REACT_APP_imgbb_key;
 
     const handleCampaignFormSubmit = (data) => {
 
-        const start_date = new Date().toLocaleString();
+        const start_date = new Date();
 
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image', image);
 
-        const campaign ={
-            title:data.title,
-            t_amount:data.t_amount,
-            campaigner_mail:user?.email,
-            campaigner_name:user?.displayName,
-            campaigner_phone:data.phone,
-            category:data.category,
-            image:data.image,
-            address:data.address,
-            status:'pending',
-            short_desc:data.short_desc,
-            description:content,
-            start_date:start_date,
-            end_date:''
-        }
+        const url = `https://api.imgbb.com/1/upload?key=979eaeb52cadeb701c87bf31679bdd99`;
 
-        fetch('http://localhost:5000/campaigns',{
+        fetch(url, {
             method: 'POST',
-            headers:{
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(campaign)
+            body: formData
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.acknowledged){
-                toast.success("Campaign created Successfully");
-            }else{
-                toast.error("Something went wrong")
-            }
-        })
-        .catch(err => console.error(err));
+            .then(res => res.json())
+            .then(imgData => {
+                if (imgData.success) {
+                    console.log(imgData.data.url);
+                    const campaign = {
+                        title: data.title,
+                        t_amount: data.t_amount,
+                        campaigner_mail: user?.email,
+                        campaigner_name: user?.displayName,
+                        campaigner_phone: data.phone,
+                        category: data.category,
+                        image: imgData.data.url,
+                        address: data.address,
+                        status: 'pending',
+                        short_desc: data.short_desc,
+                        description: content,
+                        start_date: start_date,
+                        end_date: ''
+                    }
+                    //Save campaign data to database-->
+
+                    fetch('http://localhost:5000/campaigns', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(campaign)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.acknowledged) {
+                                toast.success("Campaign created Successfully");
+                                navigate('/');
+                            } else {
+                                toast.error("Something went wrong")
+                            }
+                        })
+                        .catch(err => console.error(err));
+                }
+            })
+
     }
 
 
@@ -73,7 +94,6 @@ const CreateCampaigns = () => {
                                     {errors.title && <p className='text-red-500 py-3'>{errors.title.message}</p>}
 
 
-                                    {/* <input type="text" placeholder="Title" name='title' className="p-5 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" /> */}
                                 </div>
 
                                 <div className='md:flex justify-between'>
@@ -85,7 +105,6 @@ const CreateCampaigns = () => {
                                         <input type="text" {...register("email", {})} defaultValue={user?.email} disabled className="p-5 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
 
 
-                                        {/* <input type="email" placeholder="Email" name='email' className="p-4 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" /> */}
                                     </div>
 
                                     <div className="form-control w-full md:w-5/12  my-4">
@@ -98,7 +117,7 @@ const CreateCampaigns = () => {
                                         })} className="p-5 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
                                         {errors.phone && <p className='text-red-500 py-3'>{errors.phone.message}</p>}
 
-                                        {/* <input type="text" name='phone' className="p-4 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" /> */}
+                                       
                                     </div>
 
                                 </div>
@@ -116,15 +135,6 @@ const CreateCampaigns = () => {
                                             <option value="healthcare">Healthcare</option>
                                             <option value="education">Education</option>
                                         </select>
-
-
-                                        {/* <select name='category' className="select h-14 rounded-md input border-solid border-2  border-slate-200">
-                                            <option disabled selected>Chose campaign type</option>
-                                            <option value={'general'}>General</option>
-                                            <option value={'featured'}>Featured</option>
-                                            <option value={'healthcare'}>Healthcare</option>
-                                            <option value={'education'}>Education</option>
-                                        </select> */}
                                     </div>
 
                                     <div className="form-control w-full md:w-5/12  my-4">
@@ -147,9 +157,9 @@ const CreateCampaigns = () => {
                                         <span className="label-text">Image</span>
                                     </label>
 
-                                    <input type="text" {...register("image", {
-                                        required: "Image url is required",
-                                    })} className="p-5 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                    <input type="file" {...register("image", {
+                                        required: "Image is required",
+                                    })} className="file-input file-input-bordered file-input-success px-0 rounded-md input border-solid border-2  border-slate-200 w-full" />
                                     {errors.image && <p className='text-red-500 py-2'>{errors.image.message}</p>}
 
                                     {/* <input type="text" name='image' placeholder='URL' className=" px-2 file-input-success px-0 rounded-md input border-solid border-2  border-slate-200 w-full " /> */}
@@ -166,21 +176,21 @@ const CreateCampaigns = () => {
                                         </label>
 
                                         <textarea type="text" {...register("address", {
-                                        required: "Address is required",
-                                    })} className="p-5 h-36 rounded-md input border-solid border-2  border-slate-200 w-full" />
-                                     {errors.address && <p className='text-red-500 py-2'>{errors.address.message}</p>}
+                                            required: "Address is required",
+                                        })} className="p-5 h-36 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                        {errors.address && <p className='text-red-500 py-2'>{errors.address.message}</p>}
                                     </div>
 
-                                    
+
                                     <div className="form-control w-full md:w-5/12  my-4">
                                         <label className="label">
                                             <span className="label-text">Short Description</span>
                                         </label>
-                                        
+
                                         <textarea type="text" {...register("short_desc", {
-                                        required: "Short Description is required",
-                                    })} className="p-5 h-36 rounded-md input border-solid border-2  border-slate-200 w-full" />
-                                     {errors.short_desc && <p className='text-red-500 py-2'>{errors.short_desc.message}</p>}
+                                            required: "Short Description is required",
+                                        })} className="p-5 h-36 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                        {errors.short_desc && <p className='text-red-500 py-2'>{errors.short_desc.message}</p>}
                                     </div>
                                 </div>
 

@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import visa from '../../assets/card/visa.png';
 import bkash from '../../assets/card/bkash.png';
-const Checkout = ({ campaign_title, user }) => {
+import { useForm } from 'react-hook-form';
+
+import Payment from '../Shared/Payment/Payment';
+
+const Checkout = ({ campaign, user }) => {
 
     const { displayName, email, phoneNumber } = user;
+    const { title } = campaign;
+    const [d_amount, setD_amount] = useState(0);
+
+    const handleSubmit = (data) => {
+
+    }
 
     return (
         <div className='min-h-screen'>
@@ -13,15 +23,19 @@ const Checkout = ({ campaign_title, user }) => {
                     <p className='text-xl font-medium text-slate-700'>Contact Information:</p>
 
 
+
+
                     <form className="w-full">
 
-                        <div className='md:flex justify-around'>
+                        <div className='md:flex justify-between'>
                             <div className="form-control md:w-2/5 my-4">
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
                                 <input type="text" placeholder="Name" defaultValue={displayName} readOnly name='title' className="text-lg font-medium  h-14 rounded-none input border-t-0 border-l-0 border-r-0 border-b-4 border-green-500 w-full" />
                             </div>
+
+
 
                             <div className='md:w-2/5'>
                                 <div className="form-control  my-4">
@@ -33,24 +47,41 @@ const Checkout = ({ campaign_title, user }) => {
                             </div>
                         </div>
 
-                        <div className='mt-10 md:flex justify-between mx-auto'>
-                            <div className='w-full md:w-1/2'>
-                                <p className='text-xl font-medium text-slate-700'>Payment Method</p>
-                                <div className='md:flex justify-between items-center my-10'>
-                                    <div className='flex items-center  md:my-5 '>
-                                        <input type="radio" name="radio-5" value='card' className="radio" checked />
-                                        <img className='w-44 mx-10' src={visa} alt="" />
-                                    </div>
-                                    <div className='flex items-center my-10 md:my-5 '>
-                                        <input type="radio" name="radio-5" className="radio" />
-                                        <img className='w-44 mx-10' src={bkash} value='bkash' alt="" />
-                                    </div>
-                                </div>
+                        <div>
+                            <h1 className='text-xl font-medium text-slate-700 my-5'>Your Donation</h1>
+                            <div className="overflow-x-auto ">
+                                <table className="table w-full border-2 rounded-md">
+                                    {/* head */}
+                                    <thead>
+                                        <tr>
+                                            <th className='text-slate-700 font-bold text-lg w-3/4 '>Campaign name</th>
+                                            <th className='text-slate-700 font-bold text-lg'>Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {/* row 1 */}
+                                        <tr>
+                                            <td>{title}</td>
+                                            <td>{d_amount}</td>
+                                        </tr>
+                                        {/* row 2 */}
+                                        <tr>
+                                            <td>Total</td>
+                                            <td>{d_amount}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
+                        </div>
 
-                            <div className='w-full md:w-2/5 mx-auto flex items-center '>
+
+                        <div className='my-10 md:flex '>
+                            <div className='w-1/2 mx-auto flex items-center '>
                                 <span className="label-text text-lg text-slate-600 font-medium mr-10">Keep me anonymous</span>
-                                <input  type="checkbox"  className="checkbox h-7 w-7" />
+                                <input type="checkbox" className="checkbox h-7 w-7" />
+                            </div>
+                            <div className='w-1/2'>
+                                <label htmlFor="payment" className="btn">Donate Now</label>
                             </div>
                         </div>
 
@@ -58,6 +89,8 @@ const Checkout = ({ campaign_title, user }) => {
 
                 </div>
             </div>
+
+            <Payment d_amount={d_amount} campaign={campaign}></Payment>
         </div>
     );
 };

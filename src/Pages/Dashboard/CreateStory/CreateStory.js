@@ -2,6 +2,8 @@ import JoditEditor from 'jodit-react';
 import React, { useContext, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../Context/AuthProvider';
+import { toast } from 'react-hot-toast';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const CreateStory = () => {
 
@@ -11,8 +13,61 @@ const CreateStory = () => {
     const { user } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const handleCreateStory = (data) => {
+    const navigate = useNavigate();
 
+    const handleCreateStory = (data) => {
+        const create_date = new Date();
+
+        const image = data.image1[0];
+
+        const formData = new FormData();
+
+        formData.append('image', image);
+
+
+
+        const url = `https://api.imgbb.com/1/upload?key=979eaeb52cadeb701c87bf31679bdd99`;
+
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgData => {
+                if (imgData.success) {
+                    console.log(imgData.data.url);
+                    const story = {
+                        title: data.title,
+                        st_mail: user?.email,
+                        st_name: user?.displayName,
+                        st_phone: data.phone,
+                        image1: imgData.data.url,
+                        image2: imgData.data.url,
+                        short_desc: content,
+                        description: content2,
+                        create_date: create_date,
+                    }
+                    // Save campaign data to database-->
+
+                    fetch('http://localhost:5000/successStory', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(story)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.acknowledged) {
+                                toast.success("Your story has been created successfully");
+                                navigate('/');
+                            } else {
+                                toast.error("Something went wrong")
+                            }
+                        })
+                        .catch(err => console.error(err));
+                }
+            })
     }
 
 
@@ -67,27 +122,26 @@ const CreateStory = () => {
                                             <span className="label-text">Image 1</span>
                                         </label>
 
-                                        <input type="text" {...register("image1", {
+                                        <input type="file" {...register("image1", {
                                             required: "Image url is required",
-                                        })} className="p-5 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                        })} className="file-input file-input-bordered file-input-success px-0 rounded-md input border-solid border-2  border-slate-200 w-full" />
                                         {errors.image1 && <p className='text-red-500 py-2'>{errors.image1.message}</p>}
 
                                     
                                     </div>
 
-                                    <div className="form-control w-full md:w-5/12 my-4">
+                                    {/* <div className="form-control w-full md:w-5/12 my-4">
                                         <label className="label">
                                             <span className="label-text">Image 2</span>
                                         </label>
 
-                                        <input type="text" {...register("image2", {
+                                        <input type="file" {...register("image2", {
                                             required: "Image url is required",
-                                        })} className="p-5 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                        })} className="file-input file-input-bordered file-input-success px-0 rounded-md input border-solid border-2  border-slate-200 w-full" />
                                         {errors.image2 && <p className='text-red-500 py-2'>{errors.image2.message}</p>}
 
-                                        {/* <input type="text" name='image' placeholder='URL' className=" px-2 file-input-success px-0 rounded-md input border-solid border-2  border-slate-200 w-full " /> */}
-                                        {/* <input type="file" name='image' className="file-input file-input-bordered file-input-success px-0 rounded-md input border-solid border-2  border-slate-200 w-full " /> */}
-                                    </div>
+                                        
+                                    </div> */}
                                 </div>
 
                             
@@ -100,11 +154,11 @@ const CreateStory = () => {
                                     <label className="label">
                                         <span className="label-text">Short description</span>
                                     </label>
-                                    {/* <input type="text" placeholder="Title" className="p-5 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" /> */}
+                                  
                                     <JoditEditor
                                         ref={editor}
                                         value={content}
-                                        // config={config}
+                                     
                                         tabIndex={1} // tabIndex of textarea
                                         onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
                                         onChange={(newContent) => { }}
@@ -115,7 +169,7 @@ const CreateStory = () => {
                                     <label className="label">
                                         <span className="label-text">Full description</span>
                                     </label>
-                                    {/* <input type="text" placeholder="Title" className="p-5 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" /> */}
+                                 
                                     <JoditEditor
                                         ref={editor}
                                         value={content2}

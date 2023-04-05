@@ -18,11 +18,14 @@ import Login from '../../Pages/Login/Login/Login';
 import Signup from '../../Pages/Signup/Signup/Signup';
 import PrivateRoute from './PrivateRoute';
 import ReportDetails from '../../Pages/Dashboard/MyCampaign/MyCampaignView/ViewPart/ReportDetails/ReportDetails';
+import DisplayError from '../../Pages/Shared/DisplayError/DisplayError';
+import ViewStory from '../../Pages/Home/SuccessStory/ViewStory';
 
 const routes = createBrowserRouter([
     {
         path:'/',
         element:<Main></Main>,
+        errorElement: <DisplayError></DisplayError>,
         children:[
             {
                 path:'/',
@@ -62,12 +65,19 @@ const routes = createBrowserRouter([
                 element:<PrivateRoute><Donation></Donation></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/campaign/${params._id}`)
                 
+            },
+            {
+                path:'/successStory/:_id',
+                element:<ViewStory></ViewStory>,
+                loader: ({params}) => fetch(`http://localhost:5000/successStory/${params._id}`)
+                
             }
         ]
     },
     {
         path: '/dashboard',
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        errorElement: <DisplayError></DisplayError>,
         children:[
             {
                 path: '/dashboard/my-campaign',

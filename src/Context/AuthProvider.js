@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 import { app } from '../firebase/firebase.config';
 import { GoogleAuthProvider } from "firebase/auth";
+import { useQuery } from '@tanstack/react-query';
 
 
 export const AuthContext = createContext();
@@ -13,7 +14,7 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [donations, setDonations] = useState([]);
+    // const [donations, setDonations] = useState([]);
 
 
     const createUserWithEmail = (email, password) => {
@@ -48,13 +49,20 @@ const AuthProvider = ({ children }) => {
     }
 
 
-    useEffect(() => {
-        fetch('http://localhost:5000/donations')
-            .then(res => res.json())
-            .then(data => setDonations(data))
-    }, [])
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/donations')
+    //         .then(res => res.json())
+    //         .then(data => setDonations(data))
+    // }, [])
 
-
+    const {data:donations = [], refetch, isLoading } = useQuery({
+        queryKey: ['donations'],
+        queryFn: async ()=>{
+            const res = await fetch('http://localhost:5000/donations');
+            const data = await res.json();
+            return data;
+        }
+    })
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -71,7 +79,7 @@ const AuthProvider = ({ children }) => {
 
     
     const getDonationProgress = (id, target) => {
-        console.log(id,target);
+        // console.log(id,target);
 
         const selectedDonation = donations.filter(donation => donation.campaign_id === id);
         
@@ -79,7 +87,7 @@ const AuthProvider = ({ children }) => {
         selectedDonation?.map(donation => totalDonation = donation.amount + totalDonation)
 
         const progressAmount = totalDonation;
-        console.log('ddd',totalDonation);
+        // console.log('ddd',totalDonation);
     
         let progressPercent = 0;
 
@@ -115,6 +123,7 @@ const AuthProvider = ({ children }) => {
         loading,
         user,
         donations,
+        refetch,
 
 
     }
