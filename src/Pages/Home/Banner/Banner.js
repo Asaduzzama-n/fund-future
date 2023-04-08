@@ -4,9 +4,11 @@ import img from '../../../assets/home/home.jpg';
 import img2 from '../../../assets/home/v911-a-01-b.jpg'
 import { motion } from "framer-motion"
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 
 const Banner = () => {
+    const { t } = useTranslation();
     return (
 
         <div className=''>
@@ -22,20 +24,12 @@ const Banner = () => {
                     {/* <p className='text-3xl md:text-7xl font-bold'><span className='text-green-500'>Your</span> home <br /> for <span className='text-green-500'>help</span> !</p> */}
                     <motion.p initial={{ y: 60, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 2}} className='text-2xl md:text-4xl text-slate-600 font-bold'><span className='text-green-500'>One step closer <br /></span>to making someone's <br /><span className='text-green-500'>dream fulfilled </span> ! </motion.p>
-                    <Link to={'/create-campaign'}><button className='mt-5 lg:mt-20 px-6 py-2 bg-green-500 lg:px-10 lg:py-4 rounded-full font-semibold'>START YOUR FUNDFUTURE </button></Link>
+                        transition={{ duration: 2}} className='text-2xl md:text-4xl  text-accent font-bold'>{t("banner_greeting")}</motion.p>
+                    <Link to={'/create-campaign'}><button className='mt-5 lg:mt-20 px-6 py-2 bg-primary lg:px-10 lg:py-4 rounded-full font-semibold'>{t("banner_button")}</button></Link>
                 </motion.div>
             </div>
         </div>
-        // <div className="hero min-h-screen w-full bg-no-repeat h-full" style={{ backgroundImage: `url("https://img.freepik.com/free-vector/charity-doodle-vector-background-donation-concept_53876-143434.jpg?w=1380&t=st=1679157713~exp=1679158313~hmac=10b47829b091f4c2aa22217836655a28f1a8717012ca76d5b1d084c79c1ddad8")` }}>
-        //     <div className=""></div>
-        //     <div className="hero-content text-center text-neutral-content">
-        //         <div className="max-w-md">
-        //             <h1 className="mb-5 text-5xl text-black font-bold">Your home <br /> for help</h1>
-        //             <button className="btn btn-primary mt-10">Get Started</button>
-        //         </div>
-        //     </div>
-        // </div>
+
 
 
     );

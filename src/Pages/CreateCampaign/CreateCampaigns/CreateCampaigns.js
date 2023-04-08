@@ -90,7 +90,7 @@ const CreateCampaigns = () => {
 
                                     <input type="text" {...register("title", {
                                         required: "Title is Required"
-                                    })} className="p-5 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                    })} className="p-5 bg-neutral h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
                                     {errors.title && <p className='text-red-500 py-3'>{errors.title.message}</p>}
 
 
@@ -114,7 +114,7 @@ const CreateCampaigns = () => {
 
                                         <input type="text" {...register("phone", {
                                             required: "Phone number is Required"
-                                        })} className="p-5 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                        })} className="p-5 h-14 rounded-md input border-solid border-2  bg-neutral border-slate-200 w-full" />
                                         {errors.phone && <p className='text-red-500 py-3'>{errors.phone.message}</p>}
 
                                        
@@ -129,7 +129,7 @@ const CreateCampaigns = () => {
                                             <span className="label-text">Category</span>
                                         </label>
 
-                                        <select className="select h-14 rounded-md input border-solid border-2  border-slate-200" {...register("category")}>
+                                        <select className="select h-14 rounded-md input border-solid border-2  bg-neutral border-slate-200" {...register("category")}>
                                             <option value="general">General</option>
                                             <option value="featured">Featured</option>
                                             <option value="healthcare">Healthcare</option>
@@ -145,10 +145,9 @@ const CreateCampaigns = () => {
                                         <input type="number" {...register("t_amount", {
                                             required: "Target amount is required",
                                             pattern: { value: /^([^.0-]\d+|\d)$/, message: 'Amount must be grater than 0' }
-                                        })} className="p-5 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                        })} className="p-5 h-14 rounded-md input border-solid border-2  bg-neutral border-slate-200 w-full" />
                                         {errors.t_amount && <p className='text-red-500 py-2'>{errors.t_amount.message}</p>}
 
-                                        {/* <input type="text" name='t_amount' placeholder="Target amount" className="p-4 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" /> */}
                                     </div>
                                 </div>
 
@@ -159,11 +158,8 @@ const CreateCampaigns = () => {
 
                                     <input type="file" {...register("image", {
                                         required: "Image is required",
-                                    })} className="file-input file-input-bordered file-input-success px-0 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                    })} className="file-input file-input-bordered file-input-success px-0 rounded-md input border-solid border-2  bg-neutral border-slate-200 w-full" />
                                     {errors.image && <p className='text-red-500 py-2'>{errors.image.message}</p>}
-
-                                    {/* <input type="text" name='image' placeholder='URL' className=" px-2 file-input-success px-0 rounded-md input border-solid border-2  border-slate-200 w-full " /> */}
-                                    {/* <input type="file" name='image' className="file-input file-input-bordered file-input-success px-0 rounded-md input border-solid border-2  border-slate-200 w-full " /> */}
                                 </div>
 
 
@@ -177,7 +173,7 @@ const CreateCampaigns = () => {
 
                                         <textarea type="text" {...register("address", {
                                             required: "Address is required",
-                                        })} className="p-5 h-36 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                        })} className="p-5 h-36 rounded-md input border-solid border-2 bg-neutral border-slate-200 w-full" />
                                         {errors.address && <p className='text-red-500 py-2'>{errors.address.message}</p>}
                                     </div>
 
@@ -189,7 +185,7 @@ const CreateCampaigns = () => {
 
                                         <textarea type="text" {...register("short_desc", {
                                             required: "Short Description is required",
-                                        })} className="p-5 h-36 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                        })} className="p-5 h-36 rounded-md input border-solid border-2 bg-neutral border-slate-200 w-full" />
                                         {errors.short_desc && <p className='text-red-500 py-2'>{errors.short_desc.message}</p>}
                                     </div>
                                 </div>
