@@ -11,19 +11,21 @@ import ReportDetails from './ReportDetails/ReportDetails';
 
 
 const ReportModal = ({campaign}) => {
+
+
     const { donations } = useContext(AuthContext);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
-    const [rangeDonatios, setRangeDonations] = useState([]);
+
 
     const handleSelect = (range) => {
+
         setStartDate(range.selection.startDate);
         setEndDate(range.selection.endDate);
 
     }
 
-
-
+    
 
     const selectionRange = {
         startDate: startDate,
@@ -57,7 +59,7 @@ const ReportModal = ({campaign}) => {
 
 
             <div className=''>
-                        <ReportDetails startDate={startDate} endDate={endDate} campaign={campaign}>
+                        <ReportDetails  startDate={startDate} endDate={endDate} campaign={campaign}>
 
                         </ReportDetails>
                     </div>
