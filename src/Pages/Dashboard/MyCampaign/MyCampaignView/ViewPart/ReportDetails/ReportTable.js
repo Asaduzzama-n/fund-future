@@ -15,10 +15,10 @@ const ReportTable = ({ reportDonation, i }) => {
                 </div>
             </td>
             <td>
-                <div className="badge badge-ghost bg-blue-200 font-medium  badge-md">{new Date(time).toLocaleString()} </div>
+            {new Date(time).toLocaleString()} 
             </td>
             <td>
-                <div className="badge badge-ghost badge-md">{transactionId}</div>
+            {transactionId}
             </td>
             <td className='font-bold text-lg text-accent-focus'>{amount}</td>
         </tr>

@@ -19,7 +19,7 @@ import Signup from '../../Pages/Signup/Signup/Signup';
 import PrivateRoute from './PrivateRoute';
 import ReportDetails from '../../Pages/Dashboard/MyCampaign/MyCampaignView/ViewPart/ReportDetails/ReportDetails';
 import DisplayError from '../../Pages/Shared/DisplayError/DisplayError';
-import ViewStory from '../../Pages/Home/SuccessStory/ViewStory';
+import ViewStory from '../../Pages/Home/SuccessStory/ViewSuccessStory/ViewStory';
 
 const routes = createBrowserRouter([
     {
@@ -92,7 +92,7 @@ const routes = createBrowserRouter([
                 element:<MyDonation></MyDonation>
             },
             {
-                path: '/dashboard/success-story',
+                path: '/dashboard/success-stories',
                 element:<MySuccessStory></MySuccessStory>
             },
             {

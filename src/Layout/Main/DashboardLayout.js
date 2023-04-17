@@ -18,7 +18,7 @@ const DashboardLayout = () => {
                         <li className='border-l-4  border-green-500 my-2 font-medium'><NavLink to={'/dashboard/my-campaign'} exact activeClassName="active" >My Campaign</NavLink></li>
                         <li className='border-l-4 border-green-500 my-2 font-medium'><NavLink to={'/dashboard/profile'} activeClassName="active">My Profile</NavLink></li>
                         <li className='border-l-4 border-green-500 my-2 font-medium'><NavLink to={'/dashboard/my-donation'} activeClassName="active">My Donation</NavLink></li>
-                        <li className='border-l-4 border-green-500 my-2 font-medium'><NavLink to={'/dashboard/success-story'} activeClassName="active">My success story</NavLink></li>
+                        <li className='border-l-4 border-green-500 my-2 font-medium'><NavLink to={'/dashboard/success-stories'} activeClassName="active">My success story</NavLink></li>
                         <li className='border-l-4 border-green-500 my-2 font-medium'><NavLink to={'/dashboard/create-story'} activeClassName="active">Create success story</NavLink></li>
                     </ul>
 

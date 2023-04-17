@@ -78,7 +78,7 @@ const ReportDetails = ({ startDate, endDate, campaign }) => {
                         <div>
                             <h2 className='py-4 text-lg font-medium text-slate-700'>Donations: </h2>
                             <div className="overflow-x-auto">
-                                <table className="table table-compact w-full bg-white">
+                                <table className="table w-full bg-white">
                                     <thead>
                                         <tr>
                                             <th></th>
@@ -100,7 +100,7 @@ const ReportDetails = ({ startDate, endDate, campaign }) => {
 
 
                     <div className="modal-action mt-10">
-                        <label htmlFor="report-details" className="btn bg-green-500 border-none text-slate-700 font-medium mx-10 hover:bg-green-300">Close!</label>
+                        <label htmlFor="report-details" className="btn bg-green-500 border-none text-slate-700 font-medium mx-10 hover:bg-green-300">Close</label>
                         <button onClick={handleDownloadReport} className='btn bg-green-500 border-none text-slate-700 font-medium mx-10 hover:bg-green-300'>Download pdf</button>
                     </div>
                 </div>
