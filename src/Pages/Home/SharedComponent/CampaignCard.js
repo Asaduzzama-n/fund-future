@@ -46,7 +46,7 @@ const CampaignCard = ({ campaign }) => {
         }} className="card rounded-lg w-80 lg:w-96 bg-base-100 shadow-lg">
             <Link to={`/campaign/${_id}`}><figure><img className='h-60 w-full hover:opacity-60' src={image} alt="Shoes" /></figure></Link>
             <div className='mb-2 px-4 py-2 '>
-                <progress className="progress progress-success w-full " value={progress.donationProgress} max="100"></progress>
+                <progress className="progress progress-primary w-full " value={progress.donationProgress} max="100"></progress>
                 <div className='flex justify-between '>
                     <p className='text-slate-500 font-semibold'>Raised: {progress.totalDonation }</p>
                     <p className='text-slate-500 font-semibold'>Goal: {t_amount}</p>

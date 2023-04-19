@@ -124,6 +124,7 @@ const AuthProvider = ({ children }) => {
         user,
         donations,
         refetch,
+        
 
 
     }

@@ -19,8 +19,10 @@ const ViewPart = ({ campaign, setView }) => {
     return (
         <div className='min-h-screen mb-36 '>
             <div className='w-9/12 mx-auto'>
-                <progress className="progress progress-success w-full mt-4" value={progress.donationProgress} max="100"></progress>
+                {/* <progress className="progress progress-success w-full mt-4" value={progress.donationProgress} max="100"></progress> */}
                 <div className='md:flex justify-around items-centers my-4'>
+                    <div className="radial-progress text-primary font-medium" style={{ "--value": progress.donationProgress }}>{Math.round(progress.donationProgress)}%</div>
+
                     <div>
                         <p className='text-slate-700 text-xl mt-2 font-lg font-semibold'>Fund Raised</p>
                         <p className=' text-3xl text-green-500 font-semibold md:text-4xl'>৳ {progress.totalDonation}</p>

@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import MyCampaignCard from './MyCampaignCard';
+import { motion } from "framer-motion"
 
 const MyCampaign = () => {
 
@@ -24,7 +25,15 @@ const MyCampaign = () => {
     })
 
     return (
-        <div className='md:w-9/12 md:mx-auto lg:mx-8'>
+        <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+            duration: 0.8,
+            delay: 0.5,
+            ease: [0, 0.71, 0.2, 1.01]
+        }}
+        className='md:w-9/12 md:mx-auto lg:mx-8'>
             <h3 className="text-3xl mb-5">My Campaigns</h3>
             <div className="overflow-x-auto">
                 <table className="table lg:w-full">
@@ -47,7 +56,7 @@ const MyCampaign = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

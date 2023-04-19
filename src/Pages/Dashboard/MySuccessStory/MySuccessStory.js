@@ -3,6 +3,7 @@ import { AuthContext } from '../../../Context/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import MySuccessStoryRow from './MySuccessStoryRow';
 import { toast } from 'react-hot-toast';
+import { motion } from "framer-motion"
 
 const MySuccessStory = () => {
 
@@ -10,7 +11,7 @@ const MySuccessStory = () => {
 
     const url = `http://localhost:5000/successStories?email=${user?.email}`;
 
-    const { data: stories = [],refetch } = useQuery({
+    const { data: stories = [], refetch } = useQuery({
         queryKey: ['success-stories', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
@@ -23,27 +24,35 @@ const MySuccessStory = () => {
         }
     })
 
-    const handleStoryDelete = (id) =>{
-        
-        fetch(`http://localhost:5000/successStories/${id}`,{
-            method:'DELETE',
-            headers:{
+    const handleStoryDelete = (id) => {
+
+        fetch(`http://localhost:5000/successStories/${id}`, {
+            method: 'DELETE',
+            headers: {
                 // authorization:`Bearer ${localStorage.getItem('Token')}`
             }
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.deletedCount > 0){
-                toast.success("DELETED SUCCESSFULLY !!");
-                refetch();
-            }else{
-                toast.error("FAIL TO DELETE!")
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    toast.success("DELETED SUCCESSFULLY !!");
+                    refetch();
+                } else {
+                    toast.error("FAIL TO DELETE!")
+                }
+            })
     }
 
     return (
-        <div className='md:w-9/12 md:mx-auto lg:mx-8'>
+        <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+                duration: 0.8,
+                delay: 0.5,
+                ease: [0, 0.71, 0.2, 1.01]
+            }}
+            className='md:w-9/12 md:mx-auto lg:mx-8'>
             <h3 className="text-3xl mb-5">My Stories</h3>
             <div className="overflow-x-auto">
                 <table className="table lg:w-full">
@@ -51,7 +60,6 @@ const MySuccessStory = () => {
                         <tr>
                             <th></th>
                             <th>Title</th>
-                            <th>Story Id</th>
                             <th>Created</th>
                             <th>Action</th>
                         </tr>
@@ -65,7 +73,7 @@ const MySuccessStory = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

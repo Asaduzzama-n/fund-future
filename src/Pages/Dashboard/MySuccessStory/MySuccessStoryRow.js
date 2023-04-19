@@ -14,9 +14,6 @@ const MySuccessStoryRow = ({ story, i,handleStoryDelete }) => {
                     <div className="font-bold">{title}</div>
                 </div>
             </td>
-            <td>
-                <div className="badge badge-ghost badge-md">{_id}</div>
-            </td>
             <td>{new Date(create_date).toLocaleDateString()}</td>
             <th>
                 <div className='flex items-center justify-between'>

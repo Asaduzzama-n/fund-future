@@ -20,6 +20,7 @@ import PrivateRoute from './PrivateRoute';
 import ReportDetails from '../../Pages/Dashboard/MyCampaign/MyCampaignView/ViewPart/ReportDetails/ReportDetails';
 import DisplayError from '../../Pages/Shared/DisplayError/DisplayError';
 import ViewStory from '../../Pages/Home/SuccessStory/ViewSuccessStory/ViewStory';
+import Dashboard from '../../Pages/Dashboard/Dashboard/Dashboard';
 
 const routes = createBrowserRouter([
     {
@@ -80,6 +81,10 @@ const routes = createBrowserRouter([
         errorElement: <DisplayError></DisplayError>,
         children:[
             {
+                path: '/dashboard',
+                element:<Dashboard></Dashboard>
+            },
+            {
                 path: '/dashboard/my-campaign',
                 element:<MyCampaign></MyCampaign>
             },
@@ -100,7 +105,7 @@ const routes = createBrowserRouter([
                 element:<CreateStory></CreateStory>
             },
             {
-                path: '/dashboard/campaign-view/:_id',
+                path: '/dashboard/my-campaign/campaign-view/:_id',
                 element:<MyCampaignView></MyCampaignView>,
                 loader: ({params})=> fetch(`http://localhost:5000/campaign/${params._id}`)
             },

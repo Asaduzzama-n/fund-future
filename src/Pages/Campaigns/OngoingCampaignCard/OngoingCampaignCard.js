@@ -45,7 +45,7 @@ const OngoingCampaignCard = ({ camp }) => {
                 <div className='mb-2 px-4 py-2 '>
                     <p className='text-green-500 text-lg font-bold'>{type}</p>
 
-                    <progress className="progress progress-success w-full " value={progress.donationProgress} max="100"></progress>
+                    <progress className="progress progress-primary w-full " value={progress.donationProgress} max="100"></progress>
                     <div className='flex justify-between '>
                         <p className='text-slate-500 font-semibold'>Raised: {progress.totalDonation}</p>
                         <p className='text-slate-500 font-semibold'>Goal: {t_amount}</p>

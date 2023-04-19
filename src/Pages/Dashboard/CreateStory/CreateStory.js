@@ -42,7 +42,6 @@ const CreateStory = () => {
                         st_name: user?.displayName,
                         st_phone: data.phone,
                         image1: imgData.data.url,
-                        image2: imgData.data.url,
                         short_desc: content,
                         description: content2,
                         create_date: create_date,
@@ -129,19 +128,6 @@ const CreateStory = () => {
 
                                     
                                     </div>
-
-                                    {/* <div className="form-control w-full md:w-5/12 my-4">
-                                        <label className="label">
-                                            <span className="label-text">Image 2</span>
-                                        </label>
-
-                                        <input type="file" {...register("image2", {
-                                            required: "Image url is required",
-                                        })} className="file-input file-input-bordered file-input-success px-0 rounded-md input border-solid border-2  border-slate-200 w-full" />
-                                        {errors.image2 && <p className='text-red-500 py-2'>{errors.image2.message}</p>}
-
-                                        
-                                    </div> */}
                                 </div>
 
                             

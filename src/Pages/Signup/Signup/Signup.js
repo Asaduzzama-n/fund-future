@@ -19,7 +19,7 @@ const Signup = () => {
             .then(userCredential => {
                 const user = userCredential.user;
                 console.log(user);
-                handleProfileUpdate(data.name);
+                handleProfileUpdate(data.name,data.email);
                 toast.success("Account created successfully");
                 handleVerification()
 
@@ -30,9 +30,11 @@ const Signup = () => {
 
     }
 
-    const handleProfileUpdate = (name) => {
+    const handleProfileUpdate = (name,email) => {
+
         updateUserProfile({ displayName: name })
-            .then(result => console.log("Profile Updated"))
+            //saving user info to database
+            .then(result => saveUserInfo(name,email))
             .catch(error => console.error(error))
     }
 
@@ -52,6 +54,21 @@ const Signup = () => {
                 console.log(error.message);
                 toast.error(error.message);
             })
+    }
+
+    const saveUserInfo =(name,email) =>{
+        const user = {name,email};
+        fetch('http://localhost:5000/users',{
+            method: 'POST',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        })
     }
 
     return (

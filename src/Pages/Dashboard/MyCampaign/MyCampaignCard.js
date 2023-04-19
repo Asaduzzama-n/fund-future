@@ -19,7 +19,7 @@ const MyCampaignCard = ({ campaign, i }) => {
             </td>
             <td>{start_date}</td>
             <th>
-                <Link to={`/dashboard/campaign-view/${_id}`}><button className="btn btn-ghost btn-xs">View</button></Link>
+                <Link to={`/dashboard/my-campaign/campaign-view/${_id}`}><button className="btn btn-ghost btn-xs">View</button></Link>
             </th>
         </tr>
     );
