@@ -1,5 +1,6 @@
 import React from 'react';
 import DOMPurify from 'dompurify';
+import ContactModal from './ContactModal';
 
 const Campaign = ({campaign}) => {
     const {title,image,description,campaigner_name,campaigner_mail,campaigner_phone} = campaign;
@@ -28,8 +29,12 @@ const Campaign = ({campaign}) => {
                     <p className='text-xl font-semibold text-slate-700 my-2'>Email: {campaigner_mail}</p>
                     <p className='text-xl font-semibold text-slate-700 my-2'>Phone: {campaigner_phone}</p>
                 </div>
-                <button className='bg-green-500 px-8 py-3 rounded-full font-semibold text-slate-700 hover:bg-green-400 '>Contact</button>
+                <label htmlFor="contact-modal" className="bg-green-500 px-8 py-3 rounded-full font-semibold text-slate-700 hover:bg-green-400">Contact</label>
+                {/* <button className='bg-green-500 px-8 py-3 rounded-full font-semibold text-slate-700 hover:bg-green-400 '>Contact</button> */}
             </div>
+
+            <ContactModal campaigner_mail={campaigner_mail}></ContactModal>
+
         </div>
     );
 };

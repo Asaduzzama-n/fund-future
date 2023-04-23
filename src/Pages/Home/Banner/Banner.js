@@ -13,14 +13,14 @@ const Banner = () => {
 
         <div className=''>
             <div className='relative'>
-                <img className='w-full' src={img2} alt="" />
+                <img className='w-full md:h-[700px]' src={img2} alt="" />
                 <motion.div drag
                     dragConstraints={{
                         top: -50,
                         left: -50,
                         right: 50,
                         bottom: 50,
-                    }} className='absolute text-center inset-14  md:inset-40 lg:inset-80'>
+                    }} className='absolute text-center inset-16  md:inset-x-1/3 md:inset-y-1/3 lg:inset-x-1/3 lg:inset-y-1/3'>
                     {/* <p className='text-3xl md:text-7xl font-bold'><span className='text-green-500'>Your</span> home <br /> for <span className='text-green-500'>help</span> !</p> */}
                     <motion.p initial={{ y: 60, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}

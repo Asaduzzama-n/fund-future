@@ -7,7 +7,7 @@ import { AuthContext } from '../../../Context/AuthProvider';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
-const Payment = ({ d_amount, campaign,anonymity }) => {
+const Payment = ({ d_amount, campaign,anonymity,donationType }) => {
     const {user} = useContext(AuthContext);
     const { title } = campaign;
     return (
@@ -33,6 +33,7 @@ const Payment = ({ d_amount, campaign,anonymity }) => {
                                 campaign={campaign}
                                 d_amount={d_amount}
                                 anonymity={anonymity}
+                                donationType={donationType}
                             />
                         </Elements>
                     </div>

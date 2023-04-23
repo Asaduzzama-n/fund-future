@@ -21,57 +21,64 @@ import ReportDetails from '../../Pages/Dashboard/MyCampaign/MyCampaignView/ViewP
 import DisplayError from '../../Pages/Shared/DisplayError/DisplayError';
 import ViewStory from '../../Pages/Home/SuccessStory/ViewSuccessStory/ViewStory';
 import Dashboard from '../../Pages/Dashboard/Dashboard/Dashboard';
+import CharityDetails from '../../Pages/Home/Charity/CharityDetails';
 
 const routes = createBrowserRouter([
     {
-        path:'/',
-        element:<Main></Main>,
+        path: '/',
+        element: <Main></Main>,
         errorElement: <DisplayError></DisplayError>,
-        children:[
+        children: [
             {
-                path:'/',
-                element:<Home></Home>
+                path: '/',
+                element: <Home></Home>
             },
             {
-                path:'/login',
-                element:<Login></Login>
+                path: '/login',
+                element: <Login></Login>
             },
             {
-                path:'/signup',
-                element:<Signup></Signup>
+                path: '/signup',
+                element: <Signup></Signup>
             },
             {
-                path:'/about',
-                element:<About></About>
+                path: '/about',
+                element: <About></About>
             },
             {
-                path:'/start-campaign',
-                element:<PrivateRoute><CreateCampaigns></CreateCampaigns></PrivateRoute>
+                path: '/start-campaign',
+                element: <PrivateRoute><CreateCampaigns></CreateCampaigns></PrivateRoute>
             },
             {
-                path:'/campaigns',
-                element:<Campaigns></Campaigns>
+                path: '/campaigns',
+                element: <Campaigns></Campaigns>
             },
             {
-                path:'/campaign/:_id',
-                element:<CampaignAndDonation></CampaignAndDonation>,
-                loader: ({params}) => fetch(`http://localhost:5000/campaign/${params._id}`)
+                path: '/campaign/:_id',
+                element: <CampaignAndDonation></CampaignAndDonation>,
+                loader: ({ params }) => fetch(`http://localhost:5000/campaign/${params._id}`)
             },
             {
-                path:'/create-campaign',
-                element:<PrivateRoute><CreateCampaigns></CreateCampaigns></PrivateRoute>
+                path: '/create-campaign',
+                element: <PrivateRoute><CreateCampaigns></CreateCampaigns></PrivateRoute>
             },
             {
-                path:'/donation/:_id',
-                element:<PrivateRoute><Donation></Donation></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/campaign/${params._id}`)
-                
+                path: '/donation/:_id',
+                element: <PrivateRoute><Donation></Donation></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/campaign/${params._id}`)
+
             },
             {
-                path:'/successStory/:_id',
-                element:<ViewStory></ViewStory>,
-                loader: ({params}) => fetch(`http://localhost:5000/successStory/${params._id}`)
-                
+                path: '/successStory/:_id',
+                element: <ViewStory></ViewStory>,
+                loader: ({ params }) => fetch(`http://localhost:5000/successStory/${params._id}`)
+
+            },
+            {
+                path: '/charity/:_id',
+                element: <CharityDetails></CharityDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/charity/${params._id}`)
+
             }
         ]
     },
@@ -79,39 +86,39 @@ const routes = createBrowserRouter([
         path: '/dashboard',
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         errorElement: <DisplayError></DisplayError>,
-        children:[
+        children: [
             {
                 path: '/dashboard',
-                element:<Dashboard></Dashboard>
+                element: <Dashboard></Dashboard>
             },
             {
                 path: '/dashboard/my-campaign',
-                element:<MyCampaign></MyCampaign>
+                element: <MyCampaign></MyCampaign>
             },
             {
                 path: '/dashboard/profile',
-                element:<MyProfile></MyProfile>
+                element: <MyProfile></MyProfile>
             },
             {
                 path: '/dashboard/my-donation',
-                element:<MyDonation></MyDonation>
+                element: <MyDonation></MyDonation>
             },
             {
                 path: '/dashboard/success-stories',
-                element:<MySuccessStory></MySuccessStory>
+                element: <MySuccessStory></MySuccessStory>
             },
             {
                 path: '/dashboard/create-story',
-                element:<CreateStory></CreateStory>
+                element: <CreateStory></CreateStory>
             },
             {
                 path: '/dashboard/my-campaign/campaign-view/:_id',
-                element:<MyCampaignView></MyCampaignView>,
-                loader: ({params})=> fetch(`http://localhost:5000/campaign/${params._id}`)
+                element: <MyCampaignView></MyCampaignView>,
+                loader: ({ params }) => fetch(`http://localhost:5000/campaign/${params._id}`)
             },
             {
                 path: '/dashboard/report',
-                element:<ReportDetails></ReportDetails>
+                element: <ReportDetails></ReportDetails>
             },
         ]
     }

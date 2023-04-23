@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { toast } from 'react-hot-toast';
 
-const CheckoutForm = ({campaign,d_amount,anonymity}) => {
+const CheckoutForm = ({ campaign, d_amount, anonymity, donationType }) => {
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
     const [transactionId, setTransactionId] = useState('');
@@ -14,8 +14,8 @@ const CheckoutForm = ({campaign,d_amount,anonymity}) => {
     const stripe = useStripe();
     const elements = useElements();
 
-    const { user,refetch } = useContext(AuthContext);
-    const {_id,title} = campaign;
+    const { user, refetch } = useContext(AuthContext);
+    const { _id, title } = campaign;
 
 
     useEffect(() => {
@@ -82,18 +82,37 @@ const CheckoutForm = ({campaign,d_amount,anonymity}) => {
         console.log(paymentIntent);
 
         if (paymentIntent.status === "succeeded") {
-           
+
             // store payment info in the database
-            const donation = {
-                campaign_name:title,
-                donor_mail: user?.email,
-                donor_name:user?.displayName,
-                anonymity:anonymity,
-                amount:d_amount,
-                time: new Date(),
-                transactionId: paymentIntent.id,
-                method:'Card',
-                campaign_id:_id,
+            let donation = {}
+
+            if(donationType === 'charity'){
+                donation = {
+                    donation_type: donationType,
+                    charity_name: title,
+                    donor_mail: user?.email,
+                    donor_name: user?.displayName,
+                    anonymity: anonymity,
+                    amount: d_amount,
+                    time: new Date(),
+                    transactionId: paymentIntent.id,
+                    method: 'Card',
+                    charity_id: _id,
+                }
+            }else{
+                donation = {
+                    donation_type: 'campaign',
+                    campaign_name: title,
+                    donor_mail: user?.email,
+                    donor_name: user?.displayName,
+                    anonymity: anonymity,
+                    amount: d_amount,
+                    time: new Date(),
+                    transactionId: paymentIntent.id,
+                    method: 'Card',
+                    campaign_id: _id,
+
+                }
             }
             fetch('http://localhost:5000/checkout', {
                 method: 'POST',
