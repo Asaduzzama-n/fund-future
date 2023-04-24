@@ -13,7 +13,7 @@ const Banner = () => {
 
         <div className=''>
             <div className='relative'>
-                <img className='w-full md:h-[700px]' src={img2} alt="" />
+                <img className='w-full md:h-[750px]' src={img2} alt="" />
                 <motion.div drag
                     dragConstraints={{
                         top: -50,
@@ -24,7 +24,9 @@ const Banner = () => {
                     {/* <p className='text-3xl md:text-7xl font-bold'><span className='text-green-500'>Your</span> home <br /> for <span className='text-green-500'>help</span> !</p> */}
                     <motion.p initial={{ y: 60, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 2}} className='text-2xl md:text-4xl  text-accent font-bold'>{t("banner_greeting")}</motion.p>
+                        transition={{ duration: 2}} className='text-2xl md:text-4xl  text-accent font-bold'>
+                            {t("banner_greeting")}
+                        </motion.p>
                     <Link to={'/create-campaign'}><button className='mt-5 lg:mt-20 px-6 py-2 bg-primary lg:px-10 lg:py-4 rounded-full font-semibold'>{t("banner_button")}</button></Link>
                 </motion.div>
             </div>

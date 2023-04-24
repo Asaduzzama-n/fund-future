@@ -7,7 +7,7 @@ import { motion } from "framer-motion"
 const MyDonation = () => {
 
 
-    const { user } = useContext(AuthContext);
+    const { user,logOut } = useContext(AuthContext);
 
     const url = `http://localhost:5000/donations?email=${user?.email}`;
 
@@ -16,9 +16,12 @@ const MyDonation = () => {
         queryFn: async () => {
             const res = await fetch(url, {
                 headers: {
-                    // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
             });
+            if(res.status === 401 || res.status === 403){
+                logOut();
+            }
             const data = await res.json();
             return data;
         }

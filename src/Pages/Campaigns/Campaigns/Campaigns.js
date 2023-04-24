@@ -16,7 +16,7 @@ const Campaigns = () => {
 
     // console.log((type))
     useEffect(() => {
-        fetch('http://localhost:5000/campaigns')
+        fetch('http://localhost:5000/all-campaigns')
             .then(res => res.json())
             .then(data => {
                 if(type === '' || type === 'general'){

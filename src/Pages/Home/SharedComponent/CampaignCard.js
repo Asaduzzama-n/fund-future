@@ -43,7 +43,7 @@ const CampaignCard = ({ campaign }) => {
           left: -50,
           right: 50,
           bottom: 50,
-        }} className="card rounded-lg w-80 lg:w-96 bg-base-100 shadow-lg">
+        }} className="card rounded-lg h-[500px] w-80 bg-base-100 relative shadow-lg">
             <Link to={`/campaign/${_id}`}><figure><img className='h-60 w-full hover:opacity-60' src={image} alt="Shoes" /></figure></Link>
             <div className='mb-2 px-4 py-2 '>
                 <progress className="progress progress-primary w-full " value={progress.donationProgress} max="100"></progress>
@@ -56,7 +56,7 @@ const CampaignCard = ({ campaign }) => {
                 <h2 className="card-title">{title}</h2>
                 <p>{short_desc.slice(0, 100)}...</p>
                 {/* <div className="divider my-0"></div>  */}
-                <div className="card-actions justify-between py-4">
+                <div className="card-actions justify-between py-4 absolute bottom-0">
                     <p className='text-slate-500 font-semibold'>Organized By: {campaigner_name}</p>
                 </div>
             </div>

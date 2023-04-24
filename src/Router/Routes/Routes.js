@@ -22,6 +22,9 @@ import DisplayError from '../../Pages/Shared/DisplayError/DisplayError';
 import ViewStory from '../../Pages/Home/SuccessStory/ViewSuccessStory/ViewStory';
 import Dashboard from '../../Pages/Dashboard/Dashboard/Dashboard';
 import CharityDetails from '../../Pages/Home/Charity/CharityDetails';
+import NotFound from '../../Pages/NotFound/NotFound';
+import CampaignRequest from '../../Pages/Dashboard/AdminDashboard/Campaign/CampaignRequest/CampaignRequest';
+import AdminRoute from './AdminRoute';
 
 const routes = createBrowserRouter([
     {
@@ -79,6 +82,10 @@ const routes = createBrowserRouter([
                 element: <CharityDetails></CharityDetails>,
                 loader: ({ params }) => fetch(`http://localhost:5000/charity/${params._id}`)
 
+            },
+            {
+                path: '*',
+                element: <NotFound></NotFound>
             }
         ]
     },
@@ -120,6 +127,15 @@ const routes = createBrowserRouter([
                 path: '/dashboard/report',
                 element: <ReportDetails></ReportDetails>
             },
+            {
+                path: '/dashboard/campaign-request',
+                element: <AdminRoute><CampaignRequest></CampaignRequest></AdminRoute>
+            },
+            {
+                path: '*',
+                element: <NotFound></NotFound>
+            }
+            
         ]
     }
 

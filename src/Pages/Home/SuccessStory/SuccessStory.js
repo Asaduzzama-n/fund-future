@@ -40,8 +40,15 @@ const SuccessStory = () => {
         }
     };
 
-    
+
+
+
+
     const { t } = useTranslation();
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
 
 
     return (
@@ -51,7 +58,7 @@ const SuccessStory = () => {
                 <p className='text-3xl font-bold text-slate-600 py-10'>{t("success_heading")}</p>
             </div>
             <div className='w-11/12  mx-auto lg:w-4/5 '>
-                <Carousel  removeArrowOnDeviceType={["tablet", "mobile"]} swipeable={true} responsive={responsive}>
+                <Carousel removeArrowOnDeviceType={["tablet", "mobile"]} swipeable={true} responsive={responsive}>
                     {
                         stories.map(story => <SuccessStoryCard key={story._id} story={story}></SuccessStoryCard>)
                     }

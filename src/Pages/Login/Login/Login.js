@@ -6,15 +6,24 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
+import useToken from '../../../hooks/useToken';
 
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { userLoginWithEmail, googleLogin, setLoading, passwordReset, user } = useContext(AuthContext);
     const [email, setEmail] = useState(null);
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail);
+
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+
+
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     const handleLogin = (data) => {
 
@@ -24,12 +33,11 @@ const Login = () => {
             .then(userCredential => {
                 const user = userCredential.user;
 
-
                 if (user.emailVerified) {
                     console.log(from)
-
+                    setLoginUserEmail(user?.email)
                     toast.success(`Welcome ${user?.displayName}`)
-                    navigate(from, { replace: true });
+                    // navigate(from, { replace: true });
                 } else {
                     toast.error("YOUR EMAIL IS NOT VERIFIED! PLEASE VERIFY YOUR EMAIL...");
                 }
@@ -43,7 +51,9 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(from, { replace: true });
+                setLoginUserEmail(user?.email)
+
+                // navigate(from, { replace: true });
             })
             .catch(error => {
                 console.log(error.message);

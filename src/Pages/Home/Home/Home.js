@@ -6,6 +6,7 @@ import './Home.css'
 import { motion, useScroll, useSpring } from "framer-motion";
 import Charity from '../Charity/Charity';
 import HomeFooter from '../HomeFooter/HomeFooter';
+import HomeDashboard from '../HomeDashboard/HomeDashboard';
 
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
         <div >
             <motion.div className="progress-bar" style={{ scaleX }} />
             <Banner></Banner>
+            <HomeDashboard></HomeDashboard>
             <FeaturedCampaign></FeaturedCampaign>
             <Charity></Charity>
             <SuccessStory></SuccessStory>

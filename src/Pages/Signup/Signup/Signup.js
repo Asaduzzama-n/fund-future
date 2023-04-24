@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../../assets/login/undraw_security_re_a2rk.svg';
 import { FcGoogle } from 'react-icons/fc';
@@ -6,14 +6,20 @@ import { ImFacebook } from 'react-icons/im';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
+import useToken from '../../../hooks/useToken';
 const Signup = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUserWithEmail, updateUserProfile, googleLogin, verifyUser } = useContext(AuthContext);
     const navigate = useNavigate();
+    const [createdUserEmail, setCreatedUserEmail] = useState('');
+    const [token] = useToken(createdUserEmail);
+
+    if(token){
+        navigate('/');
+    }
 
     const handleSignUp = (data) => {
-
 
         createUserWithEmail(data.email, data.password)
             .then(userCredential => {
@@ -47,7 +53,7 @@ const Signup = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate('/');
+                setCreatedUserEmail(user?.email);
 
             })
             .catch(error => {
@@ -67,6 +73,7 @@ const Signup = () => {
         })
         .then(res => res.json())
         .then(data => {
+            setCreatedUserEmail(email);
             console.log(data);
         })
     }
