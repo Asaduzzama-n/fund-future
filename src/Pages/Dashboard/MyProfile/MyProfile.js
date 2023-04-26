@@ -89,7 +89,7 @@ const MyProfile = () => {
                 delay: 0.5,
                 ease: [0, 0.71, 0.2, 1.01]
             }}
-            className=' md:w-9/12 md:mx-auto lg:mx-10 p-10 lg:p-0 min-h-screen'>
+            className='w-11/12 mx-auto'>
             <div>
                 <h3 className='text-primary font-semibold text-3xl my-5'>My Information</h3>
 

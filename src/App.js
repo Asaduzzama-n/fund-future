@@ -6,7 +6,7 @@ import routes from './Router/Routes/Routes';
 
 function App() {
   return (
-    <div className='lg:w-4/5 mx-auto'>
+    <div className='max-w-[1440px] mx-auto'>
       <RouterProvider router={routes}></RouterProvider>
       <Toaster></Toaster>
     </div>

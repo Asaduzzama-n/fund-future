@@ -4,20 +4,24 @@ import Header from '../../Pages/Shared/Header/Header';
 import { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 import useAdmin from '../../hooks/useAdmin';
+import Loading from '../../Pages/Shared/Loading/Loading';
 
 const DashboardLayout = () => {
     const { user } = useContext(AuthContext);
-    const [isAdmin] = useAdmin(user?.email)
+    const [isAdmin,isAdminLoading] = useAdmin(user?.email);
+    if (isAdminLoading) {
+        return <Loading></Loading>
+    }
     return (
         <div>
             <Header></Header>
-            <div className="drawer  drawer-mobile fixed">
+            <div className="drawer  drawer-mobile">
                 <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
 
-                <div className="drawer-content  lg:w-full">
+                <div className="drawer-content ">
                     <Outlet></Outlet>
                 </div>
-                <div className="drawer-side  shadow-md">
+                <div className="drawer-side bg-white  w-56">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     {
                         isAdmin ?

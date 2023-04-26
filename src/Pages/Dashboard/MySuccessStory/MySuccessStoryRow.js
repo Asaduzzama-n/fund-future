@@ -14,7 +14,7 @@ const MySuccessStoryRow = ({ story, i,handleStoryDelete }) => {
                     <div className="font-bold">{title}</div>
                 </div>
             </td>
-            <td>{new Date(create_date).toLocaleDateString()}</td>
+            {/* <td>{new Date(create_date).toLocaleDateString()}</td> */}
             <th>
                 <div className='flex items-center justify-between'>
                     <Link to={`/successStory/${_id}`}><button className="bg-neutral text-primary rounded-full p-1 mx-1"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

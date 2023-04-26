@@ -34,7 +34,7 @@ const MyDonation = () => {
                 duration: 0.8,
                 delay: 0.5,
                 ease: [0, 0.71, 0.2, 1.01]
-            }} className=' md:w-9/12 md:mx-auto lg:mx-10 mt-5'>
+            }} className='w-11/12 mx-auto'>
             <div className="overflow-x-auto">
                 <table className="table table-compact w-full">
                     <thead>

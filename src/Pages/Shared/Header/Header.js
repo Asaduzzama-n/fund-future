@@ -85,7 +85,7 @@ const Header = () => {
   </>
 
   return (
-    <div className='sticky top-0 bg-white z-10'>
+    <div className='sticky top-0 bg-white z-20'>
 
       <div className="navbar justify-between">
         <div className="navbar-start">

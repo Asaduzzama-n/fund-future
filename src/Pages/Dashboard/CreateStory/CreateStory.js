@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { toast } from 'react-hot-toast';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { motion } from "framer-motion"
 
 const CreateStory = () => {
 
@@ -72,8 +73,14 @@ const CreateStory = () => {
 
     return (
         <div>
-            <div className=' md:w-9/12 md:mx-auto lg:mx-10 '>
-                <div className="hero min-h-screen">
+            <motion.div initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                    duration: 0.8,
+                    delay: 0.5,
+                    ease: [0, 0.71, 0.2, 1.01]
+                }} className='w-11/12 mx-auto '>
+                <div className="hero">
                     <div className="w-full flex-col">
                         <div className=" w-full p-10 ">
                             <form onSubmit={handleSubmit(handleCreateStory)} className="w-full">
@@ -126,45 +133,45 @@ const CreateStory = () => {
                                         })} className="file-input file-input-bordered file-input-success px-0 rounded-md input border-solid border-2  border-slate-200 w-full" />
                                         {errors.image1 && <p className='text-red-500 py-2'>{errors.image1.message}</p>}
 
-                                    
+
                                     </div>
                                 </div>
 
-                            
+
 
 
 
                                 <div className=''>
 
-                                <div className="form-control w-full  my-10">
-                                    <label className="label">
-                                        <span className="label-text">Short description</span>
-                                    </label>
-                                  
-                                    <JoditEditor
-                                        ref={editor}
-                                        value={content}
-                                     
-                                        tabIndex={1} // tabIndex of textarea
-                                        onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-                                        onChange={(newContent) => { }}
-                                    />
-                                </div>
+                                    <div className="form-control w-full  my-10">
+                                        <label className="label">
+                                            <span className="label-text">Short description</span>
+                                        </label>
 
-                                <div className="form-control w-full my-10">
-                                    <label className="label">
-                                        <span className="label-text">Full description</span>
-                                    </label>
-                                 
-                                    <JoditEditor
-                                        ref={editor}
-                                        value={content2}
-                                        // config={config}
-                                        tabIndex={1} // tabIndex of textarea
-                                        onBlur={(newContent) => setContent2(newContent)} // preferred to use only this option to update the content for performance reasons
-                                        onChange={(newContent) => { }}
-                                    />
-                                </div>
+                                        <JoditEditor
+                                            ref={editor}
+                                            value={content}
+
+                                            tabIndex={1} // tabIndex of textarea
+                                            onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+                                            onChange={(newContent) => { }}
+                                        />
+                                    </div>
+
+                                    <div className="form-control w-full my-10">
+                                        <label className="label">
+                                            <span className="label-text">Full description</span>
+                                        </label>
+
+                                        <JoditEditor
+                                            ref={editor}
+                                            value={content2}
+                                            // config={config}
+                                            tabIndex={1} // tabIndex of textarea
+                                            onBlur={(newContent) => setContent2(newContent)} // preferred to use only this option to update the content for performance reasons
+                                            onChange={(newContent) => { }}
+                                        />
+                                    </div>
 
                                 </div>
 
@@ -177,8 +184,8 @@ const CreateStory = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </motion.div>
+        </div >
     );
 };
 

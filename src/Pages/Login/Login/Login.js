@@ -85,55 +85,59 @@ const Login = () => {
                     <div className="text-center lg:text-left">
                         <img className='w-full md:w-3/4' src={logo} alt="" />
                     </div>
-                    <form onSubmit={handleSubmit(handleLogin)} className="card flex-shrink-0 w-full max-w-lg mt-10  lg:mx-20 shadow-2xl bg-base-100">
-                        <div className="card-body">
-                            <h1 className="text-5xl text-center text-green-600 font-bold">LOGIN</h1>
-                            <div className="form-control">
+                    <div className="card flex-shrink-0 w-full max-w-lg mt-10  lg:mx-20 shadow-2xl bg-base-100">
+                        <form onSubmit={handleSubmit(handleLogin)} >
+                            <div className="card-body">
+                                <h1 className="text-5xl text-center text-green-600 font-bold">LOGIN</h1>
+                                <div className="form-control">
 
-                                <label className="label">
-                                    <span className="label-text">Email</span>
-                                </label>
+                                    <label className="label">
+                                        <span className="label-text">Email</span>
+                                    </label>
 
-                                <input type="text"
-                                    {...register("email", {
-                                        required: "Email Address is required"
-                                    })}
-                                    className="input input-bordered" />
-                                {errors.email && <p className='text-red-500 font-medium mt-2 ml-2'>{errors.email?.message}</p>}
+                                    <input type="text"
+                                        {...register("email", {
+                                            required: "Email Address is required"
+                                        })}
+                                        className="input input-bordered" />
+                                    {errors.email && <p className='text-red-500 font-medium mt-2 ml-2'>{errors.email?.message}</p>}
 
-                            </div>
-                            <div className="form-control">
-
-                                <label className="label">
-                                    <span className="label-text">Password</span>
-                                </label>
-
-                                <input type="password"
-                                    {...register("password", {
-                                        required: "Password is required",
-                                        minLength: { value: 6, message: 'Password must be 6 characters or longer' }
-                                    })}
-                                    className="input input-bordered" />
-
-                                {errors.password && <p className='text-red-500 font-medium mt-2 ml-2'>{errors.password?.message}</p>}
-
-                                <label className="label">
-                                    <Link className="label-text-alt link link-hover"><button onClick={handleForgetPassword}>Forgot password?</button> </Link>
-                                </label>
-                            </div>
-                            <div className="form-control mt-6">
-                                <button type='submit' className="h-12 rounded-md text-white text-xl bg-green-600 outline-none">LOGIN</button>
-                            </div>
-                            <div className="mt-6">
-                                <div className="divider">OR</div>
-                                <div className="text-center py-4">
-                                    <button type='submit' className='bg-base-300 rounded-full p-2 mx-3'><ImFacebook color='green' size='30'></ImFacebook></button>
-                                    <button onClick={handleGoogleLogin} type='submit' className='bg-base-300 rounded-full p-2 mx-3'><FcGoogle size='30'></FcGoogle></button>
                                 </div>
-                                <p className='text-center py-2'>Already have an account? <Link className='text-green-600 font-bold' to={'/signup'}> Signup</Link></p>
+                                <div className="form-control">
+
+                                    <label className="label">
+                                        <span className="label-text">Password</span>
+                                    </label>
+
+                                    <input type="password"
+                                        {...register("password", {
+                                            required: "Password is required",
+                                            minLength: { value: 6, message: 'Password must be 6 characters or longer' }
+                                        })}
+                                        className="input input-bordered" />
+
+                                    {errors.password && <p className='text-red-500 font-medium mt-2 ml-2'>{errors.password?.message}</p>}
+
+                                    <label className="label">
+                                        <Link className="label-text-alt link link-hover"><button onClick={handleForgetPassword}>Forgot password?</button> </Link>
+                                    </label>
+                                </div>
+                                <div className="form-control mt-6">
+                                    <button type='submit' className="h-12 rounded-md text-white text-xl bg-green-600 outline-none">LOGIN</button>
+                                </div>
+
                             </div>
+                        </form>
+                        <div className="">
+                            <div className="divider my-0">OR</div>
+                            <div className="text-center my-4">
+                                <button type='submit' className='bg-base-300 rounded-full p-2 mx-3'><ImFacebook color='green' size='30'></ImFacebook></button>
+                                <button onClick={handleGoogleLogin} type='submit' className='bg-base-300 rounded-full p-2 mx-3'><FcGoogle size='30'></FcGoogle></button>
+                            </div>
+                            <p className='text-center my-4'>Already have an account? <Link className='text-green-600 font-bold' to={'/signup'}> Signup</Link></p>
                         </div>
-                    </form>
+                    </div>
+
                 </div>
             </div>
         </div>

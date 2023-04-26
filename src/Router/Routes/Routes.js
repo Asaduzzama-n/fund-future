@@ -25,6 +25,8 @@ import CharityDetails from '../../Pages/Home/Charity/CharityDetails';
 import NotFound from '../../Pages/NotFound/NotFound';
 import CampaignRequest from '../../Pages/Dashboard/AdminDashboard/Campaign/CampaignRequest/CampaignRequest';
 import AdminRoute from './AdminRoute';
+import ManageCampaign from '../../Pages/Dashboard/AdminDashboard/Campaign/ManageCampaign/ManageCampaign';
+import ManageDonation from '../../Pages/Dashboard/AdminDashboard/Donation/ManageDonation/ManageDonation';
 
 const routes = createBrowserRouter([
     {
@@ -130,6 +132,14 @@ const routes = createBrowserRouter([
             {
                 path: '/dashboard/campaign-request',
                 element: <AdminRoute><CampaignRequest></CampaignRequest></AdminRoute>
+            },
+            {
+                path: '/dashboard/manage-campaign',
+                element: <AdminRoute><ManageCampaign></ManageCampaign> </AdminRoute>
+            },
+            {
+                path: '/dashboard/manage-donation',
+                element: <AdminRoute><ManageDonation></ManageDonation> </AdminRoute>
             },
             {
                 path: '*',

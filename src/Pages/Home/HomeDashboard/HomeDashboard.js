@@ -19,10 +19,10 @@ const HomeDashboard = () => {
 
     return (
 
-        <div className='w-11/12 md:w-3/4 mx-auto'>
-            <div className="stats shadow md:w-full mt-10 bg-neutral">
+        <div className='w-9/12 mx-auto mt-10'>
+            <div className="stats stats-vertical w-full lg:stats-horizontal shadow bg-neutral">
 
-                <div className="stat place-items-center">
+                <div className="stat">
                     <div className="stat-figure text-primary">
                         <motion.svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-10 h-10 stroke-current item">
                             <motion.path
@@ -40,13 +40,13 @@ const HomeDashboard = () => {
                     {/* <div className="stat-desc">From January 1st to February 1st</div> */}
                 </div>
 
-                <div className="stat place-items-center">
+                <div className="stat">
                     <div className="stat-title">Total Donations</div>
                     <div className="stat-value text-black">$4,200</div>
                 </div>
 
-                <div className="stat place-items-center">
-                    <div className="stat-figure text-secondary">
+                <div className="stat">
+                    <div className="stat-figure  text-secondary">
                         <motion.svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-10 h-10 stroke-current">
                             <motion.path
                                 variants={icon}

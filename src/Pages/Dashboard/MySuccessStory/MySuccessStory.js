@@ -52,7 +52,7 @@ const MySuccessStory = () => {
                 delay: 0.5,
                 ease: [0, 0.71, 0.2, 1.01]
             }}
-            className='md:w-9/12 md:mx-auto lg:mx-8'>
+            className='w-11/12 mx-auto'>
             <h3 className="text-3xl mb-5">My Stories</h3>
             <div className="overflow-x-auto">
                 <table className="table lg:w-full">
@@ -60,7 +60,7 @@ const MySuccessStory = () => {
                         <tr>
                             <th></th>
                             <th>Title</th>
-                            <th>Created</th>
+                            {/* <th>Created</th> */}
                             <th>Action</th>
                         </tr>
                     </thead>
