@@ -24,12 +24,12 @@ const Charity = () => {
     const animation = useAnimation();
 
     useEffect(()=>{
-        console.log("use effect hook, inView = ",inView);
+        // console.log("use effect hook, inView = ",inView);
         if(inView){
             animation.start({
                 x: 0,
                 transition: {
-                    type: 'spring', duration: 3, bounce: 0.3
+                    type: 'spring', duration: 2, bounce: 0
                 }
             });
         }

@@ -20,7 +20,11 @@ const HomeDashboard = () => {
     return (
 
         <div className='w-9/12 mx-auto mt-10'>
-            <div className="stats stats-vertical w-full lg:stats-horizontal shadow bg-neutral">
+            <motion.div 
+             initial={{x: '100vw'}}
+             animate={{x: 0}}
+             transition={{type:'spring',duration:'2',bounce:0}}
+            className="stats stats-vertical w-full lg:stats-horizontal shadow bg-neutral">
 
                 <div className="stat">
                     <div className="stat-figure text-primary">
@@ -63,7 +67,7 @@ const HomeDashboard = () => {
                     <div className="stat-value text-accent">1,200</div>
                 </div>
 
-            </div>
+            </motion.div>
         </div>
 
 

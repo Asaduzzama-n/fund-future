@@ -13,9 +13,9 @@ const MyCampaignView = ({params}) => {
 
     return (
 
-            <div className='md:w-9/12 md:mx-auto lg:mx-8'>
-                <div className='w-9/12 mx-auto mt-4'>
-                    <img src={campaign.image} alt="" />
+            <div className=' md:mx-auto lg:mx-8 bg-neutral'>
+                <div className=' mx-auto mt-4 rounded-md'>
+                    <img className='p-5 rounded-md max-h-[600px] w-full' src={campaign.image} alt="" />
                 </div>
                 {
                     view ? <ViewPart campaign={campaign} setView={setView}></ViewPart> : <EditPart campaign={campaign} setView={setView}></EditPart>

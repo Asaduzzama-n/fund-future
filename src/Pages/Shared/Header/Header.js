@@ -61,7 +61,7 @@ const Header = () => {
 
 
   const menuItems = <>
-    <li className='my-2 md:mt-0'><NavLink className='font-semibold mx-2 text-md {({ isActive, isPending }) =>
+    <li className='my-2 md:mt-0 '><NavLink className='font-semibold mx-2 text-md {({ isActive, isPending }) =>
         isActive ? "active" : ""}' to={'/'}>{t("nav_home")}</NavLink></li>
     <li className='my-2 md:mt-0'><NavLink className='font-semibold mx-2 text-md {({ isActive, isPending }) =>
         isActive ? "active" : ""}' to={'/campaigns'}>{t("nav_campaigns")}</NavLink></li>
@@ -70,7 +70,7 @@ const Header = () => {
     <li className='my-2 md:mt-0'><NavLink className='font-semibold mx-2 text-md {({ isActive, isPending }) =>
         isActive ? "active" : ""}' to={'/start-campaign'}>{t("nav_startcamp")}</NavLink></li>
     {
-      user?.uid ? <li className='my-2 md:mt-0'><Link className='font-semibold text-md  bg-green-500'><button onClick={handleLogOut}>{t("nav_logout")}</button></Link></li> : <li className='my-2 md:mt-0'><Link className='font-semibold bg-green-500 text-md px-6' to={'/login'}>{t("nav_signin")}</Link></li>
+      user?.uid ? <li className='my-2 md:mt-0'><Link className='font-semibold text-md  bg-primary'><button onClick={handleLogOut}>{t("nav_logout")}</button></Link></li> : <li className='my-2 md:mt-0'><Link className='font-semibold bg-primary text-md px-6' to={'/login'}>{t("nav_signin")}</Link></li>
     }
     <div className="dropdown dropdown-hover bg-white">
       <label tabIndex={0} className="btn bg-white border-none ml-4 my-auto m-1"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

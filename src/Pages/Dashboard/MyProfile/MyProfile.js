@@ -171,7 +171,7 @@ const MyProfile = () => {
                 </div>
                 <div className="form-control my-10">
                     {edit && <div className='text-end'>
-                        <button type='submit' className="py-2 rounded-sm  px-2 mx-2 border-2 border-green-500 text-green-500 text-xl hover:bg-green-200 hover:border-none font-bold">UPDATE</button>
+                        <button type='submit' className="py-2 rounded-sm  px-2 mx-2 border-2 border-primary text-primary text-xl hover:bg-primary hover:text-white hover:border-none font-bold">UPDATE</button>
                         <button onClick={() => setEdit(false)} className="py-2 rounded-sm px-2   border-2 border-red-500 mx-2 text-red-500 text-xl hover:bg-red-200 hover:border-none font-bold">CANCEL</button>
                     </div>
                     }
@@ -179,7 +179,7 @@ const MyProfile = () => {
 
             </form>
             <div className='text-end'>
-                {edit === false && <button onClick={() => setEdit(true)} className="py-2 rounded-sm  px-2 mx-2 border-2 border-green-500 text-green-500 text-xl hover:bg-green-200 hover:border-none font-bold">EDIT</button>}
+                {edit === false && <button onClick={() => setEdit(true)} className="py-2 rounded-sm  px-2 mx-2 border-2 border-primary text-primary text-xl hover:bg-primary hover:text-white hover:border-none font-bold">EDIT</button>}
             </div>
 
         </motion.div>

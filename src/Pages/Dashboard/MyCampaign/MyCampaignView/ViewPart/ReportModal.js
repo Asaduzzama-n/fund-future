@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import ReportDetails from './ReportDetails/ReportDetails';
 
 
-const ReportModal = ({campaign}) => {
+const ReportModal = ({ campaign }) => {
 
 
     const { donations } = useContext(AuthContext);
@@ -25,7 +25,7 @@ const ReportModal = ({campaign}) => {
 
     }
 
-    
+
 
     const selectionRange = {
         startDate: startDate,
@@ -47,8 +47,8 @@ const ReportModal = ({campaign}) => {
                         </div>
                     </div>
                     <div className="modal-action flex items-center">
-                        <label htmlFor="report-modal" className="btn bg-green-500 border-none text-slate-700 font-medium mx-10 hover:bg-green-300">Close</label>
-                        <label htmlFor="report-details" className="btn bg-green-500 border-none text-slate-700 font-medium mx-10 hover:bg-green-300">Generate Report</label>
+                        <label htmlFor="report-modal" className='bg-neutral btn px-10 text-slate-700 font-bold  border-none  hover:bg-primary '>Close</label>
+                        <label htmlFor="report-details" className='bg-neutral btn px-10 text-slate-700 font-bold  border-none  hover:bg-primary '>Generate Report</label>
 
                         {/* <Link className='btn bg-green-500 border-none text-slate-700 font-medium mx-10 hover:bg-green-300' to={'/dashboard/report'}>View Report</Link> */}
 
@@ -57,12 +57,12 @@ const ReportModal = ({campaign}) => {
                 </div>
             </div>
 
-
             <div className=''>
-                        <ReportDetails  startDate={startDate} endDate={endDate} campaign={campaign}>
+                <ReportDetails startDate={startDate} endDate={endDate} campaign={campaign}>
 
-                        </ReportDetails>
-                    </div>
+                </ReportDetails>
+            </div>
+
 
         </>
 

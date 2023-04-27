@@ -20,9 +20,10 @@ const Campaigns = () => {
             .then(res => res.json())
             .then(data => {
                 if(type === '' || type === 'general'){
-                    setOnCampaign(data);
+                    const targetData = data.filter(d =>  d.status === 'active');
+                    setOnCampaign(targetData)
                 }else{
-                    const targetData = data.filter(d => d.category === type);
+                    const targetData = data.filter(d => (d.category === type) && (d.status === 'active'));
                     setOnCampaign(targetData)
                 }
 
@@ -71,10 +72,10 @@ const Campaigns = () => {
                     <p className='text-slate-600 text-3xl font-semibold'>Ongoing Campaigns</p>
                     <div className='pt-10'>
                         <ul className=' flex justify-center '>
-                            <li className='mx-2 lg:mx-4 '><button onClick={()=>handleBtnClick('general')} className={`text-lg ${general ? 'border-b-4 border-green-500' : 'border-none'} px-2 font-semibold`}>General</button></li>
-                            <li className='mx-2 lg:mx-4'><button onClick={()=>handleBtnClick('featured')} className={`text-lg ${featured ? 'border-b-4 border-green-500' : 'border-none'} px-2 font-semibold`}>Featured</button></li>
-                            <li className='mx-2 lg:mx-4'><button onClick={()=>handleBtnClick('healthcare')} className={`text-lg ${health ? 'border-b-4 border-green-500' : 'border-none'} px-2 font-semibold`}>Healthcare</button></li>
-                            <li className='mx-2 lg:mx-4'><button onClick={()=>handleBtnClick('education')} className={`text-lg ${edu ? 'border-b-4 border-green-500' : 'border-none'} px-2 font-semibold`}>Education</button></li>
+                            <li className='mx-2 lg:mx-4 '><button onClick={()=>handleBtnClick('general')} className={`text-lg ${general ? 'border-b-4 border-primary' : 'border-none'} px-2 font-semibold`}>General</button></li>
+                            <li className='mx-2 lg:mx-4'><button onClick={()=>handleBtnClick('featured')} className={`text-lg ${featured ? 'border-b-4 border-primary' : 'border-none'} px-2 font-semibold`}>Featured</button></li>
+                            <li className='mx-2 lg:mx-4'><button onClick={()=>handleBtnClick('healthcare')} className={`text-lg ${health ? 'border-b-4 border-primary' : 'border-none'} px-2 font-semibold`}>Healthcare</button></li>
+                            <li className='mx-2 lg:mx-4'><button onClick={()=>handleBtnClick('education')} className={`text-lg ${edu ? 'border-b-4 border-primary' : 'border-none'} px-2 font-semibold`}>Education</button></li>
                         </ul>
                     </div>
                     <div className="divider my-5"></div>

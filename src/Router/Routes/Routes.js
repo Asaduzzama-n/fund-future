@@ -27,6 +27,9 @@ import CampaignRequest from '../../Pages/Dashboard/AdminDashboard/Campaign/Campa
 import AdminRoute from './AdminRoute';
 import ManageCampaign from '../../Pages/Dashboard/AdminDashboard/Campaign/ManageCampaign/ManageCampaign';
 import ManageDonation from '../../Pages/Dashboard/AdminDashboard/Donation/ManageDonation/ManageDonation';
+import CampaignView from '../../Pages/Dashboard/AdminDashboard/Campaign/CampaignView/CampaignView';
+import ManageWithdraw from '../../Pages/Dashboard/AdminDashboard/ManageWithdraw/ManageWithdraw';
+import ManageCharity from '../../Pages/Dashboard/AdminDashboard/ManageCharity/ManageCharity';
 
 const routes = createBrowserRouter([
     {
@@ -67,12 +70,12 @@ const routes = createBrowserRouter([
                 path: '/create-campaign',
                 element: <PrivateRoute><CreateCampaigns></CreateCampaigns></PrivateRoute>
             },
-            {
-                path: '/donation/:_id',
-                element: <PrivateRoute><Donation></Donation></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/campaign/${params._id}`)
+            // {
+            //     path: '/donation/:_id',
+            //     element: <PrivateRoute><Donation></Donation></PrivateRoute>,
+            //     loader: ({ params }) => fetch(`http://localhost:5000/campaign/${params._id}`)
 
-            },
+            // },
             {
                 path: '/successStory/:_id',
                 element: <ViewStory></ViewStory>,
@@ -138,8 +141,22 @@ const routes = createBrowserRouter([
                 element: <AdminRoute><ManageCampaign></ManageCampaign> </AdminRoute>
             },
             {
+                path: '/dashboard/manage-campaign/campaign-view/:_id',
+                element: <AdminRoute><CampaignView></CampaignView> </AdminRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/campaign/${params._id}`)
+
+            },
+            {
                 path: '/dashboard/manage-donation',
                 element: <AdminRoute><ManageDonation></ManageDonation> </AdminRoute>
+            },
+            {
+                path: '/dashboard/manage-charity',
+                element: <AdminRoute><ManageCharity></ManageCharity></AdminRoute>
+            },
+            {
+                path: '/dashboard/manage-withdraw',
+                element: <AdminRoute><ManageWithdraw></ManageWithdraw> </AdminRoute>
             },
             {
                 path: '*',

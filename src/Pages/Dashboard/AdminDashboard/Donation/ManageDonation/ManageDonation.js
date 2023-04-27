@@ -79,7 +79,7 @@ const ManageDonation = () => {
         {
             name: 'DONOR MAIL',
             // selector: row => row._id,
-            cell: (row) => <label htmlFor="userInfo" data-tip="Contact" className="tooltip tooltip-accent bg-primary rounded-full px-2 text-center w-full ">{row.donor_mail}</label>,
+            cell: (row) => <label htmlFor="userInfo" data-tip="Contact" className="tooltip tooltip-accent  ">{row.donor_mail}</label>,
             sortable: true
         },
         {
@@ -93,10 +93,14 @@ const ManageDonation = () => {
             sortable: true
         },
         {
-            name: 'ACTION',
+            name: 'CAMPAIGN ID',
+            selector: row => row.campaign_id,
+            sortable: true
+
+        },        {
+            name: 'CAMPAIGN NAME',
             selector: row => row.name,
-            cell: (row) => <div><button>
-            </button></div>
+            cell: (row) => <div>{row.campaign_name}</div>
         },
 
     ]

@@ -39,8 +39,8 @@ const OngoingCampaignCard = ({ camp }) => {
 
     return (
         <div>
-            <div drag
-                className="card rounded-lg w-80 lg:w-96 bg-base-100 shadow-lg">
+            <div 
+                className="card rounded-lg w-80 h-[500px] relative shadow-md">
                 <Link to={`/campaign/${_id}`}><figure><img className='h-60 w-full hover:opacity-60' src={image} alt="" /></figure></Link>
                 <div className='mb-2 px-4 py-2 '>
                     <p className='text-green-500 text-lg font-bold'>{type}</p>
@@ -55,9 +55,9 @@ const OngoingCampaignCard = ({ camp }) => {
                     <h2 className="card-title">{title}</h2>
                     <p>{short_desc?.slice(0, 100)}</p>
                     {/* <div className="divider my-0"></div>  */}
-                    <div className="card-actions justify-between py-4">
-                        <p className='text-slate-500 font-semibold'>Organized By: {campaigner_name}</p>
-                    </div>
+                    <div className="card-actions justify-between py-4 absolute bottom-0">
+                    <p className='text-slate-500 font-semibold'>Organized By: {campaigner_name}</p>
+                </div>
                 </div>
             </div>
         </div>

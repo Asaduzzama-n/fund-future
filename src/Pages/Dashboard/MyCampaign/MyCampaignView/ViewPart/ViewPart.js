@@ -7,7 +7,7 @@ import ReportModal from './ReportModal';
 
 const ViewPart = ({ campaign, setView }) => {
 
-    const { description, campaigner_mail, campaigner_name, campaigner_phone, image, start_date, end_date, t_amount, title, address, category, _id } = campaign;
+    const { description, status, campaigner_name, campaigner_phone, image, start_date, end_date, t_amount, title, address, category, _id } = campaign;
     const { getDonationProgress } = useContext(AuthContext);
 
 
@@ -17,53 +17,65 @@ const ViewPart = ({ campaign, setView }) => {
 
 
     return (
-        <div className='min-h-screen mb-36 '>
-            <div className='w-9/12 mx-auto'>
+        <div className='p-10 min-h-screen mb-36 bg-neutral'>
+            <div className='w-9/12 mx-auto '>
                 {/* <progress className="progress progress-success w-full mt-4" value={progress.donationProgress} max="100"></progress> */}
-                <div className='md:flex justify-around items-centers my-4'>
-                    <div className="radial-progress text-primary font-medium" style={{ "--value": progress.donationProgress }}>{Math.round(progress.donationProgress)}%</div>
+                
+                <div className='md:flex justify-around items-centers my-4 rounded-md  bg-accent p-5'>
+                    <div className="radial-progress bg-primary text-xl text-white font-bold" style={{ "--value": progress.donationProgress }}>{Math.round(progress.donationProgress)}%</div>
 
                     <div>
-                        <p className='text-slate-700 text-xl mt-2 font-lg font-semibold'>Fund Raised</p>
+                        <p className='text-white text-xl mt-2 font-lg font-semibold'>Fund Raised</p>
                         <p className=' text-3xl text-green-500 font-semibold md:text-4xl'>৳ {progress.totalDonation}</p>
                     </div>
                     <div className='flex my-5 lg:my-0 items-center'>
-                        <p className=' text-2xl font-semibold text-slate-700'>Contributors : </p>
-                        <p className='text-2xl font-bold text-green-500 ml-3'>{progress.donationCount}</p>
+                        <p className=' text-2xl font-semibold text-white'>Contributors : </p>
+                        <p className='text-2xl font-bold text-primary ml-3'>{progress.donationCount}</p>
                     </div>
                     <div>
-                        <p className='text-slate-700 text-xl mt-2 font-lg font-semibold'>Goal</p>
-                        <p className=' text-3xl text-green-500 font-semibold md:text-4xl'>৳ {t_amount}</p>
+                        <p className='text-white text-xl mt-2 font-lg font-semibold'>Goal</p>
+                        <p className=' text-3xl text-primary font-semibold md:text-4xl'>৳ {t_amount}</p>
                     </div>
+
                 </div>
 
                 <div className="divider md:hidden py-6"></div>
 
                 <div className='py-10'>
-                    <h1 className='text-3xl md:text-5xl font-semibold text-slate-700'>{title}</h1>
-                    <p className='text-green-500 my-5 font-semibold text-lg'>Description</p>
-                    <div className='md:flex justify-around w-full'>
-                        <div className='border-2 border-slate-500 p-5 w-full md:w-8/12 rounded-md my-5'>
-
-                            <div dangerouslySetInnerHTML={{ __html: sanitizer(description) }} />
-
+                    <h1 className='text-2xl  md:text-5xl font-semibold text-slate-700'>{title}</h1>
+                    <div className='w-full'>
+                        <div tabIndex={0} className="collapse my-10 collapse-arrow border border-white bg-white rounded-box">
+                            <div className="collapse-title text-xl font-medium">
+                                View Description
+                            </div>
+                            <div className="collapse-content">
+                                <div dangerouslySetInnerHTML={{ __html: sanitizer(description) }} />
+                            </div>
                         </div>
 
-                        <div className='border-2 w-full p-5 rounded-md md:w-4/12 md:mx-10 md:p-5  my-5 '>
 
-                            {
-                                progress.selectedDonation?.map(donation => <DonatedPart key={donation._id} donation={donation}></DonatedPart>)
-                            }
+                        <div tabIndex={0} className="collapse my-5 collapse-arrow border border-white bg-white rounded-box">
+                            <div className="collapse-title text-xl font-medium">
+                                View Donations
+                            </div>
+                            <div className="collapse-content">
+                                <div className=''>
+
+                                    {
+                                        progress.selectedDonation?.map(donation => <DonatedPart key={donation._id} donation={donation}></DonatedPart>)
+                                    }
 
 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
 
-                <div className='w-ful '>
-                    <button className='bg-green-500 btn px-10 text-slate-700 font-medium border-none rounded-full hover:bg-green-300 ' onClick={() => setView(false)}>Edit</button>
-                    <label htmlFor="report-modal" className="btn bg-green-500 border-none text-slate-700 font-medium mx-10 hover:bg-green-300">Generate Report</label>
+                <div className='w-full '>
+                    <button className='bg-white btn px-10 text-slate-700 font-bold  border-none  hover:bg-primary ' onClick={() => setView(false)}>Edit</button>
+                    <label htmlFor="report-modal" className="btn bg-white border-none px-10 text-slate-700 font-bold mx-10 hover:bg-primary">Generate Report</label>
                 </div>
 
 

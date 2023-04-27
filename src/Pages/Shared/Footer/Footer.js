@@ -4,15 +4,15 @@ import logo from '../../../assets/cover.png'
 
 const Footer = () => {
     return (
-        <div className='text-white'>
-            <footer className="footer h-auto  lg:h-96  text-md font-bold text-black grid justify-between p-10">
+        <div className='text-white mt-20'>
+            <footer className="footer   lg:h-[200px]  text-md font-bold text-accent grid justify-between bg-white px-10">
                 <div className='w-80 mx-auto'>
                     <img src={logo} alt="" />
                     <div className='mx-10'>
                     <p>ONE STEP CLOSER TO MAKING <br /> SOMEONE'S DREAM FULFILLED.</p>
                     </div>
                 </div>
-                <div className='mt-10'>
+                <div className='mt-10  '>
                     <span className="footer-title">Fundraise for</span>
                     <Link className="link link-hover" to={'#'}>Medical</Link>
                     <Link className="link link-hover" to={'#'}>Emergency</Link>

@@ -7,6 +7,7 @@ import { toast } from 'react-hot-toast';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import UserInfoModal from '../../SharedComponent/UserInfoModal';
+import { Link } from 'react-router-dom';
 
 
 const ManageCampaign = () => {
@@ -22,9 +23,9 @@ const ManageCampaign = () => {
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/all-campaigns');
             const data = await res.json();
-            const activeCampaign = data.filter(campaign => (campaign.status === 'active') || (campaign.status === 'rejected'));
-            setFilteredCampaigns(activeCampaign);
-            return activeCampaign;
+            const filteredData = data.filter(campaign => campaign.status !== 'pending');
+            setFilteredCampaigns(filteredData);
+            return filteredData;
         }
     })
 
@@ -36,6 +37,39 @@ const ManageCampaign = () => {
         setFilteredCampaigns(result);
     }, [search])
 
+
+
+
+    const handleCampaignStatusUpdate = (id, status) => {
+
+        const campaignStatus = {
+            status: status
+            // end_date: new Date()
+        }
+
+        fetch(`http://localhost:5000/campaign/admin/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(campaignStatus)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Campaign Status updated successfully.')
+                    refetch();
+                } else {
+                    toast.error("Failed to update campaign status.")
+
+                }
+            })
+            .catch(err => {
+                toast.error(err.message)
+                console.error(err)
+            });
+    }
 
 
 
@@ -62,43 +96,45 @@ const ManageCampaign = () => {
         },
         {
             name: 'VIEW',
-            selector: row => <div><p className='font-medium text-accent'>CS</p></div>,
+            selector: row => row.name,
+            cell: (row) => <div data-tip={row.status} className='tooltip tooltip-accent'>
+                <Link className='bg-accent py-1 px-3 text-white font-semibold rounded-full' to={`/dashboard/manage-campaign/campaign-view/${row._id}`}>View</Link>
+            </div>,
             sortable: true
         },
         {
             name: 'ACTION',
-            selector: row => row.name,
-            cell: (row) => <div><button data-tip="Approve" className='tooltip tooltip-primary' ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="#22C55E" className="w-8 h-8 bg-white   mx-2 rounded-full p-1">
+            // selector: row => row.name,
+            cell: (row) => <div><button disabled={row.status === 'finished' || row.status === 'active'} onClick={() => handleCampaignStatusUpdate(row._id, 'active')} data-tip="Approve" className='tooltip tooltip-primary' ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="#22C55E" className="w-8 h-8 bg-white   mx-2 rounded-full p-1">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-            </svg></button> <button data-tip="Reject" className='tooltip tooltip-warning' ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#ED2B2A" className="w-8 h-8 bg-white  mx-2 rounded-full p-1">
+            </svg></button> <button disabled={row.status === 'finished' || row.status === 'rejected'} onClick={() => handleCampaignStatusUpdate(row._id, 'rejected')} data-tip="Reject" className='tooltip tooltip-warning' ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#ED2B2A" className="w-8 h-8 bg-white  mx-2 rounded-full p-1">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
-                </button></div>
+                </button></div>,
+            sortable: true
+            
         },
 
     ]
 
-    const customStyles = {
-        rows: {
-            style: {
-                minHeight: '50px', // override the row height
-                background: '#ffff',
-                border: '1px solid #EDEDED!important'
+    const conditionalRowStyles = [
+        {
+          when: row => row.status === 'finished',
+          style: {
+            backgroundColor: '#ededed',
+          },
+        },
+        {
+          when: row => row.status === 'active',
+          style: {backgroundColor: '#C3EFD3',},
+        },
+        {
+            when: row => row.status === 'rejected',
+            style: {backgroundColor: '#F1C8CC',},
+          },
+      ];
 
-            },
-        },
-        headCells: {
-            style: {
 
-            },
-        },
-        cells: {
-            style: {
-                // border:'1px solid #EDEDED!important' 
-                // background: '#C3EFD3'
-            },
-        },
-    };
 
     if (isLoading) {
         return <Loading></Loading>
@@ -107,7 +143,6 @@ const ManageCampaign = () => {
     return (
         <div className='w-11/12 mx-auto bg-neutral my-5 p-5 rounded-md'>
             <DataTable
-                customStyles={customStyles}
                 className='bg-neutral '
                 columns={columns}
                 data={filteredCampaigns}
@@ -117,6 +152,7 @@ const ManageCampaign = () => {
                 selectableRows
                 selectableRowsHighlight
                 subHeader
+                conditionalRowStyles={conditionalRowStyles}
                 subHeaderComponent={
                     <input className='px-4 py-2 my-10 border-2 w-1/2 border-neutral  rounded-full' type='text' value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Search here'></input>
                 }

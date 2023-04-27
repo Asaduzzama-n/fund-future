@@ -19,9 +19,9 @@ const CampaignAndDonation = () => {
     // }
 
     return (
-        <div >
-            <div className='text-center my-10'>
-                <h1 className='text-4xl md:text-5xl font-bold text-slate-700'>Project By: {campaign.campaigner_name}</h1>
+        <div className='bg-neutral'>
+            <div className='text-center'>
+                <h1 className='text-4xl md:text-5xl py-10 font-bold text-slate-700'>Project By: {campaign.campaigner_name}</h1>
             </div>
             <div className='md:flex '>
                 <div className='md:1/2 lg:w-9/12'>

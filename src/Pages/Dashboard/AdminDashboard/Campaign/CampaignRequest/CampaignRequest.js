@@ -7,6 +7,7 @@ import DataTable, { createTheme } from 'react-data-table-component';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import UserInfoModal from '../../SharedComponent/UserInfoModal';
+import { Link } from 'react-router-dom';
 
 const CampaignRequest = () => {
 
@@ -93,7 +94,7 @@ const CampaignRequest = () => {
         },
         {
             name: 'VIEW',
-            selector: row => <div><p className=' '>CS</p></div>,
+            selector: row => <div><Link className='bg-primary px-3 text-white font-semibold rounded-full' to={`/dashboard/manage-campaign/campaign-view/${row._id}`}>View</Link></div>,
             sortable: true
         },
         {

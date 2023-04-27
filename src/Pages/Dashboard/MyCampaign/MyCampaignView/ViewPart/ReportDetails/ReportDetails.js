@@ -100,8 +100,8 @@ const ReportDetails = ({ startDate, endDate, campaign }) => {
 
 
                     <div className="modal-action mt-10">
-                        <label htmlFor="report-details" className="btn bg-green-500 border-none text-slate-700 font-medium mx-10 hover:bg-green-300">Close</label>
-                        <button onClick={handleDownloadReport} className='btn bg-green-500 border-none text-slate-700 font-medium mx-10 hover:bg-green-300'>Download pdf</button>
+                        <label htmlFor="report-details" className='bg-neutral btn px-10 text-slate-700 font-bold  border-none  hover:bg-primary '>Close</label>
+                        <button onClick={handleDownloadReport} className='bg-neutral btn px-10 text-slate-700 font-bold  border-none  hover:bg-primary '>Download pdf</button>
                     </div>
                 </div>
             </div>

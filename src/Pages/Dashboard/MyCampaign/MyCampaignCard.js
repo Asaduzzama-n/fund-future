@@ -17,7 +17,7 @@ const MyCampaignCard = ({ campaign, i }) => {
             <td>
             <div className="badge badge-ghost badge-md">{_id}</div>
             </td>
-            <td>{start_date}</td>
+            <td><p className=' bg-neutral font-semibold rounded-full text-center'>{status}</p></td>
             <th>
                 <Link to={`/dashboard/my-campaign/campaign-view/${_id}`}><button className="btn btn-ghost btn-xs">View</button></Link>
             </th>

@@ -36,7 +36,7 @@ const MyCampaign = () => {
             delay: 0.5,
             ease: [0, 0.71, 0.2, 1.01]
         }}
-        className='w-11/12 mx-auto'>
+        className='w-11/12 mx-auto '>
             <h3 className="text-3xl mb-5">My Campaigns</h3>
             <div className="overflow-x-auto">
                 <table className="table lg:w-full">
@@ -45,7 +45,7 @@ const MyCampaign = () => {
                             <th></th>
                             <th>Title</th>
                             <th>Campaign Id</th>
-                            <th>Created</th>
+                            <th>Status</th>
                             <th>Action</th>
                             {/* <th>Payment</th> */}
                         </tr>
