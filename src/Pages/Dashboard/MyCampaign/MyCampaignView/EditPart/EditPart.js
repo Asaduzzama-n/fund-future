@@ -83,7 +83,7 @@ const EditPart = ({ campaign, setView }) => {
                                         required: "Title is Required"
 
                                     })} defaultValue={title} className="p-5 bg-neutral h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
-                                    {errors.title && <p className='text-red-500 py-3'>{errors.title.message}</p>}
+                                    {errors.title && <p className='text-error py-3'>{errors.title.message}</p>}
 
 
                                 </div>
@@ -145,7 +145,7 @@ const EditPart = ({ campaign, setView }) => {
                                         <textarea type="text" {...register("address", {
                                             required: "Address is required",
                                         })} defaultValue={address} className="p-5 h-36 rounded-md input border-solid border-2 bg-neutral border-slate-200 w-full" />
-                                        {errors.address && <p className='text-red-500 py-2'>{errors.address.message}</p>}
+                                        {errors.address && <p className='text-error py-2'>{errors.address.message}</p>}
                                     </div>
 
 
@@ -157,7 +157,7 @@ const EditPart = ({ campaign, setView }) => {
                                         <textarea type="text" {...register("short_desc", {
                                             required: "Short Description is required",
                                         })} defaultValue={short_desc} className="p-5 h-36 rounded-md input border-solid border-2 bg-neutral border-slate-200 w-full" />
-                                        {errors.short_desc && <p className='text-red-500 py-2'>{errors.short_desc.message}</p>}
+                                        {errors.short_desc && <p className='text-error py-2'>{errors.short_desc.message}</p>}
                                     </div>
                                 </div>
 
@@ -188,8 +188,8 @@ const EditPart = ({ campaign, setView }) => {
 
                                 </div>
                                 <div className="flex items-center mt-10 mb-20">
-                                    <button type='submit' className="py-2 rounded-full w-1/2 lg:w-1/5 mx-auto bg-green-500 font-semibold text-lg">Update Campaign</button>
-                                    <button className=' rounded-full py-1 px-2 mx-2 border-2 border-green-500 text-green-500 text-xl hover:bg-green-200 hover:border-none font-bold' onClick={() => setView(true)}>View</button>
+                                    <button type='submit' className="py-2 rounded-full w-1/2 lg:w-1/5 mx-auto bg-primary font-semibold text-lg">Update Campaign</button>
+                                    <button className=' rounded-full py-1 px-2 mx-2 border-2 border-primary text-primary text-xl hover:bg-green-200 hover:border-none font-bold' onClick={() => setView(true)}>View</button>
                                 </div>
 
                             </form>

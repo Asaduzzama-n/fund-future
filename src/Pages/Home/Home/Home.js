@@ -7,6 +7,8 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import Charity from '../Charity/Charity';
 import HomeFooter from '../HomeFooter/HomeFooter';
 import HomeDashboard from '../HomeDashboard/HomeDashboard';
+import ExtraBanner from '../Extrabanner/ExtraBanner';
+// import Events from '../EventPart/Events/Events';
 
 
 const Home = () => {
@@ -24,6 +26,8 @@ const Home = () => {
             <Banner></Banner>
             <HomeDashboard></HomeDashboard>
             <FeaturedCampaign></FeaturedCampaign>
+            <ExtraBanner></ExtraBanner>
+            {/* <Events></Events> */}
             <Charity></Charity>
             <SuccessStory></SuccessStory>
             <div className='divider my-10'></div>

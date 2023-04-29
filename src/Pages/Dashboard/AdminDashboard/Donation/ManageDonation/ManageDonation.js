@@ -10,19 +10,19 @@ import Loading from '../../../../Shared/Loading/Loading';
 
 const ManageDonation = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user,donations } = useContext(AuthContext);
 
     const [search, setSearch] = useState('');
-    const [filteredDonations, setFilteredDonations] = useState([]);
-    const { data: donations = [], refetch,isLoading } = useQuery({
-        queryKey: ['donations'],
-        queryFn: async () => {
-            const res = await fetch('http://localhost:5000/get-donations');
-            const data = await res.json();
-            setFilteredDonations(data);
-            return data;
-        }
-    })
+    const [filteredDonations, setFilteredDonations] = useState(donations);
+    // const { data: donations = [], refetch,isLoading } = useQuery({
+    //     queryKey: ['donations'],
+    //     queryFn: async () => {
+    //         const res = await fetch('http://localhost:5000/get-donations');
+    //         const data = await res.json();
+    //         setFilteredDonations(data);
+    //         return data;
+    //     }
+    // })
 
 
     useEffect(() => {
@@ -94,48 +94,38 @@ const ManageDonation = () => {
         },
         {
             name: 'CAMPAIGN ID',
-            selector: row => row.campaign_id,
+            selector: row => <div>{row.donation_type === 'charity' ? <p className=''>{row.charity_id}</p> : <p className=''>{row.campaign_id}</p> }</div>,
             sortable: true
 
         },        {
             name: 'CAMPAIGN NAME',
             selector: row => row.name,
-            cell: (row) => <div>{row.campaign_name}</div>
+            cell: (row) => <div>{row.donation_type === 'charity' ? <p className='font-semibold'>{row.charity_name}</p> : <p className='font-semibold'>{row.campaign_name}</p>  }</div>
         },
 
     ]
-
-    const customStyles = {
-        rows: {
-            style: {
-                minHeight: '50px', // override the row height
-                background: '#ffff',
-                border:'1px solid #EDEDED!important',
-
-            },
+    const conditionalRowStyles = [
+        {
+          when: row => row.donation_type === 'charity',
+          style: {
+            backgroundColor: '#C3EFD3',
+          },
         },
-        headCells: {
-            style: {
-                           
-            },
-        },
-        cells: {
-            style: {
-                // border:'1px solid #EDEDED!important' 
-                // background: '#C3EFD3'
-            },
-        },
-    };
+        {
+          when: row => row.donation_type === '',
+          style: {backgroundColor: '#C3EFD3',},
+        }
+      ];
 
 
-    if (isLoading) {
-        return <Loading></Loading>
-    }
+    // if (isLoading) {
+    //     return <Loading></Loading>
+    // }
 
     return (
         <div className='w-11/12 mx-auto bg-neutral p-5 rounded-md'>
             <DataTable
-                customStyles={customStyles}
+                conditionalRowStyles={conditionalRowStyles}
                 columns={columns}
                 data={filteredDonations}
                 pagination
@@ -152,7 +142,7 @@ const ManageDonation = () => {
 
             </DataTable>
 
-            <UserInfoModal></UserInfoModal>
+            {/* <UserInfoModal></UserInfoModal> */}
         </div>
     );
 };

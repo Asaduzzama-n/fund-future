@@ -20,7 +20,7 @@ const ManageWithdraw = () => {
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/all-campaigns');
             const data = await res.json();
-            const pendingCampaign = data.filter(campaign => campaign.status === 'withdraw');
+            const pendingCampaign = data.filter(campaign => campaign.status === 'pendingWithdraw');
             setFilteredCampaigns(pendingCampaign);
             return pendingCampaign;
         }

@@ -93,7 +93,7 @@ const CreateStory = () => {
                                     <input type="text" {...register("title", {
                                         required: "Title is Required"
                                     })} className="p-5 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
-                                    {errors.title && <p className='text-red-500 py-3'>{errors.title.message}</p>}
+                                    {errors.title && <p className='text-error py-3'>{errors.title.message}</p>}
 
                                 </div>
 
@@ -115,7 +115,7 @@ const CreateStory = () => {
                                         <input type="text" {...register("phone", {
                                             required: "Phone number is Required"
                                         })} className="p-5 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
-                                        {errors.phone && <p className='text-red-500 py-3'>{errors.phone.message}</p>}
+                                        {errors.phone && <p className='text-error py-3'>{errors.phone.message}</p>}
 
                                     </div>
 
@@ -130,8 +130,8 @@ const CreateStory = () => {
 
                                         <input type="file" {...register("image1", {
                                             required: "Image url is required",
-                                        })} className="file-input file-input-bordered file-input-success px-0 rounded-md input border-solid border-2  border-slate-200 w-full" />
-                                        {errors.image1 && <p className='text-red-500 py-2'>{errors.image1.message}</p>}
+                                        })} className="file-input file-input-bordered file-input-primary px-0 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                                        {errors.image1 && <p className='text-error py-2'>{errors.image1.message}</p>}
 
 
                                     </div>
@@ -177,7 +177,7 @@ const CreateStory = () => {
 
 
                                 <div className="form-control my-10">
-                                    <button type='submit' className="py-4 rounded-full w-1/2 lg:w-1/5 mx-auto bg-green-500 font-semibold text-lg">Create Story</button>
+                                    <button type='submit' className="py-2 rounded-full w-1/2 lg:w-1/5 mx-auto bg-primary text-accent font-semibold text-lg">Create Story</button>
                                 </div>
 
                             </form>

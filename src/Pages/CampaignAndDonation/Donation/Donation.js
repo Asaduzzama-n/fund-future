@@ -7,7 +7,7 @@ import DonatedPart from './DonatedPart';
 import { useForm } from 'react-hook-form';
 import Payment from '../../Shared/Payment/Payment';
 
-const Donation = ({ campaign }) => {
+const Donation = ({ campaign,setMsg,msg }) => {
     const { _id, t_amount } = campaign;
     const [d_amount, setD_amount] = useState(1);
     const [anonymity, setAnonymity] = useState(false);
@@ -17,14 +17,14 @@ const Donation = ({ campaign }) => {
     const location = useLocation();
     const { user } = useContext(AuthContext);
 
+
     const handleDonation = (data) => {
         setD_amount(parseInt(data.donation_amount));
-        console.log(data.anonymity);
         setAnonymity(data.anonymity);
     }
 
     return (
-        <div className='w-9/12 md:w-full mx-auto border-2 bg-white rounded-lg p-10 mt-5'>
+        <div className='w-9/12 md:w-full mx-auto border-2 bg-white rounded-lg p-5 mt-5 sticky md:top-40 '>
             <div className='flex items-center justify-star my-5'>
                 <p className='text-slate-700 text-xl  font-lg font-semibold'>Fund Raised: </p>
                 <p className='text-2xl text-primary font-bold md:text-3xl'> ৳{progress.totalDonation}</p>
@@ -66,7 +66,7 @@ const Donation = ({ campaign }) => {
                         {
                             user?.uid ? <button type='submit'> <label disabled={!d_amount} htmlFor="payment" className="btn bg-neutral border-none px-10 text-slate-700 font-bold mx-10 hover:text-white hover:bg-primary">Donate Now</label> </button> :
 
-                                <Link to={'/login'} state={{ from: location }}><button type='submit' > <label htmlFor="payment" className="btn">Donate Now</label> </button></Link>
+                                <Link to={'/login'} state={{ from: location }}><button type='submit'> <label htmlFor="payment" className="btn">Donate Now</label> </button></Link>
                         }
                     </div>
 
@@ -96,8 +96,8 @@ const Donation = ({ campaign }) => {
 
             </div>
 
+            <Payment d_amount={d_amount} anonymity={anonymity} campaign={campaign} donationType={'campaign'} setMsg={setMsg} msg={msg}></Payment>
 
-            <Payment d_amount={d_amount} anonymity={anonymity} campaign={campaign}></Payment>
 
         </div>
     );

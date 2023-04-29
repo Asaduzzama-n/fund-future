@@ -12,12 +12,10 @@ import MyCampaign from '../../Pages/Dashboard/MyCampaign/MyCampaign';
 import MyDonation from '../../Pages/Dashboard/MyDonation/MyDonation';
 import MyProfile from '../../Pages/Dashboard/MyProfile/MyProfile';
 import MySuccessStory from '../../Pages/Dashboard/MySuccessStory/MySuccessStory';
-import Donation from '../../Pages/Donation/Donation';
 import Home from '../../Pages/Home/Home/Home';
 import Login from '../../Pages/Login/Login/Login';
 import Signup from '../../Pages/Signup/Signup/Signup';
 import PrivateRoute from './PrivateRoute';
-import ReportDetails from '../../Pages/Dashboard/MyCampaign/MyCampaignView/ViewPart/ReportDetails/ReportDetails';
 import DisplayError from '../../Pages/Shared/DisplayError/DisplayError';
 import ViewStory from '../../Pages/Home/SuccessStory/ViewSuccessStory/ViewStory';
 import Dashboard from '../../Pages/Dashboard/Dashboard/Dashboard';
@@ -30,6 +28,7 @@ import ManageDonation from '../../Pages/Dashboard/AdminDashboard/Donation/Manage
 import CampaignView from '../../Pages/Dashboard/AdminDashboard/Campaign/CampaignView/CampaignView';
 import ManageWithdraw from '../../Pages/Dashboard/AdminDashboard/ManageWithdraw/ManageWithdraw';
 import ManageCharity from '../../Pages/Dashboard/AdminDashboard/ManageCharity/ManageCharity';
+
 
 const routes = createBrowserRouter([
     {
@@ -70,12 +69,6 @@ const routes = createBrowserRouter([
                 path: '/create-campaign',
                 element: <PrivateRoute><CreateCampaigns></CreateCampaigns></PrivateRoute>
             },
-            // {
-            //     path: '/donation/:_id',
-            //     element: <PrivateRoute><Donation></Donation></PrivateRoute>,
-            //     loader: ({ params }) => fetch(`http://localhost:5000/campaign/${params._id}`)
-
-            // },
             {
                 path: '/successStory/:_id',
                 element: <ViewStory></ViewStory>,
@@ -127,10 +120,6 @@ const routes = createBrowserRouter([
                 path: '/dashboard/my-campaign/campaign-view/:_id',
                 element: <MyCampaignView></MyCampaignView>,
                 loader: ({ params }) => fetch(`http://localhost:5000/campaign/${params._id}`)
-            },
-            {
-                path: '/dashboard/report',
-                element: <ReportDetails></ReportDetails>
             },
             {
                 path: '/dashboard/campaign-request',

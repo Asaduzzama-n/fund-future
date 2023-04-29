@@ -8,12 +8,10 @@ import Charity from '../Charity';
 
 
 const CharityDonation = ({ charity }) => {
-    // const { _id, t_amount } = campaign;
-    const [d_amount, setD_amount] = useState(1);
+
+    const [d_amount, setD_amount] = useState(10);
     const [anonymity, setAnonymity] = useState(false);
     const { register, formState: { errors }, handleSubmit } = useForm();
-    // const { getDonationProgress } = useContext(AuthContext);
-    // const progress = getDonationProgress(_id, t_amount);
     const location = useLocation();
     const { user } = useContext(AuthContext);
 
@@ -38,7 +36,7 @@ const CharityDonation = ({ charity }) => {
                             pattern: { value: /^[1-9]\d*$/, message: 'Amount > 0' }
                         })}
                         className="input input-bordered rounded-none my-2 w-full" />
-                    {errors.donation_amount && <p className='text-red-400 font-medium mt-2 ml-2'>{errors.donation_amount?.message}</p>}
+                    {errors.donation_amount && <p className='text-error font-medium mt-2 ml-2'>{errors.donation_amount?.message}</p>}
                     <br />
 
                     <div className='flex items-center my-5 '>

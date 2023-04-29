@@ -74,7 +74,7 @@ const UserInfoModal = ({ targetUserEmail }) => {
                                     <input type="text" {...register("subject", {
                                         required: "Subject is Required"
                                     })} className="p-3 h-10 rounded-md input border-solid border-2  bg-white border-slate-200 w-full" />
-                                    {errors.subject && <p className='text-red-500 py-3'>{errors.subject.message}</p>}
+                                    {errors.subject && <p className='text-error py-3'>{errors.subject.message}</p>}
 
 
 
@@ -84,17 +84,17 @@ const UserInfoModal = ({ targetUserEmail }) => {
                                     <textarea type="text" {...register("body", {
                                         required: "Short Description is required",
                                     })} className="p-2 h-44 rounded-md input border-solid border-2 bg-white border-slate-200 w-full" />
-                                    {errors.body && <p className='text-red-500 py-2'>{errors.body.message}</p>}
+                                    {errors.body && <p className='text-error py-2'>{errors.body.message}</p>}
 
                                     <div className="form-control my-3">
-                                        <button type='submit' className="py-1 rounded-sm bg-green-500 hover:bg-green-300 hover:text-accent text-white font-semibold text-lg">Send</button>
+                                        <button type='submit' className="btn bg-white border-none  text-slate-700 font-bold  hover:bg-primary">Send</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                     <div className="modal-action flex items-center">
-                        <label htmlFor="userInfo" className="btn bg-green-500 border-none font-medium mx-10 text-white hover:bg-green-300 hover:text-accent">Close</label>
+                        <label htmlFor="userInfo" className="btn bg-white border-none  text-slate-700 font-bold  hover:bg-primary">Close</label>
 
                     </div>
 

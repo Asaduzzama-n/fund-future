@@ -65,7 +65,7 @@ const UserLandingDashboard = () => {
 
                         </div>
                         <div className="stat-title">Total Donated</div>
-                        <div className="stat-value">${myTotalDonations}</div>
+                        <div className="stat-value">৳ {myTotalDonations}</div>
                         {/* <div className="stat-desc">↗︎ 400 (22%)</div> */}
                     </div>
 

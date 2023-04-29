@@ -3,13 +3,17 @@ import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { toast } from 'react-hot-toast';
+import { useForm } from 'react-hook-form';
 
-const CheckoutForm = ({ campaign, d_amount, anonymity, donationType }) => {
+
+const CheckoutForm = ({ campaign, d_amount, anonymity, donationType,msg }) => {
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
     const [transactionId, setTransactionId] = useState('');
     const [processing, setProcessing] = useState(false);
     const [clientSecret, setClientSecret] = useState("");
+
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const stripe = useStripe();
     const elements = useElements();
@@ -24,7 +28,7 @@ const CheckoutForm = ({ campaign, d_amount, anonymity, donationType }) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify({ d_amount }),
         })
@@ -33,7 +37,7 @@ const CheckoutForm = ({ campaign, d_amount, anonymity, donationType }) => {
     }, [d_amount]);
 
 
-    const handleSubmit = async (event) => {
+    const handleCheckOut = async (event) => {
         event.preventDefault();
 
         if (!stripe || !elements) {
@@ -79,14 +83,14 @@ const CheckoutForm = ({ campaign, d_amount, anonymity, donationType }) => {
             return;
         }
 
-        console.log(paymentIntent);
+        // console.log(paymentIntent);
 
         if (paymentIntent.status === "succeeded") {
 
             // store payment info in the database
             let donation = {}
 
-            if(donationType === 'charity'){
+            if (donationType === 'charity') {
                 donation = {
                     donation_type: donationType,
                     charity_name: title,
@@ -99,7 +103,7 @@ const CheckoutForm = ({ campaign, d_amount, anonymity, donationType }) => {
                     method: 'Card',
                     charity_id: _id,
                 }
-            }else{
+            } else {
                 donation = {
                     donation_type: 'campaign',
                     campaign_name: title,
@@ -118,19 +122,18 @@ const CheckoutForm = ({ campaign, d_amount, anonymity, donationType }) => {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
-                    // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
                 },
                 body: JSON.stringify(donation)
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     if (data.insertedId) {
-                        toast.success('Congrats! your donation completed');
+                        toast.success(`Congratulations! you have donated ${d_amount} to ${title}`);
                         setTransactionId(paymentIntent.id);
-
+                        setSuccess(`Congratulations your payment has been successful`);
                         refetch();
-
                         //Send email---->
 
                     }
@@ -139,9 +142,43 @@ const CheckoutForm = ({ campaign, d_amount, anonymity, donationType }) => {
         setProcessing(false);
     }
 
+
+    const handleMessage = (data) => {
+        
+        const message = {
+
+            email: user?.email,
+            messageBy: user?.displayName,
+            amount: d_amount,
+            time: new Date(),
+            message:data.message,
+            campaign_id: _id,
+
+        }
+
+        fetch('http://localhost:5000/message', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(message)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    if (data.insertedId) {
+                        toast.success(`Thank you!`);
+                        const filter = [...msg,data.message];
+                    }
+                })
+
+    }
+
+
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleCheckOut}>
                 <CardElement
                     options={{
                         style: {
@@ -161,17 +198,37 @@ const CheckoutForm = ({ campaign, d_amount, anonymity, donationType }) => {
                 <button
                     className='btn btn-sm mt-4 btn-primary'
                     type="submit"
-                    disabled={!stripe || !clientSecret || processing}>
+                    disabled={!stripe || !clientSecret || processing || success}>
                     Pay
                 </button>
             </form>
-            <p className="text-red-500">{cardError}</p>
+            <p className="text-error">{cardError}</p>
             {
                 success && <div className='my-5'>
-                    <p className='text-green-500'>{success}</p>
-                    <p>TransactionId: <span className='font-bold'>{transactionId}</span></p>
+                    <p className='text-primary'>{success}</p>
+                    <p>TRX: <span className='font-bold'>{transactionId}</span></p>
+
+
+                    <div className='my-5'>
+                        <form onSubmit={handleSubmit(handleMessage)} className=" w-full">
+
+                            <textarea type="text"
+                                {...register("message", {
+                                })}
+
+                                placeholder='Show your support through few words!'
+                                className="input bg-neutral w-full h-24 rounded-md my-2" />
+                            <br />
+
+                            <button className='btn bg-neutral border-none hover:bg-primary font-semibold text-accent' type='submit'>Submit</button>
+
+                        </form>
+                    </div>
+
                 </div>
+
             }
+
         </>
     );
 };

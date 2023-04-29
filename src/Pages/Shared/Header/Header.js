@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import logo from '../../../assets/cover.png'
+import logo from '../../../assets/gifIcon/volunteering.gif'
 import { AuthContext } from '../../../Context/AuthProvider';
 import './Header.css';
 import i18n from "i18next";
 import { useTranslation, initReactI18next } from "react-i18next";
-
 import tEn from '../../../Locales/en/translation.json';
 import tBn from '../../../Locales/bn/translation.json';
 
@@ -32,6 +31,7 @@ i18n
 
 
 
+
 const Header = () => {
 
   const { logOut, user } = useContext(AuthContext);
@@ -49,6 +49,7 @@ const Header = () => {
 
     }
   }
+
 
 
   useEffect(() => {
@@ -97,7 +98,12 @@ const Header = () => {
               {menuItems}
             </ul>
           </div>
-          <Link to={'/'} className=" normal-case text-xl w-40"><img src={logo} alt="" /></Link>
+    
+
+          <div className='flex items-center'>
+            <Link to={'/'} className=" normal-case text-xl w-16"><img src={logo}  alt="" /></Link>
+            <h1 className='text-3xl font-bold text-primary ml-3'> <span className='text-accent'>Fund</span>Future</h1>
+          </div>
         </div>
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">

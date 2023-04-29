@@ -91,7 +91,7 @@ const CreateCampaigns = () => {
                                     <input type="text" {...register("title", {
                                         required: "Title is Required"
                                     })} className="p-5 bg-neutral h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
-                                    {errors.title && <p className='text-red-500 py-3'>{errors.title.message}</p>}
+                                    {errors.title && <p className='text-error py-3'>{errors.title.message}</p>}
 
 
                                 </div>
@@ -115,7 +115,7 @@ const CreateCampaigns = () => {
                                         <input type="text" {...register("phone", {
                                             required: "Phone number is Required"
                                         })} className="p-5 h-14 rounded-md input border-solid border-2  bg-neutral border-slate-200 w-full" />
-                                        {errors.phone && <p className='text-red-500 py-3'>{errors.phone.message}</p>}
+                                        {errors.phone && <p className='text-error py-3'>{errors.phone.message}</p>}
 
                                        
                                     </div>
@@ -146,7 +146,7 @@ const CreateCampaigns = () => {
                                             required: "Target amount is required",
                                             pattern: { value: /^([^.0-]\d+|\d)$/, message: 'Amount must be grater than 0' }
                                         })} className="p-5 h-14 rounded-md input border-solid border-2  bg-neutral border-slate-200 w-full" />
-                                        {errors.t_amount && <p className='text-red-500 py-2'>{errors.t_amount.message}</p>}
+                                        {errors.t_amount && <p className='text-error py-2'>{errors.t_amount.message}</p>}
 
                                     </div>
                                 </div>
@@ -158,8 +158,8 @@ const CreateCampaigns = () => {
 
                                     <input type="file" {...register("image", {
                                         required: "Image is required",
-                                    })} className="file-input file-input-bordered file-input-success px-0 rounded-md input border-solid border-2  bg-neutral border-slate-200 w-full" />
-                                    {errors.image && <p className='text-red-500 py-2'>{errors.image.message}</p>}
+                                    })} className="file-input file-input-bordered file-input-primary px-0 rounded-md input border-solid border-2  bg-neutral border-slate-200 w-full" />
+                                    {errors.image && <p className='text-error py-2'>{errors.image.message}</p>}
                                 </div>
 
 
@@ -174,7 +174,7 @@ const CreateCampaigns = () => {
                                         <textarea type="text" {...register("address", {
                                             required: "Address is required",
                                         })} className="p-5 h-36 rounded-md input border-solid border-2 bg-neutral border-slate-200 w-full" />
-                                        {errors.address && <p className='text-red-500 py-2'>{errors.address.message}</p>}
+                                        {errors.address && <p className='text-error py-2'>{errors.address.message}</p>}
                                     </div>
 
 
@@ -186,7 +186,7 @@ const CreateCampaigns = () => {
                                         <textarea type="text" {...register("short_desc", {
                                             required: "Short Description is required",
                                         })} className="p-5 h-36 rounded-md input border-solid border-2 bg-neutral border-slate-200 w-full" />
-                                        {errors.short_desc && <p className='text-red-500 py-2'>{errors.short_desc.message}</p>}
+                                        {errors.short_desc && <p className='text-error py-2'>{errors.short_desc.message}</p>}
                                     </div>
                                 </div>
 
@@ -207,7 +207,7 @@ const CreateCampaigns = () => {
 
 
                                 <div className="form-control my-10">
-                                    <button type='submit' className="py-4 rounded-full w-1/2 lg:w-1/5 mx-auto bg-green-500 font-semibold text-lg">Create Campaign</button>
+                                    <button type='submit' className="py-2 rounded-full w-1/2 lg:w-1/5 mx-auto text-accent bg-primary font-semibold text-lg">Create Campaign</button>
                                 </div>
 
                             </form>

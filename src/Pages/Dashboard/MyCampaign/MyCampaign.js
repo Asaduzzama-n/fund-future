@@ -11,7 +11,7 @@ const MyCampaign = () => {
 
     const url = `http://localhost:5000/campaigns?email=${user?.email}`;
 
-    const { data: campaigns = [] } = useQuery({
+    const { data: campaigns = [],refetch } = useQuery({
         queryKey: ['my-campaigns', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
@@ -53,7 +53,7 @@ const MyCampaign = () => {
                     <tbody>
                         {
                             campaigns &&
-                            campaigns?.map((campaign, i) => <MyCampaignCard key={campaign._id} campaign={campaign} i={i}></MyCampaignCard> )
+                            campaigns?.map((campaign, i) => <MyCampaignCard key={campaign._id} campaign={campaign} i={i} refetch={refetch}></MyCampaignCard> )
 
                         }
                     </tbody>

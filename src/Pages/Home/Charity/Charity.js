@@ -34,7 +34,7 @@ const Charity = () => {
             });
         }
         if(!inView){
-            animation.start({x: '100vw'})
+            animation.start({x: '-100vw'})
         }
 
     },[animation, inView]);

@@ -8,6 +8,7 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import target from '../../../../../assets/gifIcon/target.gif'
 import purse from '../../../../../assets/gifIcon/purse.gif'
 import alms from '../../../../../assets/gifIcon/alms.gif'
+import ReportModal from '../../../../Shared/ReportGenerate/ReportModal';
 
 const CampaignView = () => {
     const campaign = useLoaderData();
@@ -103,11 +104,18 @@ const CampaignView = () => {
 
 
 
-                        <button className="btn btn-primary my-10">Generate Report</button>
+                        <div className='w-full '>
+                            <label htmlFor="report-modal" className="btn bg-white border-none  text-slate-700 font-bold  hover:bg-primary">Generate Report</label>
+                        </div>
+
+
+                        <div className='mx-auto'>
+                            <ReportModal campaign={campaign}></ReportModal>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

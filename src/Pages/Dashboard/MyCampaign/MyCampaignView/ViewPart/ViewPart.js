@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../../../../Context/AuthProvider';
 import DonatedPart from '../../../../CampaignAndDonation/Donation/DonatedPart';
-import ReportModal from './ReportModal';
+import ReportModal from '../../../../Shared/ReportGenerate/ReportModal';
 
 const ViewPart = ({ campaign, setView }) => {
 
@@ -26,7 +26,7 @@ const ViewPart = ({ campaign, setView }) => {
 
                     <div>
                         <p className='text-white text-xl mt-2 font-lg font-semibold'>Fund Raised</p>
-                        <p className=' text-3xl text-green-500 font-semibold md:text-4xl'>৳ {progress.totalDonation}</p>
+                        <p className=' text-3xl text-primary font-semibold md:text-4xl'>৳ {progress.totalDonation}</p>
                     </div>
                     <div className='flex my-5 lg:my-0 items-center'>
                         <p className=' text-2xl font-semibold text-white'>Contributors : </p>
@@ -74,7 +74,7 @@ const ViewPart = ({ campaign, setView }) => {
 
 
                 <div className='w-full '>
-                    <button className='bg-white btn px-10 text-slate-700 font-bold  border-none  hover:bg-primary ' onClick={() => setView(false)}>Edit</button>
+                    <button className='bg-white btn px-10 text-slate-700 font-bold  border-none  hover:bg-primary ' disabled={status==='finished'} onClick={() => setView(false)}>Edit</button>
                     <label htmlFor="report-modal" className="btn bg-white border-none px-10 text-slate-700 font-bold mx-10 hover:bg-primary">Generate Report</label>
                 </div>
 

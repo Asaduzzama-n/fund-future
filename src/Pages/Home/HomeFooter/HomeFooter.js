@@ -1,5 +1,5 @@
 import React from 'react';
-import homeFooterImg from '../../../assets/home/wepik-hand-drawn-yellow-kpop-instagram-post-20230423180012.png'
+import homeFooterImg from '../../../assets/gifIcon/campaign.gif'
 import { Link } from 'react-router-dom';
 const HomeFooter = () => {
     return (

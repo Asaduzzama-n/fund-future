@@ -132,7 +132,7 @@ const MyProfile = () => {
                             disabled={!edit}
 
                             className="p-5 h-14 rounded-md input border-solid border-2  border-slate-200 w-full" />
-                        {errors.phone && <p className='text-red-500 py-2'>{errors.phone.message}</p>}
+                        {errors.phone && <p className='text-error py-2'>{errors.phone.message}</p>}
 
                     </div>
 
@@ -144,8 +144,8 @@ const MyProfile = () => {
                             required: "profile picture is required",
                         })}
                             disabled={!edit}
-                            className="file-input file-input-bordered file-input-success px-0 rounded-md input border-solid border-2  border-slate-200 w-full" />
-                        {errors.profile && <p className='text-red-500 py-2'>{errors.profile.message}</p>}
+                            className="file-input file-input-bordered file-input-primary px-0 rounded-md input border-solid border-2  border-slate-200 w-full" />
+                        {errors.profile && <p className='text-error py-2'>{errors.profile.message}</p>}
 
                     </div>
 
@@ -167,12 +167,12 @@ const MyProfile = () => {
                         defaultValue={loggedUser[0]?.address}
                         disabled={!edit}
                         className="p-5  rounded-md input border-solid border-2 h-32 border-slate-200 w-full" />
-                    {errors.address && <p className='text-red-500 py-2'>{errors.address.message}</p>}
+                    {errors.address && <p className='text-error py-2'>{errors.address.message}</p>}
                 </div>
                 <div className="form-control my-10">
                     {edit && <div className='text-end'>
                         <button type='submit' className="py-2 rounded-sm  px-2 mx-2 border-2 border-primary text-primary text-xl hover:bg-primary hover:text-white hover:border-none font-bold">UPDATE</button>
-                        <button onClick={() => setEdit(false)} className="py-2 rounded-sm px-2   border-2 border-red-500 mx-2 text-red-500 text-xl hover:bg-red-200 hover:border-none font-bold">CANCEL</button>
+                        <button onClick={() => setEdit(false)} className="py-2 rounded-sm px-2   border-2 border-error mx-2 text-error text-xl hover:bg-red-200 hover:border-none font-bold">CANCEL</button>
                     </div>
                     }
                 </div>

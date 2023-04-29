@@ -1,35 +1,45 @@
 import React from 'react';
 import DOMPurify from 'dompurify';
-import ContactModal from './ContactModal';
+// import ContactModal from './ContactModal';
 import profile from '../../../assets/gifIcon/profile.gif'
 import mobile from '../../../assets/gifIcon/mobile-app.gif'
 import email from '../../../assets/gifIcon/email.gif'
+import { useQuery } from '@tanstack/react-query';
+import DisplayMessages from './DisplayMessages';
 
-const Campaign = ({ campaign }) => {
+const Campaign = ({ campaign,messages }) => {
     const { title, image, description, campaigner_name, campaigner_mail, campaigner_phone } = campaign;
     const sanitizer = DOMPurify.sanitize;
 
+
+
+
+
+
     return (
-        <div className='w-9/12 mx-auto   p-5 rounded-md'>
+        <div className='w-full mx-auto   p-5 rounded-md'>
             <div >
                 <div >
                     <img className='rounded-lg' src={image} alt="" />
                 </div>
             </div>
             <div className='py-10'>
-                <h1 className='text-3xl md:text-5xl font-semibold text-slate-700'>{title}</h1>
-                <p className='text-primary my-5 font-semibold text-lg'>Description</p>
-                <div className='border border-slate-500 p-10 rounded-md'>
+                <h1 className='text-3xl md:text-4xl font-semibold text-slate-700'>{title}</h1>
+                <p className='text-primary mt-10 font-semibold text-lg'>Description</p>
+                <div className="divider"></div>
+                <div className=' p-5'>
 
                     <div dangerouslySetInnerHTML={{ __html: sanitizer(description) }} />
 
                 </div>
+                <div className="divider"></div>
+
             </div>
             <div>
 
                 <div className='md:w-1/2'>
                     <div tabIndex={0} className="collapse collapse-arrow  bg-white shadow-sm rounded-box">
-                        <div className="collapse-title text-md font-medium ">
+                        <div className="collapse-title text-lg text-accent  font-medium ">
                             Organizer Information
                         </div>
                         <div className="collapse-content ">
@@ -52,6 +62,16 @@ const Campaign = ({ campaign }) => {
                     </div>
                 </div>
 
+            </div>
+
+            <div className='my-10 ml-5'>
+                <h1 className='text-xl text-accent font-bold'>Words of support ({messages.length})</h1>
+                <p className='my-1'>Please donates to share words of support.</p>
+                <div>
+                    {
+                        messages.map(msg => <DisplayMessages key={msg._id} msg={msg}></DisplayMessages> )
+                    }
+                </div>
             </div>
 
             {/* <ContactModal campaigner_mail={campaigner_mail}></ContactModal> */}

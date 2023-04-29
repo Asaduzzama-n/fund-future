@@ -41,9 +41,8 @@ const MyDonation = () => {
                         <tr>
                             <th></th>
                             <th>Amount</th>
-                            <th>Campaign ID</th>
+                            <th>Campaign NAME</th>
                             <th>Time</th>
-                            <th>Campaigner Email</th>
                             <th>TRX_ID</th>
                             <th>Action</th>
                         </tr>
