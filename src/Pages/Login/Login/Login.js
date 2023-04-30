@@ -35,7 +35,7 @@ const Login = () => {
                 const user = userCredential.user;
 
                 if (user.emailVerified) {
-                    console.log(from)
+                    // console.log(from)
                     setLoginUserEmail(user?.email)
                     toast.success(`Welcome ${user?.displayName}`)
                     // navigate(from, { replace: true });
@@ -52,8 +52,9 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                saveUserInfo(user?.displayName,user?.email);
                 setLoginUserEmail(user?.email)
-                saveUserInfo(user?.displayName,user?.email)
+                saveUserInfo(user?.displayName,user?.email);
                 toast.success(`Welcome ${user?.displayName}`)
                 // navigate(from, { replace: true });
             })
