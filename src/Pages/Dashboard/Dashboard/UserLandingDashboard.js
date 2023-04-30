@@ -74,7 +74,7 @@ const UserLandingDashboard = () => {
                             <img className='h-10 w-10' src={campaign} alt="" />
 
                         </div>
-                        <div className="stat-title">Running Campaign</div>
+                        <div className="stat-title">Total Campaign</div>
                         <div className="stat-value">{campaigns.length}</div>
                         {/* <div className="stat-desc">↘︎ 90 (14%)</div> */}
                     </div>

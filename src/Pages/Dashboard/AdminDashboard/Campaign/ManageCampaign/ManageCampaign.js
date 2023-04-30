@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import UserInfoModal from '../../SharedComponent/UserInfoModal';
 import { Link } from 'react-router-dom';
-
+import letter from '../../../../../assets/gifIcon/letter-x (1).gif'
 
 const ManageCampaign = () => {
 
@@ -90,8 +90,8 @@ const ManageCampaign = () => {
             sortable: true
         },
         {
-            name: 'DOCUMENTS',
-            selector: row => <div><p className='font-medium text-accent'>CS</p></div>,
+            name: 'EMAIL',
+            selector: row => <div><p className=''>{row.campaigner_mail}</p></div>,
             sortable: true
         },
         {
@@ -131,6 +131,10 @@ const ManageCampaign = () => {
         {
             when: row => row.status === 'rejected',
             style: {backgroundColor: '#F1C8CC',},
+          },
+          {
+            when: row => row.status === 'pendingWithdraw',
+            style: {backgroundColor: '#F0864F',},
           },
       ];
 

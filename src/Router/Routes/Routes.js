@@ -28,6 +28,9 @@ import ManageDonation from '../../Pages/Dashboard/AdminDashboard/Donation/Manage
 import CampaignView from '../../Pages/Dashboard/AdminDashboard/Campaign/CampaignView/CampaignView';
 import ManageWithdraw from '../../Pages/Dashboard/AdminDashboard/ManageWithdraw/ManageWithdraw';
 import ManageCharity from '../../Pages/Dashboard/AdminDashboard/ManageCharity/ManageCharity';
+import Faq from '../../Pages/Faq/Faq/Faq';
+import TermsAndCondition from '../../Pages/TermsAnCondition/TermsAndCondition';
+import Contact from '../../Pages/Contact/Contact';
 
 
 const routes = createBrowserRouter([
@@ -51,6 +54,18 @@ const routes = createBrowserRouter([
             {
                 path: '/about',
                 element: <About></About>
+            },
+            {
+                path: '/faq',
+                element: <Faq></Faq>
+            },
+            {
+                path: '/t&c',
+                element: <TermsAndCondition></TermsAndCondition>
+            },
+            {
+                path: '/contact',
+                element: <Contact></Contact>
             },
             {
                 path: '/start-campaign',

@@ -31,7 +31,9 @@ const Donation = ({ campaign,setMsg,msg }) => {
             </div>
             <div className='my-5 '>
 
-                <div className="radial-progress text-primary font-medium mt-4" style={{ "--value": progress.donationProgress }}>{Math.round(progress.donationProgress)}%</div>
+                <div className='text-center'>
+                <div className="radial-progress text-primary font-medium mt-4 " style={{ "--value": progress.donationProgress }}>{Math.round(progress.donationProgress)}%</div>
+                </div>
                 <div className='flex items-center justify-start my-5'>
                     <p className='text-slate-700 text-xl  font-lg font-semibold'>Goal: </p>
                     <h1 className='text-2xl text-primary font-bold md:text-3xl'>৳ {t_amount}</h1>

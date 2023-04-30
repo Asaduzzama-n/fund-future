@@ -30,7 +30,7 @@ const DashboardLayout = () => {
                                 <li className='border-l-4 border-primary my-2 font-medium'><NavLink to={'/dashboard/campaign-request'} activeClassName="active">Campaign Request</NavLink></li>
                                 <li className='border-l-4 border-primary my-2 font-medium'><NavLink to={'/dashboard/manage-campaign'} activeClassName="active">Manage Campaign</NavLink></li>
                                 <li className='border-l-4 border-primary my-2 font-medium'><NavLink to={'/dashboard/manage-donation'} activeClassName="active">Manage Donation</NavLink></li>
-                                <li className='border-l-4 border-primary my-2 font-medium'><NavLink to={'/dashboard/manage-charity'} activeClassName="active">Manage Charity</NavLink></li>
+                                {/* <li className='border-l-4 border-primary my-2 font-medium'><NavLink to={'/dashboard/manage-charity'} activeClassName="active">Manage Charity</NavLink></li> */}
                                 <li className='border-l-4 border-primary my-2 font-medium'><NavLink to={'/dashboard/manage-withdraw'} activeClassName="active">Withdrawal Request</NavLink></li>
 
                             </ul>

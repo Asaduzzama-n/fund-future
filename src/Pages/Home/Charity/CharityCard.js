@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const CharityCard = ({ charity }) => {
 
-    const { _id,charity_name, charity_img, charity_contact, charity_email, charity_desc } = charity;
+    const { _id, charity_img,  } = charity;
 
     return (
         <div className='p-5 '>

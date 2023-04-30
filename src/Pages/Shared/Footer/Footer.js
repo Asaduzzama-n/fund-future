@@ -22,14 +22,14 @@ const Footer = () => {
                 </div>
                 <div className='mt-10'>
                     <span className="footer-title">Learn more</span>
-                    <Link className="link link-hover" to={'#'}>About us</Link>
-                    <Link className="link link-hover" to={'#'}>Contact</Link>
+                    <Link className="link link-hover" to={'/about'}>About us</Link>
+                    <Link className="link link-hover" to={'/contact'}>Contact</Link>
                     <Link className="link link-hover" to={'#'}>Why FundFuture</Link>
-                    <Link className="link link-hover" to={'#'}>Success Stories</Link>
+                    <Link className="link link-hover" to={'/faq'}>FAQ</Link>
                 </div>
                 <div className='mt-10'>
                     <span className="footer-title">Resources</span>
-                    <Link className="link link-hover" to={'#'}>Terms of use</Link>
+                    <Link className="link link-hover" to={'/t&c'}>Terms of use</Link>
                     <Link className="link link-hover" to={'#'}>Privacy policy</Link>
                     <Link className="link link-hover" to={'#'}>Cookie policy</Link>
                 </div>

@@ -1,6 +1,10 @@
 import React from 'react';
 import './HomeDashboard.css';
 import { motion, useScroll } from "framer-motion";
+import kindness from '../../../assets/gifIcon/kindness.gif'
+import alms from '../../../assets/gifIcon/alms.gif'
+import heart from '../../../assets/gifIcon/heart.gif'
+
 const HomeDashboard = () => {
 
     const { scrollYProgress } = useScroll();
@@ -28,15 +32,15 @@ const HomeDashboard = () => {
 
                 <div className="stat">
                     <div className="stat-figure text-primary">
-                        <motion.svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-10 h-10 stroke-current item">
+                        <motion.svg xmlns="http://www.w3.org/2000/svg" fill="#33CCCD" viewBox="0 0 24 24" className="inline-block w-10 h-10 stroke-primary item">
                             <motion.path
                                 variants={icon}
                                 initial="hidden"
                                 animate="visible"
 
                                 transition={{
-                                    default: { duration: 2, ease: "easeInOut" },
-                                    fill: { duration: 2, ease: [1, 0, 0.8, 1] }
+                                    default: { duration: 5, ease: "easeInOut" },
+                                    fill: { duration: 5, ease: [1, 0, 0.8, 1] }
                                 }} strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></motion.path></motion.svg>
                     </div>
                     <div className="stat-title">projects funded</div>

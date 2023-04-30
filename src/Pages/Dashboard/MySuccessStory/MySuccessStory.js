@@ -16,7 +16,7 @@ const MySuccessStory = () => {
         queryFn: async () => {
             const res = await fetch(url, {
                 headers: {
-                    // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
             });
             const data = await res.json();
@@ -29,7 +29,7 @@ const MySuccessStory = () => {
         fetch(`http://localhost:5000/successStories/${id}`, {
             method: 'DELETE',
             headers: {
-                // authorization:`Bearer ${localStorage.getItem('Token')}`
+                authorization:`Bearer ${localStorage.getItem('Token')}`
             }
         })
             .then(res => res.json())

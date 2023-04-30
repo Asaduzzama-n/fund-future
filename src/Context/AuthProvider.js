@@ -58,7 +58,11 @@ const AuthProvider = ({ children }) => {
     const {data:donations = [], refetch, isLoading } = useQuery({
         queryKey: ['donations'],
         queryFn: async ()=>{
-            const res = await fetch('http://localhost:5000/get-donations');
+            const res = await fetch('http://localhost:5000/get-donations',{
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
             return data;
         }

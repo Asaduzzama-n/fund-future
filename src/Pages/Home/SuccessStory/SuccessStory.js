@@ -14,7 +14,13 @@ const SuccessStory = () => {
     const { data: stories = [], isLoading } = useQuery({
         queryKey: ['stories'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/successStories');
+            
+            const res = await fetch('http://localhost:5000/successStories', {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
+            
             const data = await res.json();
             return data;
         }

@@ -88,8 +88,8 @@ const CampaignRequest = () => {
             sortable: true
         },
         {
-            name: 'DOCUMENTS',
-            selector: row => <div><p className=' '>CS</p></div>,
+            name: 'EMAIL',
+            selector: row => <div><p className=''>{row.campaigner_mail}</p></div>,
             sortable: true
         },
         {

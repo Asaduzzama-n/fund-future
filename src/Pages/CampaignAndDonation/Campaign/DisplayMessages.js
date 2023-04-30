@@ -15,7 +15,7 @@ const DisplayMessages = ({msg}) => {
                     <p className='my-3 text-accent'>{message}</p>
                 </div>
             </div>
-            <div className="divider"></div>
+            {/* <div className="divider"></div> */}
         </div>
     );
 };

@@ -11,14 +11,6 @@ const AdminLandingDashboard = () => {
 
     const { donations, user } = useContext(AuthContext);
 
-    // const {data:campaigns = [], refetch, isLoading } = useQuery({
-    //     queryKey: ['campaigns'],
-    //     queryFn: async ()=>{
-    //         const res = await fetch('http://localhost:5000/all-campaigns');
-    //         const data = await res.json();
-    //         return data;
-    //     }
-    // })
 
     const { data: users = [] } = useQuery({
         queryKey: ['users'],
@@ -45,27 +37,27 @@ const AdminLandingDashboard = () => {
             id: 1,
             value: users.length,
             title: 'Active User',
-            class: "'h-44 bg-green-300 rounded-md p-5 text-center '"
+            className: "h-40  rounded-md p-5 hover:bg-blue-500 text-center bg-blue-700 glass"
         },
         {
             id: 2,
             value: donations.length,
             title: 'Total Donation',
-            class: "'h-44 bg-green-600 rounded-md p-5 text-center '"
+            className: "h-40 bg-green-600 hover:bg-green-400  rounded-md p-5 glass text-center"
 
         },
         {
             id: 3,
             value: donations.reduce((sum, donation) => { return sum + donation.amount }, 0),
             title: 'Total Amount',
-            class: "'h-44 bg-green-100 rounded-md p-5 text-center '"
+            className: "h-40 bg-orange-600 hover:bg-orange-600  rounded-md glass p-5 text-center"
 
         },
         {
             id: 4,
             value: (campaigns.filter(campaign => campaign.status === 'active')).length,
             title: 'Active Campaign',
-            class: "'h-44 bg-red-300 rounded-md p-5 text-center '"
+            className: "h-40 bg-sky-700 hover:bg-sky-500 rounded-md p-5 glass text-center"
 
         },
 

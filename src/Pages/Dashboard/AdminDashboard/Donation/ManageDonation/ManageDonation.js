@@ -10,19 +10,10 @@ import Loading from '../../../../Shared/Loading/Loading';
 
 const ManageDonation = () => {
 
-    const { user,donations } = useContext(AuthContext);
+    const { donations } = useContext(AuthContext);
 
     const [search, setSearch] = useState('');
     const [filteredDonations, setFilteredDonations] = useState(donations);
-    // const { data: donations = [], refetch,isLoading } = useQuery({
-    //     queryKey: ['donations'],
-    //     queryFn: async () => {
-    //         const res = await fetch('http://localhost:5000/get-donations');
-    //         const data = await res.json();
-    //         setFilteredDonations(data);
-    //         return data;
-    //     }
-    // })
 
 
     useEffect(() => {
@@ -33,41 +24,6 @@ const ManageDonation = () => {
     }, [search])
 
 
-    // const handleCampaignStatusUpdate = (id, status) => {
-
-    //     const campaignStatus = {
-    //         status: status
-    //     }
-
-    //     // console.log(campaignStatus,id)
-
-    //     fetch(`http://localhost:5000/campaign/admin/${id}`, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'content-type': 'application/json',
-    //             authorization: `bearer ${localStorage.getItem('accessToken')}`
-    //         },
-    //         body: JSON.stringify(campaignStatus)
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             if (data.modifiedCount > 0) {
-    //                 toast.success('Campaign Status updated successfully.')
-    //                 refetch();
-    //             }else{
-    //             toast.error("Failed to update campaign status.")
-
-    //             }
-    //         })
-    //         .catch(err => {
-    //             toast.error(err.message)
-    //             console.error(err)
-    //         });
-    // }
-
-
-
-    // console.log(filteredCampaigns);
 
 
 
@@ -112,8 +68,8 @@ const ManageDonation = () => {
           },
         },
         {
-          when: row => row.donation_type === '',
-          style: {backgroundColor: '#C3EFD3',},
+          when: row => row.donation_type === 'campaign',
+          style: {backgroundColor: '#5CC2F0',},
         }
       ];
 

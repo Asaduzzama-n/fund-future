@@ -4,7 +4,6 @@ import DOMPurify from 'dompurify';
 import profile from '../../../assets/gifIcon/profile.gif'
 import mobile from '../../../assets/gifIcon/mobile-app.gif'
 import email from '../../../assets/gifIcon/email.gif'
-import { useQuery } from '@tanstack/react-query';
 import DisplayMessages from './DisplayMessages';
 
 const Campaign = ({ campaign,messages }) => {
@@ -56,7 +55,7 @@ const Campaign = ({ campaign,messages }) => {
                                     <img className='h-9 w-9 rounded-full' src={mobile} alt="" />
                                     <p className='ml-5 text-lg font-semibold text-accent my-2'>{campaigner_phone}</p>
                                 </div>
-                                <label htmlFor="contact-modal" className="btn bg-neutral border-none mt-5 px-10 text-slate-700 font-bold mx-10 hover:bg-primary">Contact</label>
+                                {/* <label htmlFor="contact-modal" className="btn bg-neutral border-none mt-5 px-10 text-slate-700 font-bold mx-10 hover:bg-primary">Contact</label> */}
                             </div>
                         </div>
                     </div>
@@ -65,11 +64,11 @@ const Campaign = ({ campaign,messages }) => {
             </div>
 
             <div className='my-10 ml-5'>
-                <h1 className='text-xl text-accent font-bold'>Words of support ({messages.length})</h1>
+                <h1 className='text-xl text-accent font-bold'>Words of support ({messages?.length})</h1>
                 <p className='my-1'>Please donates to share words of support.</p>
                 <div>
                     {
-                        messages.map(msg => <DisplayMessages key={msg._id} msg={msg}></DisplayMessages> )
+                       messages && messages?.map(msg => <DisplayMessages key={msg._id} msg={msg}></DisplayMessages> )
                     }
                 </div>
             </div>

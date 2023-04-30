@@ -3,7 +3,7 @@ import React from 'react';
 const UpperSection = ({ detail }) => {
     return (
         <div>
-            <div className={detail.class}>
+            <div className={detail.className}>
                 <div>
                     <div>
 

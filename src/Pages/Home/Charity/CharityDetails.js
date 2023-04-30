@@ -2,14 +2,15 @@ import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import CharityBanner from './CharityBanner/CharityBanner';
 import CharityDonation from './CharityDonation/CharityDonation';
-
+import mobile from '../../../assets/gifIcon/mobile-app.gif'
+import email from '../../../assets/gifIcon/email.gif'
 
 const CharityDetails = () => {
 
     const charity = useLoaderData();
-    const { _id, charity_title, charity_img, charity_contact, charity_email, charity_desc,charity_campaigns } = charity;
+    const { _id, charity_title, charity_img, charity_contact, charity_email, charity_desc, charity_campaigns } = charity;
 
-    console.log(charity_campaigns);
+    // console.log(charity_campaigns);
 
     return (
         <div className='bg-neutral py-10'>
@@ -29,9 +30,32 @@ const CharityDetails = () => {
                                 <li className="step step-white font-medium">{charity_campaigns[1]}</li>
                                 <li className="step step-white font-medium">{charity_campaigns[2]}</li>
                             </ul>
+                            <div>
+                                <div className='w-full my-5'>
+                                    <div tabIndex={0} className="collapse collapse-arrow  bg-neutral rounded-box">
+                                        <div className="collapse-title text-lg text-accent  font-medium ">
+                                            Organizer Information
+                                        </div>
+                                        <div className="collapse-content ">
+                                            <div className='my-5'>
+                                                <div className='flex items-center'>
+                                                    <img className='h-9 w-9 rounded-full' src={email} alt="" />
+                                                    <p className='ml-5 text-lg font-semibold text-accent my-2'>{charity_email}</p>
+                                                </div>
+                                                <div className='flex items-center'>
+                                                    <img className='h-9 w-9 rounded-full' src={mobile} alt="" />
+                                                    <p className='ml-5 text-lg font-semibold text-accent my-2'>{charity_contact}</p>
+                                                </div>
+                                                {/* <label htmlFor="contact-modal" className="btn bg-neutral border-none mt-5 px-10 text-slate-700 font-bold mx-10 hover:bg-primary">Contact</label> */}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <div>
                     <h2><CharityDonation charity={charity}></CharityDonation></h2>
                 </div>
