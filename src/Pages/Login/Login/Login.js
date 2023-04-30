@@ -53,6 +53,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 setLoginUserEmail(user?.email)
+                saveUserInfo(user?.displayName,user?.email)
                 toast.success(`Welcome ${user?.displayName}`)
                 // navigate(from, { replace: true });
             })
@@ -76,7 +77,21 @@ const Login = () => {
     }
 
 
-
+    const saveUserInfo =(name,email) =>{
+        const user = {name,email};
+        fetch('http://localhost:5000/users',{
+            method: 'POST',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data => {
+            setLoginUserEmail(email);
+            console.log(data);
+        })
+    }
     return (
 
         <div className='min-h-screen mt-20 '>
