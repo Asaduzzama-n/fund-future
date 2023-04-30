@@ -26,7 +26,7 @@ const EditPart = ({ campaign, setView }) => {
         queryFn: async () => {
             const res = await fetch(url, {
                 headers: {
-                    // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
             });
             const data = await res.json();
@@ -49,7 +49,9 @@ const EditPart = ({ campaign, setView }) => {
         fetch(`http://localhost:5000/campaigns/${_id}`, {
             method: 'PUT',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+
             },
             body: JSON.stringify(campaign)
         })
