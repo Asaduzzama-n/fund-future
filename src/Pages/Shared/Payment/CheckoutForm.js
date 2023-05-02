@@ -4,9 +4,10 @@ import { useState } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 
-const CheckoutForm = ({ campaign, d_amount, anonymity, donationType,msg }) => {
+const CheckoutForm = ({ campaign, d_amount, anonymity, donationType, msg }) => {
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
     const [transactionId, setTransactionId] = useState('');
@@ -17,9 +18,21 @@ const CheckoutForm = ({ campaign, d_amount, anonymity, donationType,msg }) => {
 
     const stripe = useStripe();
     const elements = useElements();
-
     const { user, refetch } = useContext(AuthContext);
     const { _id, title } = campaign;
+    const [currLocation, setCurrLocation] = useState({});
+
+
+    useEffect(() => {
+
+        navigator.geolocation.getCurrentPosition((position) => {
+            const { latitude, longitude } = position.coords;
+            setCurrLocation({ latitude, longitude })
+            // console.log(currLocation);
+
+        })
+
+    }, [])
 
 
     useEffect(() => {
@@ -79,8 +92,35 @@ const CheckoutForm = ({ campaign, d_amount, anonymity, donationType,msg }) => {
         );
 
         if (confirmError) {
+            // console.log('innnnnnnnnn')
+            const auditInfo = {
+                userEmail: user?.email,
+                userName: user?.displayName,
+                accessTime: new Date(),
+                location: currLocation,
+                amount: d_amount ,
+                transactionId: paymentIntent?.id || 'none',
+                campaignId: _id,
+                // cardInfo: 
+                status: 'failed'
+    
+            }
+            console.log(auditInfo)
+            fetch('http://localhost:5000/donationAuditTrail', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(auditInfo)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                })
             setCardError(confirmError.message);
-            return;
+
+            // return;
         }
 
         // console.log(paymentIntent);
@@ -138,6 +178,37 @@ const CheckoutForm = ({ campaign, d_amount, anonymity, donationType,msg }) => {
 
                     }
                 })
+
+                //audit part
+
+                const auditInfo = {
+                    userEmail: user?.email,
+                    userName: user?.displayName,
+                    accessTime: new Date(),
+                    location: currLocation,
+                    amount: d_amount,
+                    transactionId: paymentIntent.id,
+                    campaignId: _id,
+                    // cardInfo: 
+                    status: 'success'
+        
+                }
+        
+                fetch('http://localhost:5000/donationAuditTrail', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json',
+                        // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    },
+                    body: JSON.stringify(auditInfo)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                    })
+
+
+
         }
         setProcessing(false);
     }
@@ -176,61 +247,62 @@ const CheckoutForm = ({ campaign, d_amount, anonymity, donationType,msg }) => {
     }
 
 
-    return (
-        <>
-            <form onSubmit={handleCheckOut}>
-                <CardElement
-                    options={{
-                        style: {
-                            base: {
-                                fontSize: '16px',
-                                color: '#424770',
-                                '::placeholder': {
-                                    color: '#aab7c4',
-                                },
-                            },
-                            invalid: {
-                                color: '#9e2146',
+
+return (
+    <>
+        <form onSubmit={handleCheckOut}>
+            <CardElement
+                options={{
+                    style: {
+                        base: {
+                            fontSize: '16px',
+                            color: '#424770',
+                            '::placeholder': {
+                                color: '#aab7c4',
                             },
                         },
-                    }}
-                />
-                <button
-                    className='btn btn-sm mt-4 btn-primary'
-                    type="submit"
-                    disabled={!stripe || !clientSecret || processing || success}>
-                    Pay
-                </button>
-            </form>
-            <p className="text-error">{cardError}</p>
-            {
-                success && <div className='my-5'>
-                    <p className='text-primary'>{success}</p>
-                    <p>TRX: <span className='font-bold'>{transactionId}</span></p>
+                        invalid: {
+                            color: '#9e2146',
+                        },
+                    },
+                }}
+            />
+            <button
+                className='btn btn-sm mt-4 btn-primary'
+                type="submit"
+                disabled={!stripe || !clientSecret || processing || success}>
+                Pay
+            </button>
+        </form>
+        <p className="text-error">{cardError}</p>
+        {
+            success && <div className='my-5'>
+                <p className='text-primary'>{success}</p>
+                <p>TRX: <span className='font-bold'>{transactionId}</span></p>
 
 
-                    <div className='my-5'>
-                        <form onSubmit={handleSubmit(handleMessage)} className=" w-full">
+                <div className='my-5'>
+                    <form onSubmit={handleSubmit(handleMessage)} className=" w-full">
 
-                            <textarea type="text"
-                                {...register("message", {
-                                })}
+                        <textarea type="text"
+                            {...register("message", {
+                            })}
 
-                                placeholder='Show your support through few words!'
-                                className="input bg-neutral w-full h-24 rounded-md my-2" />
-                            <br />
+                            placeholder='Show your support through few words!'
+                            className="input bg-neutral w-full h-24 rounded-md my-2" />
+                        <br />
 
-                            <button className='btn bg-neutral border-none hover:bg-primary font-semibold text-accent' type='submit'>Submit</button>
+                        <button className='btn bg-neutral border-none hover:bg-primary font-semibold text-accent' type='submit'>Submit</button>
 
-                        </form>
-                    </div>
-
+                    </form>
                 </div>
 
-            }
+            </div>
 
-        </>
-    );
+        }
+
+    </>
+);
 };
 
 export default CheckoutForm;

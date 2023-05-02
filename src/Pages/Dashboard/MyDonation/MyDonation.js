@@ -3,12 +3,14 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
 import MyDonationRow from './MyDonationRow';
 import { motion } from "framer-motion"
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const MyDonation = () => {
 
 
-    const { user,logOut } = useContext(AuthContext);
-
+    const { user, logOut } = useContext(AuthContext);
+    const [auditStatus, setAuditStatus] = useState(false);
     const url = `http://localhost:5000/donations?email=${user?.email}`;
 
     const { data: donations = [] } = useQuery({
@@ -19,13 +21,48 @@ const MyDonation = () => {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
             });
-            if(res.status === 401 || res.status === 403){
+            if (res.status === 401 || res.status === 403) {
                 logOut();
             }
             const data = await res.json();
             return data;
         }
     })
+
+
+
+
+        const { data: auditDonations = [] } = useQuery({
+            queryKey: ['auditDonations'],
+            queryFn: async () => {
+                const res = await fetch(`http://localhost:5000/donationAuditTrail`, {
+                    headers: {
+                        // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                });
+                const data = await res.json();
+                // console.log(auditDonations)
+                return data;
+            }
+        })
+
+        console.log(auditDonations)
+        const verifyDonate = (id) =>{
+            // console.log('callign ID: ',id);
+            const filteredAuditById = auditDonations.filter(auditDonation => auditDonation.campaignId === id);
+
+            const filteredByStatus = filteredAuditById.find(don => don.status === 'success');
+            // console.log('Status',filteredByStatus)
+
+            if(filteredByStatus) {
+                setAuditStatus(true);
+            }else{
+                setAuditStatus(false);
+            }
+
+            // if(filteredByStatus) console.log('true')
+            // console.log(filteredAuditById)
+        }
 
     return (
         <motion.div initial={{ opacity: 0, scale: 0.8 }}
@@ -50,13 +87,18 @@ const MyDonation = () => {
                     <tbody>
                         {
                             donations &&
-                            donations?.map((donation, i) => <MyDonationRow key={donation._id} donation={donation} i={i}></MyDonationRow>)
+                            donations?.map((donation, i) => <MyDonationRow verifyDonate ={verifyDonate} auditStatus={auditStatus}  key={donation._id} donation={donation} i={i}></MyDonationRow>)
 
                         }
                     </tbody>
                 </table>
             </div>
+
+            
         </motion.div>
+
+                        
+
     );
 };
 
