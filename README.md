@@ -1,9 +1,12 @@
 ## FundFuture
 
-Welcome to FundFuture! This is a project aimed at providing a platform for individuals and organizations to create and donate to fundraising campaigns.
-Features
+## Live Link : https://fund-future.web.app/
 
-## FundFuture provides a variety of features to make your donation experience as easy and secure as possible. Some of our key features include:
+## Welcome to FundFuture! This is a project aimed at providing a platform for individuals and organizations to create and donate to fundraising campaigns.
+
+## Features
+
+FundFuture provides a variety of features to make your donation experience as easy and secure as possible. Some of our key features include:
 
     User authentication and authorization with JWT and Google Login
     Creation, editing, and deletion of fundraising campaigns
