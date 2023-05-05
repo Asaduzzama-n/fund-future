@@ -31,13 +31,13 @@ To run FundFuture on your local machine, follow these steps:
 
 bash
 
-## git clone https://github.com/username/FundFuture.git
+## git clone https://github.com/Asaduzzama-n/fund-future.git
 
      Install dependencies:
 
 ## npm install
 
-##    Create a .env file and add the following environment variables:
+##    Create a .env.local file and add the following environment variables:
 
 ## makefile
 
