@@ -29,7 +29,7 @@ const MyDonationRow = ({ donation, i, verifyDonate, auditStatus }) => {
                 </td>
                 <td>{transactionId}</td>
                 <th>
-                    <label htmlFor="my-modal-3"  onClick={() => verifyDonate(donation.campaign_id)} auditStatus className="btn btn-ghost  btn-xs">Track</label>
+                    <label htmlFor="my-modal-3"  onClick={() => verifyDonate(donation.campaign_id,amount)} auditStatus className="btn btn-ghost  btn-xs">Track</label>
                 </th>
             </tr>
             {/* The button to open modal */}

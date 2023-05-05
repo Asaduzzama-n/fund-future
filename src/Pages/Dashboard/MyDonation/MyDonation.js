@@ -48,11 +48,11 @@ const MyDonation = () => {
 
     console.log(auditDonations)
 
-    const verifyDonate = (id) => {
+    const verifyDonate = (id,targetAmount) => {
 
         const filteredAuditById = auditDonations.filter(auditDonation => auditDonation.campaignId === id);
 
-        const filteredByStatus = filteredAuditById.find(don => don.status === 'success');
+        const filteredByStatus = filteredAuditById.find(don => don.status === 'success' && don.amount === targetAmount );
 
 
         if (filteredByStatus) {
