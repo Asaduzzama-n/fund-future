@@ -11,7 +11,7 @@ const CampaignAndDonation = () => {
     const { data: messages = [], refetch } = useQuery({
         queryKey: ['messages'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/messages/${campaign._id}`)
+            const res = await fetch(`https://fund-future-server.vercel.app/messages/${campaign._id}`)
             const data = await res.json();
             setMsg(data);
             return data;

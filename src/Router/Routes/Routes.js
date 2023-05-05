@@ -78,7 +78,7 @@ const routes = createBrowserRouter([
             {
                 path: '/campaign/:_id',
                 element: <CampaignAndDonation></CampaignAndDonation>,
-                loader: ({ params }) => fetch(`http://localhost:5000/campaign/${params._id}`)
+                loader: ({ params }) => fetch(`https://fund-future-server.vercel.app/campaign/${params._id}`)
             },
             {
                 path: '/create-campaign',
@@ -87,13 +87,13 @@ const routes = createBrowserRouter([
             {
                 path: '/successStory/:_id',
                 element: <ViewStory></ViewStory>,
-                loader: ({ params }) => fetch(`http://localhost:5000/successStory/${params._id}`)
+                loader: ({ params }) => fetch(`https://fund-future-server.vercel.app/successStory/${params._id}`)
 
             },
             {
                 path: '/charity/:_id',
                 element: <CharityDetails></CharityDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/charity/${params._id}`)
+                loader: ({ params }) => fetch(`https://fund-future-server.vercel.app/charity/${params._id}`)
 
             },
             {
@@ -134,7 +134,7 @@ const routes = createBrowserRouter([
             {
                 path: '/dashboard/my-campaign/campaign-view/:_id',
                 element: <MyCampaignView></MyCampaignView>,
-                loader: ({ params }) => fetch(`http://localhost:5000/campaign/${params._id}`)
+                loader: ({ params }) => fetch(`https://fund-future-server.vercel.app/campaign/${params._id}`)
             },
             {
                 path: '/dashboard/campaign-request',
@@ -147,7 +147,7 @@ const routes = createBrowserRouter([
             {
                 path: '/dashboard/manage-campaign/campaign-view/:_id',
                 element: <AdminRoute><CampaignView></CampaignView> </AdminRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/campaign/${params._id}`)
+                loader: ({ params }) => fetch(`https://fund-future-server.vercel.app/campaign/${params._id}`)
 
             },
             {

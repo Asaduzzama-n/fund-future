@@ -8,7 +8,7 @@ const useCampaigns = (email) => {
 
     useEffect(() => {
         if(email){
-            fetch(`http://localhost:5000/all-campaigns`)
+            fetch(`https://fund-future-server.vercel.app/all-campaigns`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);

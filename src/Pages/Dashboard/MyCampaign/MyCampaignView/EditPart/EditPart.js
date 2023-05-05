@@ -19,7 +19,7 @@ const EditPart = ({ campaign, setView }) => {
     const [content, setContent] = useState('');
     const { user } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const url = `http://localhost:5000/users?email=${user?.email}`;
+    const url = `https://fund-future-server.vercel.app/users?email=${user?.email}`;
 
     const { data: loggedUser = [], refetch } = useQuery({
         queryKey: ['loggedUser', user?.email],
@@ -46,7 +46,7 @@ const EditPart = ({ campaign, setView }) => {
             description: content || description,
         }
         // UPDATE campaign data to database-->
-        fetch(`http://localhost:5000/campaigns/${_id}`, {
+        fetch(`https://fund-future-server.vercel.app/campaigns/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

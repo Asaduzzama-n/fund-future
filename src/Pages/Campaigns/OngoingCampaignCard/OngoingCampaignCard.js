@@ -16,7 +16,7 @@ const OngoingCampaignCard = ({ camp }) => {
 
 
     //     useEffect(()=>{
-    //         fetch(`http://localhost:5000/donation/${_id}`)
+    //         fetch(`https://fund-future-server.vercel.app/donation/${_id}`)
     //         .then(res => res.json())
     //         .then(data => setDonations(data))
     //     },[_id])

@@ -19,7 +19,7 @@ const UserLandingDashboard = () => {
     });
 
 
-    const url = `http://localhost:5000/campaigns?email=${user?.email}`;
+    const url = `https://fund-future-server.vercel.app/campaigns?email=${user?.email}`;
 
     const { data: campaigns = [] } = useQuery({
         queryKey: ['my-campaigns', user?.email],

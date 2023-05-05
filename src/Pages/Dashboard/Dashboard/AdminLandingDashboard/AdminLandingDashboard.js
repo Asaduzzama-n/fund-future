@@ -15,7 +15,7 @@ const AdminLandingDashboard = () => {
     const { data: users = [] } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/all-users');
+            const res = await fetch('https://fund-future-server.vercel.app/all-users');
             const data = await res.json();
             return data;
         }

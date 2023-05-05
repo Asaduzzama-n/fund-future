@@ -16,7 +16,7 @@ const Campaigns = () => {
 
     // console.log((type))
     useEffect(() => {
-        fetch('http://localhost:5000/all-campaigns')
+        fetch('https://fund-future-server.vercel.app/all-campaigns')
             .then(res => res.json())
             .then(data => {
                 if(type === '' || type === 'general'){

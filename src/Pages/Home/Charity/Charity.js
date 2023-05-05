@@ -11,7 +11,7 @@ const Charity = () => {
     const { data: charities = [], isLoading } = useQuery({
         queryKey: ['charities'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/charity');
+            const res = await fetch('https://fund-future-server.vercel.app/charity');
             const data = await res.json();
             return data;
         }

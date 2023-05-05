@@ -12,7 +12,7 @@ const MyCampaignCard = ({ campaign, i,refetch }) => {
             status: status
         }
 
-        fetch(`http://localhost:5000/campaign/admin/${id}`, {
+        fetch(`https://fund-future-server.vercel.app/campaign/admin/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

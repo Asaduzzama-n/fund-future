@@ -11,7 +11,7 @@ const MyDonation = () => {
 
     const { user, logOut } = useContext(AuthContext);
     const [auditStatus, setAuditStatus] = useState(false);
-    const url = `http://localhost:5000/donations?email=${user?.email}`;
+    const url = `https://fund-future-server.vercel.app/donations?email=${user?.email}`;
 
     const { data: donations = [] } = useQuery({
         queryKey: ['donations', user?.email],
@@ -35,7 +35,7 @@ const MyDonation = () => {
     const { data: auditDonations = [] } = useQuery({
         queryKey: ['auditDonations'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/donationAuditTrail`, {
+            const res = await fetch(`https://fund-future-server.vercel.app/donationAuditTrail`, {
                 headers: {
                     // authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }

@@ -9,7 +9,7 @@ const MySuccessStory = () => {
 
     const { user } = useContext(AuthContext);
 
-    const url = `http://localhost:5000/successStories?email=${user?.email}`;
+    const url = `https://fund-future-server.vercel.app/successStories?email=${user?.email}`;
 
     const { data: stories = [], refetch } = useQuery({
         queryKey: ['success-stories', user?.email],
@@ -26,7 +26,7 @@ const MySuccessStory = () => {
 
     const handleStoryDelete = (id) => {
 
-        fetch(`http://localhost:5000/successStories/${id}`, {
+        fetch(`https://fund-future-server.vercel.app/successStories/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization:`Bearer ${localStorage.getItem('Token')}`

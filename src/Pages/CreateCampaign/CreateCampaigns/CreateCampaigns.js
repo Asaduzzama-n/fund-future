@@ -51,7 +51,7 @@ const CreateCampaigns = () => {
                     }
                     //Save campaign data to database-->
 
-                    fetch('http://localhost:5000/campaigns', {
+                    fetch('https://fund-future-server.vercel.app/campaigns', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

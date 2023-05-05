@@ -13,7 +13,7 @@ const FeaturedCampaign = () => {
     const {data: campaigns = [],isLoading } = useQuery({
         queryKey: ['campaigns'],
         queryFn: async () =>{
-            const res = await fetch('http://localhost:5000/campaigns-featured');
+            const res = await fetch('https://fund-future-server.vercel.app/campaigns-featured');
             const data = await res.json();
             return data;
         }

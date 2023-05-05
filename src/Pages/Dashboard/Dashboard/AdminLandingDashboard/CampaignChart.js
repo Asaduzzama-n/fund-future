@@ -9,7 +9,7 @@ const CampaignChart = () => {
 
     const [campaigns, setCampaigns] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5000/all-campaigns')
+        axios.get('https://fund-future-server.vercel.app/all-campaigns')
             .then(data => {
                 const loadedData = data.data;
                 const campaignData = loadedData.map(campaign => {

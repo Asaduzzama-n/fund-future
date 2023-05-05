@@ -19,7 +19,7 @@ const CampaignRequest = () => {
     const { data: campaigns = [], refetch, isLoading } = useQuery({
         queryKey: ['campaigns'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/all-campaigns');
+            const res = await fetch('https://fund-future-server.vercel.app/all-campaigns');
             const data = await res.json();
             const pendingCampaign = data.filter(campaign => campaign.status === 'pending');
             setFilteredCampaigns(pendingCampaign);
@@ -41,7 +41,7 @@ const CampaignRequest = () => {
             status: status
         }
 
-        fetch(`http://localhost:5000/campaign/admin/${id}`, {
+        fetch(`https://fund-future-server.vercel.app/campaign/admin/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

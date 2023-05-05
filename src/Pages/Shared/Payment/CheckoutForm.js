@@ -37,7 +37,7 @@ const CheckoutForm = ({ campaign, d_amount, anonymity, donationType, msg }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://fund-future-server.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -106,7 +106,7 @@ const CheckoutForm = ({ campaign, d_amount, anonymity, donationType, msg }) => {
     
             }
             console.log(auditInfo)
-            fetch('http://localhost:5000/donationAuditTrail', {
+            fetch('https://fund-future-server.vercel.app/donationAuditTrail', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -158,7 +158,7 @@ const CheckoutForm = ({ campaign, d_amount, anonymity, donationType, msg }) => {
 
                 }
             }
-            fetch('http://localhost:5000/checkout', {
+            fetch('https://fund-future-server.vercel.app/checkout', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -194,7 +194,7 @@ const CheckoutForm = ({ campaign, d_amount, anonymity, donationType, msg }) => {
         
                 }
         
-                fetch('http://localhost:5000/donationAuditTrail', {
+                fetch('https://fund-future-server.vercel.app/donationAuditTrail', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',
@@ -227,7 +227,7 @@ const CheckoutForm = ({ campaign, d_amount, anonymity, donationType, msg }) => {
 
         }
 
-        fetch('http://localhost:5000/message', {
+        fetch('https://fund-future-server.vercel.app/message', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

@@ -15,7 +15,7 @@ const SuccessStory = () => {
         queryKey: ['stories'],
         queryFn: async () => {
             
-            const res = await fetch('http://localhost:5000/successStories', {
+            const res = await fetch('https://fund-future-server.vercel.app/successStories', {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }

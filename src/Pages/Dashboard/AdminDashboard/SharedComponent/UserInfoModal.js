@@ -13,7 +13,7 @@ const UserInfoModal = ({ targetUserEmail }) => {
 
     const [targetUser, setTargetUser] = useState({});
     useEffect(() => {
-        fetch(`http://localhost:5000/users?email=${targetUserEmail}`)
+        fetch(`https://fund-future-server.vercel.app/users?email=${targetUserEmail}`)
             .then(res => res.json())
             .then(data => setTargetUser(data))
     }, [targetUserEmail])
@@ -30,7 +30,7 @@ const UserInfoModal = ({ targetUserEmail }) => {
 
         // console.log(mailInfo)
 
-        fetch('http://localhost:5000/sendEmail', {
+        fetch('https://fund-future-server.vercel.app/sendEmail', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

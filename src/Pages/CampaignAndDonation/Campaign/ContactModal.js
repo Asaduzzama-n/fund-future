@@ -17,7 +17,7 @@
 //             mailBody:data?.body
 //         }
 
-//         fetch('http://localhost:5000/sendEmail', {
+//         fetch('https://fund-future-server.vercel.app/sendEmail', {
 //             method: 'POST',
 //             headers: {
 //                 'content-type': 'application/json',

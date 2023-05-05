@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
 
 
     // useEffect(() => {
-    //     fetch('http://localhost:5000/donations')
+    //     fetch('https://fund-future-server.vercel.app/donations')
     //         .then(res => res.json())
     //         .then(data => setDonations(data))
     // }, [])
@@ -58,7 +58,7 @@ const AuthProvider = ({ children }) => {
     const {data:donations = [], refetch, isLoading } = useQuery({
         queryKey: ['donations'],
         queryFn: async ()=>{
-            const res = await fetch('http://localhost:5000/get-donations',{
+            const res = await fetch('https://fund-future-server.vercel.app/get-donations',{
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }

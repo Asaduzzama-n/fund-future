@@ -14,7 +14,7 @@ const MyProfile = () => {
     const [edit, setEdit] = useState(false);
 
 
-    const url = `http://localhost:5000/users?email=${user?.email}`;
+    const url = `https://fund-future-server.vercel.app/users?email=${user?.email}`;
 
     const { data: loggedUser = [],refetch } = useQuery({
         queryKey: ['loggedUser', user?.email],
@@ -57,7 +57,7 @@ const MyProfile = () => {
                     }
                     // Save campaign data to database-->
 
-                    fetch(`http://localhost:5000/users?email=${user?.email}`, {
+                    fetch(`https://fund-future-server.vercel.app/users?email=${user?.email}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json'
