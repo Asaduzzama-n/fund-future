@@ -3,36 +3,19 @@ import { motion } from "framer-motion"
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
+import bookmark from '../../../assets/gifIcon/bookmark.gif';
 
+const CampaignCard = ({ campaign, handleBookmarkInsert, handleBookmarkDelete, bookmarks }) => {
 
-const CampaignCard = ({ campaign }) => {
+    const { _id, title, image, short_desc, t_amount, campaigner_name } = campaign;
 
-    const { _id, title, image, short_desc, t_amount, description, campigner_email, campaigner_name } = campaign;
-
-    // const [donations,setDonations] = useState([]);
     const { getDonationProgress } = useContext(AuthContext);
 
     const progress = getDonationProgress(_id, t_amount);
+    const { user } = useContext(AuthContext);
 
-    // useEffect(()=>{
-    //     fetch(`https://fund-future-server.vercel.app/donation/${_id}`)
-    //     .then(res => res.json())
-    //     .then(data => setDonations(data))
-    // },[_id])
-
-
-    //     let totalDonation = 0;
-    //     donations?.map(don =>totalDonation = don.amount+totalDonation)
-
-
-    //    const progressAmount = totalDonation;
-    //    let progressPercent = 0;
-
-    //    if(progressAmount>parseFloat(t_amount)){
-    //         progressPercent = 100;
-    //    }else{
-    //     progressPercent = (progressAmount/parseFloat(t_amount)) * 100;
-    //    }
+    const getBookmarkInfo = bookmarks.find(bookmark => bookmark.campaignId === _id && bookmark?.userEmail === user?.email);
+    console.log(getBookmarkInfo);
 
 
     return (
@@ -52,7 +35,28 @@ const CampaignCard = ({ campaign }) => {
                 <p>{short_desc.slice(0, 100)}...</p>
                 {/* <div className="divider my-0"></div>  */}
                 <div className="card-actions justify-between py-4 absolute bottom-0">
-                    <p className='text-slate-500 font-semibold'>Organized By: {campaigner_name}</p>
+
+                    <div className='flex justify-between'>
+                        <p className='text-slate-500 font-semibold'>Organized By: {campaigner_name}</p>
+
+                        {
+                            getBookmarkInfo ?
+                                <button className='' onClick={() => handleBookmarkDelete(_id)} >
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="#33CCCD" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 text-primary">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
+                                    </svg>
+                                </button>
+
+                                :
+                                <button className='' onClick={() => handleBookmarkInsert(_id,title)}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6  ">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
+                                    </svg>
+
+                                </button>
+                        }
+                    </div>
+
                 </div>
             </div>
         </motion.div>

@@ -31,6 +31,7 @@ import ManageCharity from '../../Pages/Dashboard/AdminDashboard/ManageCharity/Ma
 import Faq from '../../Pages/Faq/Faq/Faq';
 import TermsAndCondition from '../../Pages/TermsAnCondition/TermsAndCondition';
 import Contact from '../../Pages/Contact/Contact';
+import Bookmarks from '../../Pages/Dashboard/Bookmarks/Bookmarks';
 
 
 const routes = createBrowserRouter([
@@ -130,6 +131,10 @@ const routes = createBrowserRouter([
             {
                 path: '/dashboard/create-story',
                 element: <CreateStory></CreateStory>
+            },
+            {
+                path: '/dashboard/bookmarks',
+                element: <Bookmarks></Bookmarks>
             },
             {
                 path: '/dashboard/my-campaign/campaign-view/:_id',

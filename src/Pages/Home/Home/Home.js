@@ -8,6 +8,7 @@ import Charity from '../Charity/Charity';
 import HomeFooter from '../HomeFooter/HomeFooter';
 import HomeDashboard from '../HomeDashboard/HomeDashboard';
 import ExtraBanner from '../Extrabanner/ExtraBanner';
+import Search from '../Search/Search';
 // import Events from '../EventPart/Events/Events';
 
 
@@ -25,6 +26,7 @@ const Home = () => {
             <motion.div className="progress-bar" style={{ scaleX }} />
             <Banner></Banner>
             <HomeDashboard></HomeDashboard>
+            {/* <Search></Search> */}
             <FeaturedCampaign></FeaturedCampaign>
             <ExtraBanner></ExtraBanner>
             {/* <Events></Events> */}
